@@ -9,6 +9,7 @@ const http = require("http").createServer(app);
 const path = require("path");
 const bodyParser = require("body-parser");
 const db = require('./database.js');
+const fs = require('fs');
 
 const cookieParser = require("cookie-parser"); 
 const PORT = 443;
