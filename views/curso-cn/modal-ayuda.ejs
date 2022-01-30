@@ -1,0 +1,33 @@
+<script>
+    document.getElementById('ayuda').addEventListener('click', () => {
+        // alert('asd');
+        $('#ayudaModal').modal('toggle');
+    });
+</script>
+
+<!-- Modal AYUDA -->
+<div class="modal fade" id="ayudaModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content p-5">
+            <div class="modal-body">
+                <h1 class="text-center font-weight-bold">¿Necesitas ayuda?</h1>
+                <p>No te preocupes, estamos para eso. Debes comunicarte al lugar indicado, para recibir una asistencia rápida y eficiente.</p>
+                <ul>
+                    <li><span class="font-weight-bold">Consultas académicas:</span></li>
+                    <p>Por consultas que tengas de conceptos que no te hayan quedado claro en las clases, envianos un email o un WhatsApp acá. <br> <a href="mailito:academica@navesud.com.ar">academica@navesud.com.ar</a> <br> <a target="_BLANK" href="https://wa.link/52ux5b">+5491155733560</a></p>
+                
+                    <li><span class="font-weight-bold">Consultas administrativas:</span></li>
+                    <p>Por pagos, fechas para las mesas de examen, requisitos para rendir, u otras consultas generales,
+                        envianos un email o un WhatsApp acá. <br> <a href="mailito:hola@navesud.com.ar">hola@navesud.com.ar</a> <br> <a target="_BLANK" href="https://wa.link/j7cr6x">+54 93447437748</a> </p>
+                    
+                    <li><span class="font-weight-bold"> Soporte técnico: </span></li>
+                    <p>Si se te traba y no podes pasar a la clase siguiente, no se pueden ver los videos, si no podes entrar al curso, problemas con claves o usuarios, u otra cuestión técnica, envianos un email o WhatsApp.
+                    <br>
+                    <a href="mailito:soporte@navesud.com.ar">soporte@navesud.com.ar</a> <br>
+                    <a target="_BLANK" href="https://wa.link/h1c3j3">+54 93447467166</a>
+                </p>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

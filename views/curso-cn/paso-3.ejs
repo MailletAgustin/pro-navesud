@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>Curso Conductor Náutico</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/curso-cn/css/style.css">
+    <link rel="stylesheet" href="/curso-cn/css/sweetalert2.min.css">
+</head>
+
+<!-- PARA ELIMINAR CLIC DERECHO AGREGAR AL BODY : oncontextmenu="return false;" -->
+
+<body oncontextmenu="return false;">
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="p-4 pt-5">
+                <a href="#" class="img logo rounded-circle mb-5"
+                    style="background-image: url(/landing/isotipo-navesud.jpg);"></a>
+                <ul class="list-unstyled components mb-5">
+                    <li><a href="./">Introducción</a></li>
+                    <li><a href="./paso-1" id="menuPaso1"><i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbsp Paso
+                            1</a></li>
+                    <li><a href="./paso-2" id="menuPaso2"><i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbsp Paso
+                            2</a></li>
+                    <li><a href="./paso-3" id="menuPaso3"><i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbsp Paso
+                            3</a></li>
+                    <li><a href="#" id="menuPaso4"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp Final</a></li>
+                    <li><a href="/cursos/conductor-nautico/calendario" id="calendario"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp Mesas de Examen</a></li>
+                    <li><a id="ayuda" href="#"><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp Necesito
+                        ayuda</a> </a></li>
+                </ul>
+            </div>
+        </nav>
+        
+
+        <!-- Contenido  -->
+        <div id="content" class="p-4 p-md-5">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Abrir / Cerar menú</span>
+                    </button>
+                </div>
+            </nav>
+
+            <div id="paso3">
+                <h2 class="mb-4">Paso 3 - Ahora sí, ¡Navegante a navegar!</h2>
+                <%- include('dias-restantes', {diasRestantes: userInfo.cursoConductorNautico.diasRestantes}) %>
+                <%- include('modal-ayuda.ejs') %> 
+                <p>¿En qué consiste este módulo? Temario:</p>
+                <ul>
+                    <li><a href="#clase1">Clase 1 - El día D.</a></li>
+                    <li><a href="#clase2">Clase 2 - Maniobras a motor.</a></li>
+                    <li><a href="#clase3">Clase 3 - ¿Habrá agua? ¿Cómo fondeo?</a></li>
+                    <li><a href="#clase4">Clase 4 - Rescate y regreso a casa.</a></li>
+                </ul>
+                <p>Vas a necesitar el siguiente material de estudio complementario. Podes descargarlo haciendo clic a
+                    continuación.</p>
+                    <a href="https://hnavesud.com/curso-conductor-nautico/paso-3/ARCHIVO1.pdf" target="_blank"><button class="btn download"><i class="fa fa-download"></i> COMPLEMENTO PASO 3 CN</button></a>
+                    <!-- <button class="btn download"><i class="fa fa-download"></i> Archivo 2</button> -->
+
+                <h3 id="clase1" class="mt-4">Clase 1 - El día D.</h3>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated mb-1" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%" id="BARpaso3video1">Cargando...</div>
+                </div>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video id="paso3video1" class="embed-responsive-item" controls controlsList="noplaybackrate nodownload"
+                        src="https://hnavesud.com/curso-conductor-nautico/paso-3/video1.mp4"> </video>
+                </div>
+
+                <h3 id="clase2" class="mt-4">Clase 2 - Maniobras a motor.</h3>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated mb-1" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%" id="BARpaso3video2">Cargando...</div>
+                </div>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video id="paso3video2" class="embed-responsive-item" controls controlsList="noplaybackrate nodownload"
+                        src="https://hnavesud.com/curso-conductor-nautico/paso-3/video2.mp4"> </video>
+                </div>
+
+                <h3 id="clase3" class="mt-4">Clase 3 - ¿Habrá agua? ¿Cómo fondeo?</h3>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated mb-1" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%" id="BARpaso3video3">Cargando...</div>
+                </div>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video id="paso3video3" class="embed-responsive-item" controls controlsList="noplaybackrate nodownload"
+                        src="https://hnavesud.com/curso-conductor-nautico/paso-3/video3.mp4"> </video>
+                </div>
+
+                <h3 id="clase4" class="mt-4">Clase 4 - Rescate y regreso a casa.</h3>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated mb-1" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%" id="BARpaso3video4">Cargando...</div>
+                </div>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video id="paso3video4" class="embed-responsive-item" controls controlsList="noplaybackrate nodownload"
+                        src="https://hnavesud.com/curso-conductor-nautico/paso-3/video4.mp4"> </video>
+                </div>
+
+                <div class="mt-4">
+                    <p>¡Ayudanos a mejorar! Por favor, </p>
+                    <!-- Encuesta en ventana MODAL (bootstrap) (embebed from google) -->
+                    <button data-toggle="modal" data-target="#ventanaEncuesta3" class="btn download"><i class="fa fa-hand-o-right"></i> &nbsp Realizar encuesta
+                        sobre PASO 3
+                    </button>
+                </div>
+                <div class="mt-4">
+                    <p>Para pasar al FINAL, debes ver todos los videos de las clases del PASO 3 y aprobar la siguiente
+                        autoevaluación. Se aprueba con 7 y la podés realizar las veces necesarias hasta aprobar.</p>
+                    <button data-toggle="modal" data-target="#ventanaEvaluacion1" id="autoevaluacion1" disabled
+                        class="btn download"><i class="fa fa-hand-o-right"></i> &nbsp [Cargando ...]</button>
+                </div>
+                <div class="float-right mt-4">
+                    <a href="paso-final"><button id="irPaso4fromPaso3" class="btn download" disabled>Ir al PASO FINAL</button></a>
+                </div>
+                
+                <!-- Modal evaluacion 3 -->
+                <div class="modal fade" id="ventanaEvaluacion1" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Autoevaluación - Paso 3 - Curso Conductor Náutico</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-justify">Atención!!: Busca un lugar tranquilo y sin interrupciones. Al
+                                    finalizar todos los ejercicios, debes pulsar en "Finalizar autoevaluación", para ver tu nota y avanzar. Navegante a Navegar !!!</p>
+                                <p>Nombre: <span class="text-uppercase">
+                                        <%= userInfo.name %>
+                                    </span></p>
+                                <p>Apellido: <span class="text-uppercase">
+                                        <%= userInfo.lastName %>
+                                    </span></p>
+                                <hr>
+
+                                    <div class="quiz">
+                                <!-- Pregunta 1 -->
+                                <p>1. Cuando regresa de navegar y se aproxima al muelle para desembarcar, o la rampa,
+                                    para sacar la embarcación. Marque cinco (5) acciones que se deben hacer.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta1a">
+                                    <label class="form-check-label">
+                                        Aproximarse a mínima velocidad de maniobra.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta1b">
+                                    <label class="form-check-label">
+                                        El responsable a bordo, debe indicar a la tripulación cual es la maniobra que se
+                                        va hacer.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta1c">
+                                    <label class="form-check-label">
+                                        Preparar cabos de amarra. Que estén claros, listos para ser usados.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta1d">
+                                    <label class="form-check-label">
+                                        Acelerar y llegar pronto para evitar congestionamiento de embarcaciones
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta1e">
+                                    <label class="form-check-label">
+                                        El responsable a bordo, asignará roles a la tripulación. Indicando que es lo que
+                                        va hacer cada uno.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta1f">
+                                    <label class="form-check-label">
+                                        Se tendrá a mano, listo para usar el bichero o la palabichero
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta1g">
+                                    <label class="form-check-label">
+                                        Llegar navegando de popa
+                                    </label>
+                                </div>
+                                <hr>
+                                <!-- Pregunta 2 -->
+                                <p>2. Cuando embicamos en una playa... es suficiente con subir a la costa un poco la
+                                    proa, no hay necesidad de anclar en tierra firme. ¿Correcto o incorrecto?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta2" id="respuesta2a">
+                                    <label class="form-check-label">
+                                        Correcto
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta2" id="respuesta2b">
+                                    <label class="form-check-label">
+                                        Incorrecto
+                                    </label>
+                                </div>
+                                <hr>
+                                <!-- Pregunta 3 -->
+                                <p>3. Maniobra HOMBRE AL AGUA a MOTOR. Con viento fuerte. Marque opción correcta </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta3" id="respuesta3a">
+                                    <label class="form-check-label">
+                                        Me aproximo al hombre con VIENTO DE POPA para que cuando detengo la marcha el
+                                        viento me lleve hacia el.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta3" id="respuesta3b">
+                                    <label class="form-check-label">
+                                        Me aproximo al hombre con VIENTO EN CONTRA, para poder tener mejor dominio de la
+                                        embarcación
+                                    </label>
+                                </div>
+                                <hr>
+                                <!-- Pregunta 4 -->
+                                <p>4. Maniobra HOMBRE AL AGUA a MOTOR. ¿De qué amura (costado de proa) hay que
+                                    aproximarse al hombre al agua para auxiliarlo? </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta4" id="respuesta4a">
+                                    <label class="form-check-label">
+                                        1. Del lado de estribor
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta4"id="respuesta4b">
+                                    <label class="form-check-label">
+                                        2. Del lado de babor
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta4" id="respuesta4c">
+                                    <label class="form-check-label">
+                                        3. Del lado que tengo el volante o del lado que timoneo, para no perderlo nunca
+                                        de vista.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta4" id="respuesta4d">
+                                    <label class="form-check-label">
+                                        4. Por popa
+                                    </label>
+                                </div>
+
+                                <hr>
+                                <!-- Pregunta 5 -->
+                                <p>5. En maniobra Hombre al agua, como regla general:
+                                    1- Aproximarse contra el viento (si hubiera mucho) (Corriente incide menos)
+                                    2- Llegar del lado del conductor (lento)
+                                    3- llegar con la inercia (lento)
+                                    4- Una vez que lo tiene, sacar de cambio y apagar motor para subirlo por escalera de popa (se apaga motor para evitar cortarlo con la hélice) </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta5" id="respuesta5a">
+                                    <label class="form-check-label">
+                                        Verdadero
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta5" id="respuesta5b">
+                                    <label class="form-check-label">
+                                        Falso
+                                    </label>
+                                </div>
+
+                                <hr>
+                                <!-- Pregunta 6 -->
+                                <p>6. Marque las dos (2) opciones correctas: "La Sonda de mano, llamada Sondaleza, se usa para.
+                                </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta6a">
+                                    <label class="form-check-label">
+                                        a) Atar el boyarín del orinque.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta6b">
+                                    <label class="form-check-label">
+                                        b) Medir la profundidad.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta6c">
+                                    <label class="form-check-label">
+                                        c) Medir la velocidad de la corriente.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta6d">
+                                    <label class="form-check-label">
+                                        d) Verificar que tipo de fondo hay (arena, barro, piedra, etc).
+                                    </label>
+                                </div>
+
+                                <hr>
+                                <!-- Pregunta 7 -->
+                                <p>7. Seleccione la opción que corresponde: "Un pie equivale a ..." </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta7" id="respuesta7a">
+                                    <label class="form-check-label">
+                                        a) 1 braza.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta7" id="respuesta7b">
+                                    <label class="form-check-label">
+                                        b) 30,5 cm.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta7" id="respuesta7c">
+                                    <label class="form-check-label">
+                                        c) 25 cm.
+                                    </label>
+                                </div>
+
+
+                                <hr>
+                                <!-- Pregunta 8 -->
+                                <p>8. Seleccione la opción correcta: ¿Cuál es la primera regla de Oro de las varaduras?
+                                </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta8" id="respuesta8a">
+                                    <label class="form-check-label">
+                                        a) Lance un ancla inmediatamente.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta8" id="respuesta8b">
+                                    <label class="form-check-label">
+                                        b) Se sale por donde se entró.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta8" id="respuesta8c">
+                                    <label class="form-check-label">
+                                        c) Ponga motor a toda marcha hacia avante.
+                                    </label>
+                                </div>
+
+                                <hr>
+                                <!-- Pregunta 9 -->
+                                <p>9. NAVEGACION CON MAREJADA (Oleaje) Marque la opción Incorrecta. Osea, que es lo que
+                                    NO debe hacer al navegar con olas </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta9" id="respuesta9a">
+                                    <label class="form-check-label">
+                                        1. Reducir la velocidad y evitar golpes directos en el casco
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta9" id="respuesta9b">
+                                    <label class="form-check-label">
+                                        2. Tomar las olas con ángulos sesgados (por la amura).
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta9" id="respuesta9c">
+                                    <label class="form-check-label">
+                                        3. Navegar a modo de planeo incompleto para tener mayor francobordo en proa
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta9" id="respuesta9d">
+                                    <label class="form-check-label">
+                                        4. Llevar toda tripulación y peso a proa. Para que vaya mejor afirmada la
+                                        embarcación
+                                    </label>
+                                </div>
+
+                                <hr>
+                                <!-- Pregunta 10 -->
+                                <p>10. Seleccione la opción correcta. ¿Por cuánto multiplicar la profundidad del lugar a
+                                    fondear? Para determinar cuanta CADENA largar. Fondeo solo CADENA Y BUEN TIEMPO. Se
+                                    debe multiplicar la profundidad por... </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta10" id="respuesta10a">
+                                    <label class="form-check-label">
+                                        5 x profundidad.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta10" id="respuesta10b">
+                                    <label class="form-check-label">
+                                        3 x profundidad.
+                                    </label>
+                                </div>
+                                <hr>
+                                <!-- Pregunta 11 -->
+                                <p>11. Si decido anclar en 4 metros de profundidad, hay BUEN TIEMPO y mi linea de fondeo es SOLO CADENA. ¿Cuántos metros de cadena es suficiente para anclar bien? </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta11" id="respuesta11a">
+                                    <label class="form-check-label">
+                                        12 Metros.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta11" id="respuesta11b">
+                                    <label class="form-check-label">
+                                        9 Metros.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta11" id="respuesta11c">
+                                    <label class="form-check-label">
+                                        20 Metros.
+                                    </label>
+                                </div>
+                                <hr>
+                                <!-- Pregunta 12 -->
+                                <p>12. Seleccione la opción correcta. ¿Por cuánto multiplicar la profundidad del lugar a
+                                    fondear.? Para determinar cuanto CABO Y CHICOTE DE CADENA largar. Fondeo con BUEN
+                                    TIEMPO. Se debe multiplicar la profundidad por... </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta12" id="respuesta12a">
+                                    <label class="form-check-label">
+                                        5 x profundidad.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta12" id="respuesta12b">
+                                    <label class="form-check-label">
+                                        3 x profundidad.
+                                    </label>
+                                </div>
+
+                                <hr>
+                                <!-- Pregunta 13 -->
+                                <p>13. Si decido anclar en 2 metros de profundidad, hay BUEN TIEMPO y mi linea de fondeo es CABO Y UN CHICOTE DE CADENA. ¿Cuántos metros de linea de fondeo es suficiente para anclar bien? </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta13" id="respuesta13a">
+                                    <label class="form-check-label">
+                                        14 Metros.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta13" id="respuesta13b">
+                                    <label class="form-check-label">
+                                        6 Metros.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta13" id="respuesta13c">
+                                    <label class="form-check-label">
+                                        10 Metros.
+                                    </label>
+                                </div>
+
+                                <hr>
+                                <!-- Pregunta 14 -->
+                                <p>14. Elige el número con el nombre correcto: </p>
+                                <img src="/curso-cn/recursos-examen/paso3/ancla de cepo.png">
+                                <br><br>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta14a">
+                                    <label class="form-check-label">
+                                        1: Cepo.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta14b">
+                                    <label class="form-check-label">
+                                        1: Arganeo.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta14c">
+                                    <label class="form-check-label">
+                                        2: Cepo.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta14d">
+                                    <label class="form-check-label">
+                                        2: Arganeo.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta14e">
+                                    <label class="form-check-label">
+                                        3: Chaveta.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta14f">
+                                    <label class="form-check-label">
+                                        3: Cruz.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta14g">
+                                    <label class="form-check-label">
+                                        4: Pico de loro .
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta14h">
+                                    <label class="form-check-label">
+                                        4: Caña.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta14i">
+                                    <label class="form-check-label">
+                                        5: Chaveta.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta14j">
+                                    <label class="form-check-label">
+                                        5: Mapa
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta14k">
+                                    <label class="form-check-label">
+                                        6: Brazo.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta14l">
+                                    <label class="form-check-label">
+                                        6: Caña.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta14m">
+                                    <label class="form-check-label">
+                                        7: Cruz.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta14n">
+                                    <label class="form-check-label">
+                                        7: Brazo.
+                                    </label>
+                                </div>
+                                <hr>
+                                <!-- Pregunta 15 -->
+                                <p>15. ¿Para que se usa un tramo de cadena entre el ancla y el cabo de fondeo? Marque
+                                    las tres (3) respuestas correctas... </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta15a">
+                                    <label class="form-check-label">
+                                        a) Para que no se corte el cabo si hay elementos filosos
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta15b">
+                                    <label class="form-check-label">
+                                        b) Que caiga el cabo al raz del fondo para que el ancla trabaje mejor
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta15c">
+                                    <label class="form-check-label">
+                                        c) Ayudar a que se forme una catenária para que funcione como amortiguador
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta15d">
+                                    <label class="form-check-label">
+                                        d) Para que funcione mejor el orinque
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta15e">
+                                    <label class="form-check-label">
+                                        e) Para que se pueda sacar el ancla con mayor facilidad en caso de enganche
+                                    </label>
+                                </div>
+                                <hr>
+                                <!-- Pregunta 16 -->
+                                <p>16. Selecciones la opción correcta... </p>
+                                <img src="/curso-cn/recursos-examen/paso3/fondeo.png">
+                                <br><br>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta16" id="respuesta16a">
+                                    <label class="form-check-label">
+                                        A: ORINQUE/ B: ANCLA / C: CADENA / D: CABO / E: BOYARÍN.                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta16" id="respuesta16b">
+                                    <label class="form-check-label">
+                                        A: BOYARÍN / B: ORINQUE / C: ANCLA / D: CADENA / E: CABO .                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta16" id="respuesta16c">
+                                    <label class="form-check-label">
+                                        A: CABO / B: BOYARÍN / C: ORINQUE / D: ANCLA / E: CADENA.                                    </label>
+                                </div>
+
+                                <hr>
+                                <!-- Pregunta 17 -->
+                                <p>17. Si no largamos suficiente cabo o cadena al querer fondear, y no se forma una
+                                    buena catenaria, ¿qué acción no deseada puede suceder? Elija la respuesta
+                                    correcta... </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta17" id="respuesta17a">
+                                    <label class="form-check-label">
+                                        a) escorarse el barco.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta17" id="respuesta17b">
+                                    <label class="form-check-label">
+                                        b) garrear.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta17" id="respuesta17c">
+                                    <label class="form-check-label">
+                                        c) hacer un 360.
+                                    </label>
+                                </div>
+                                <hr>
+                                <!-- Pregunta 18 -->
+                                <p>18. Está anclado y decide irse, ¿qué hace primero?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta18" id="respuesta18a">
+                                    <label class="form-check-label">
+                                        a) arranca el motor y luego leva el ancla.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta18" id="respuesta18b">
+                                    <label class="form-check-label">
+                                        b) leva el ancla y luego arranca el motor.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta18" id="respuesta18c">
+                                    <label class="form-check-label">
+                                        c) arranca el motor y arrastra el ancla.
+                                    </label>
+                                </div>
+
+
+                                <hr>
+                                <!-- Pregunta 19 -->
+                                <p>19. ¿Para qué se suele usar un orinque? Seleccione la opción correcta...</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"name="pregunta19" id="respuesta19a">
+                                    <label class="form-check-label">
+                                        a) para que agarre mejor el ancla.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="pregunta19"id="respuesta19b">
+                                    <label class="form-check-label">
+                                        b) para destrabar el ancla en caso que se enganche.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="pregunta19" id="respuesta19c">
+                                    <label class="form-check-label">
+                                        c) para saber la profundidad de donde estamos fondeados.
+                                    </label>
+                                </div>
+
+                                <hr>
+                                <!-- Pregunta 20 -->
+                                <p>20. En chequeo final previo a navegar. ¿Qué precauciones debemos tomar con el TRANQUE
+                                    DE COMBUSTIBLE. Seleccione las dos (2) correctas.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta20a">
+                                    <label class="form-check-label">
+                                        a) Llenar el tanque de combustible hasta que casi desborde
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta20b">
+                                    <label class="form-check-label">
+                                        b) Abrir el venteo del tanque
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta20c">
+                                    <label class="form-check-label">
+                                        c) Cerrar el venteo para que no haya derrame durante la navegación
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta20d">
+                                    <label class="form-check-label">
+                                        d) Si necesitamos completar el tanque hacerlo hasta el nivel máximo que indique
+                                        el tanque
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta20e">
+                                    <label class="form-check-label">
+                                        e) Llevar un bidón CUALQUIERA con resex|rva de nafta para rellenar el tanque
+                                        durante la navegación.
+                                    </label>
+                                </div>
+
+
+                                <hr>
+                                <!-- Pregunta 21 -->
+                                <p>21. En chequeo final previo a navegar. ¿Qué precauciones debemos tomar EN LA RAMPA.
+                                    Seleccione las dos (2) correctas. </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta21a">
+                                    <label class="form-check-label">
+                                        1. Asesorarse sobre la longitud de la rampa que pueda estar tapada por el agua.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta21b">
+                                    <label class="form-check-label">
+                                        2. Meter el tráiler con el vehiculo marcha atrás sin importarme de la longitud
+                                        de la rampa tapada.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta21c">
+                                    <label class="form-check-label">
+                                        3. Verificar ,a pesar de los comentarios,personalmente ,la longitud de la rampa.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta21d">
+                                    <label class="form-check-label">
+                                        4- La tripulación sube a la embarcación antes de ingresar el tráiler al agua
+                                        para no mojarse
+                                    </label>
+                                </div>
+
+
+                                <hr>
+                                <!-- Pregunta 22 -->
+                                <p>22. Como criterio general para las maniobras:
+                                    Las aproximaciones se hacen a BAJA VELOCIDAD, LENTO, procurando sea en contra del viento o la corriente (lo que incida más). A la mínima velocidad de gobierno, esto es despacio pero sin perder dominio de la embarcación </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta22" id="respuesta22a">
+                                    <label class="form-check-label">
+                                        Verdadero
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta22" id="respuesta22b">
+                                    <label class="form-check-label">
+                                        Falso
+                                    </label>
+                                </div>
+
+                                <hr>
+                                <!-- Pregunta 23 -->
+                                <p>23. Al aproximarse a una boya para tomar amarra, se debe:
+                                    1. Contra el viento o la corriente, lo que más incida
+                                    2. A mínima velocidad de gobierno.
+                                    3. Enfilar (apuntar), navegar enfilado y luego quitar de cambio.
+                                    4. Tomar la boya con bichero y hacer maniobra en proa. </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta23" id="respuesta23a">
+                                    <label class="form-check-label">
+                                        a) Verdadero
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta23" id="respuesta23b">
+                                    <label class="form-check-label">
+                                        b) Falso
+                                    </label>
+                                </div>
+
+                                <hr>
+                                <!-- Pregunta 24 -->
+                                <p>24. Lancha al agua. Marque la opción correcta. </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta24" id="respuesta24a">
+                                    <label class="form-check-label">
+                                        a) Con la tripulación a bordo bajo la pata del motor ,arranco ,y pongo proa a mi
+                                        destino
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta24" id="respuesta24b">
+                                    <label class="form-check-label">
+                                        b) Con la tripulación a bordo verifico la profundidad y por las dudas bajo a
+                                        medias la pata del motor para arrancarlo y alejarme con precaucion ,hasta tener
+                                        seguridad en la profundidad para bajar la pata totalmente.
+                                    </label>
+                                </div>
+
+                                <hr>
+                                <!-- Pregunta 25 -->
+                                <p>25. ¿Cuándo es recomendable hacer INFORME Radial (VHF) o Telefónico a PNA? </p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta25" id="respuesta25a">
+                                    <label class="form-check-label">
+                                        a) toda vez que salgo a navegar
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"name="respuesta25"id="respuesta25b">
+                                    <label class="form-check-label">
+                                        b) solo cuando salgo con mal tiempo                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta25"id="respuesta25c">
+                                    <label class="form-check-label">
+                                        c) solo cuando voy a puerto extranjero
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+          
+                            <!-- Finaliza BODY del MODAL -->
+                            <div class="modal-footer">
+                                <button type="button" onclick="terminar()" class="btn btn-secondary"
+                                    data-dismiss="modal">Finalizar autoevaluación</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                 <!-- Modal Encuesta 2 -->
+                <div class="modal fade" id="ventanaEncuesta3" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Encuesta - Paso 3 - Curso Conductor Náutico</h5>
+                            </div>
+                            <div class="modal-body">
+                                <center>
+                                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScz3lPs_fJMcM9wmIGSSRCxuqSykMcAguulFaviGZu6UMGA6w/viewform?embedded=true" width="640" height="1472" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+        
+
+
+    </div>
+  
+    <script src="/curso-cn/js/jquery.min.js"></script>
+    <script src="/curso-cn/js/popper.js"></script>
+    <script src="/curso-cn/js/bootstrap.min.js"></script>
+    <script src="/curso-cn/js/main.js"></script>
+    <script src="/curso-cn/js/sweetalert2.min.js"></script>
+    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
+        integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
+        crossorigin="anonymous"></script>
+
+    <script>
+        const socket = io();
+        const sessionToken = '<%= userInfo.sessionToken %>';
+        const stringDatos = '<%- JSON.stringify(userInfo.cursoConductorNautico) %>';
+        const fechaServidor = '<%- Date(Date.now()) %>'
+    </script>
+
+    <script src="/curso-cn/js/paso3.js"></script>
+</body>
+
+
+</html>

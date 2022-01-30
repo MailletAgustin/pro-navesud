@@ -1,0 +1,25 @@
+{
+    "titulo": "Navesud - Navegantes seguros.",
+    "menu": [
+        {
+            "Nombre": "Inicio",
+            "Link": "/"
+        },
+        {
+            "Nombre": "Actividades",
+            "Link": "/#actividades"
+        },
+        {
+            "Nombre": "Instructor",
+            "Link": "/#instructor"
+        },
+        {
+            "Nombre": "Cursos",
+            "Link": "/cursos/listado"
+        },
+        {
+            "Nombre": "Contacto",
+            "Link": "/#contacto"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('header.ejs', { global: global }) %>
+
+    <body>
+        <%- include('menu.ejs') %>
+            <div class="container" id="iniciar-sesion-container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-10 col-md-6">
+                        <br>
+                        <br>
+                        <h1>¡Bienvenido navegante!</h1>
+                        <p>Antes de continuar, por favor introduce el correo electrónico y la contraseña que has
+                            registrado a la hora de comprar. </p>
+                        <form action="/iniciar-sesion" method="POST">
+                            <input type="text" name="correo" id="correo" class="form-control"
+                                placeholder="Correo Electrónico">
+                            <ul></ul>
+                            <input type="password" name="clave" id="clave" class="form-control"
+                                placeholder="Contraseña">
+                            <ul></ul>
+                            <input hidden id="redireccion" name="redireccion" type="text" value="<%= redirect %>">
+                            <button type="submit" class="btn btn-primary">Iniciar sesión y acceder</button>
+                        </form>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <%- include('./footer.ejs') %>
+    </body>
+    <style>
+        #iniciar-sesion-container {
+            min-height: 70vh;
+        }
+    </style>
+</html>

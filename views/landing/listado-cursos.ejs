@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('header.ejs', {
+        global: global 
+     }) %> 
+<body>
+    <%- include('menu.ejs') %>
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="fw-bold display-3"> Bienvenido a clases. </h1>
+                <p> <span class="fw-bold" style="font-size: 16pt; color: rgb(77, 77, 77);"> Ingresá al curso que compraste, haciendo clic en la foto. </span> </p>    
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-4">
+                <a href="./conductor-nautico" style="text-decoration: none; color: #000">
+                <div class="card">
+                    <img src="/landing/presentacion-curso-conductor-nautico.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Curso de Conductor Náutico</h5>
+                      <p class="card-text">Para embarcaciones motor hasta 7mtrs de eslora y hasta 140HP, y motos de agua sin límite de potencia.</p>
+                      <p class="text-muted"><span class="fw-bold">Profesor:</span> Hugo Ugartemendía</p>
+                      <a href="./conductor-nautico" class="btn btn-primary">Acceder al curso</a>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <%- include('./footer.ejs') %>   
+</body>
+</html>

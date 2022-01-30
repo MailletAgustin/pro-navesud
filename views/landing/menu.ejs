@@ -1,0 +1,25 @@
+<!-- Menú principal -->
+<header>
+    <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand mx-sm-5" href="/">
+                <img src="/landing/navesud-logo.png" alt="" width="auto" height="auto" class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse px-5" id="navbarCollapse">
+                <ul class="navbar-nav ms-auto">
+                    <%  for (elemento in global.menu) { %>
+                        <li class="nav-item">
+                            <a class="nav-link" style="margin-left: 16px" href="<%= global.menu[elemento].Link %>"> <%= global.menu[elemento].Nombre %> </a>
+                        </li>
+                    <% } %> 
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <center><hr style="width: 95%; color: rgba(27, 47, 138, 0.315)"></center>
+    
+</header>

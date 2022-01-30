@@ -1,0 +1,1338 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>Curso Conductor Náutico</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/curso-cn/css/style.css">
+    <link rel="stylesheet" href="/curso-cn/css/sweetalert2.min.css">
+</head>
+
+<!-- PARA ELIMINAR CLIC DERECHO AGREGAR AL BODY :  -->
+
+<body oncontextmenu="return false;">
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="p-4 pt-5">
+                <a href="#" class="img logo rounded-circle mb-5"
+                    style="background-image: url(/landing/isotipo-navesud.jpg);"></a>
+                <ul class="list-unstyled components mb-5">
+                    <li><a href="./">Introducción</a></li>
+                    <li><a href="paso-1" id="menuPaso1"><i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbsp Paso
+                            1</a></li>
+                    <li><a href="paso-2" id="menuPaso2"><i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbsp Paso
+                            2</a></li>
+                    <li><a href="paso-3" id="menuPaso3"><i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbsp Paso
+                            3</a></li>
+                    <li><a href="paso-final" id="menuFinal"><i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbsp
+                            Final</a></li>
+                    <li><a href="/cursos/conductor-nautico/calendario" id="calendario"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp
+                            Mesas de Examen</a></li>
+                    <li><a id="ayuda" href="#"><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp Necesito
+                            ayuda</a> </a></li>
+                </ul>
+            </div>
+        </nav>
+
+            <!-- Contenido  -->
+            <div id="content" class="p-4 p-md-5">
+
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                            <i class="fa fa-bars"></i>
+                            <span class="sr-only">Abrir / Cerar menú</span>
+                        </button>
+                    </div>
+                </nav>
+
+                <!-- Introducción -->
+                <div class="info" id="final">
+                    <div style="display: none" id="container-aprobado">
+                        <h1>¡Felicidades, <%= userInfo.name %>! Aprobaste el curso.</h1>
+                        <p>Podés descargar el siguiente diploma que certifica la aprobación de este curso ingresando desde una computadora y pulsando el botón descargar.</p>
+                        <button onclick="descargarCertificado()" class="btn download">Descargar certificado</button>
+                        <div id="certificado" class="certificado text-center">
+                            <img src="/landing/navesud-logo.png">
+                            <p>Este documento CERTIFICA que</p>
+                            <h2> <%= userInfo.name %> <%= userInfo.lastName %> </h2>
+                            <p>Ha aprobado el Curso ONLINE de <strong> CONDUCTOR NÁUTICO DEPORTIVO </strong> dictado por la ESCUELA NÁUTICA NAVESUD, según el programa de PREFECTURA NAVAL ARGENTINA.</p>
+                            
+                            <div class="row">
+                                <div class="col-6">
+                                    <h3>Ing. Hugo UGARTEMENDÍA</h3>
+                                    <p>Patrón Yate Vela Motor</p>
+                                    <p>Coordinador - Instructor</p>
+                                </div>
+                                <div class="col-6">
+                                    <h3>Cap. Osvaldo E. LAGANA</h3>
+                                    <p>Piloto Yate Vela Motor</p>
+                                    <p>Tutor académico</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2 id="desaprobadoTitulo" class="mb-4">¡Llegamos al final, <%= userInfo.name %>!</h2>
+                    
+                    <%- include('dias-restantes', {diasRestantes: userInfo.cursoConductorNautico.diasRestantes}) %>
+                    <%- include('modal-ayuda.ejs') %> 
+
+                    <p id="texto-final" class="mt-2">Ahora sí, ¡Estamos en el último tramo del curso <span style="font-weight: bold;">CONDUCTOR
+                            NÁUTICO
+                            PASO A PASO</span>!
+                        Solo resta aprobar las dos autoevaluaciones finales, que contienen preguntas de examenes reales:
+                    </p>
+                    <br>
+                    <button data-toggle="modal" data-target="#ventanaEvaluacion1" id="autoevaluacion1"
+                        class="btn download"><i class="fa fa-hand-o-right"></i> [Cargando...]</button>
+                    <br>
+                    <button data-toggle="modal" data-target="#ventanaEvaluacion2" id="autoevaluacion2"
+                        class="btn download mt-2"><i class="fa fa-hand-o-right"></i> [Cargando...]</button>    
+                </div>
+
+
+
+                <div class="modal fade" id="ventanaEvaluacion1" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">SEGURIDAD - Curso Conductor Náutico</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>Atención!!: Busca un lugar tranquilo y sin interrupciones. Al
+                                    finalizar todos los ejercicios, debes pulsar en "Finalizar autoevaluación", para ver
+                                    tu
+                                    nota y avanzar. Navegante a Navegar !!!</p>
+
+                                <!-- QUIZ 1 -->
+                                <div class="quiz">
+                                    <hr>
+                                    <!-- Pregunta 1 -->
+                                    <p>1. ¿Qué opción nombra las magnitudes en forma correcta? </p>
+                                    <img src="/curso-cn/recursos-examen/final/Partes de embarcacion.png">
+                                    <br><br>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta1" id="respuesta1a">
+                                        <label class="form-check-label">
+                                            A: Línea de Crujía / B: Través / C: Estribor / D: Popa / E: Amura.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta1" id="respuesta1b">
+                                        <label class="form-check-label">
+                                            A: Línea de Crujía / B: Amura / C: Estribor / D: Popa / E: Través.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta1" id="respuesta1c">
+                                        <label class="form-check-label">
+                                            A: Línea de Flotación / B: Través / C: Babor / D: Espejo/ E: Amura.
+                                        </label>
+                                    </div>
+
+                                    <hr>
+                                    <!-- Pregunta 2 -->
+                                    <p>2. Se fondea con orinque para... </p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta2" id="respuesta2a">
+                                        <label class="form-check-label">
+                                            ...recuperar el ancla ante posible enganche.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta2" id="respuesta2b">
+                                        <label class="form-check-label">
+                                            ...mejorar la traba del ancla en el fondo.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta2" id="respuesta2c">
+                                        <label class="form-check-label">
+                                            ...disminuir la posibilidad de garreo.
+                                        </label>
+                                    </div>
+
+
+                                    <hr>
+                                    <!-- Pregunta 3 -->
+                                    <p>3. Navegación con marejada. (Oleaje) Marque LA OPCIÓN INCORRECTA. Osea, que es lo que
+                                        NO
+                                        debe hacer al navegar con olas. </p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta3" id="respuesta3a">
+                                        <label class="form-check-label">
+                                            a) Reducir la velocidad y evitar golpes directos en el casco
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta3" id="respuesta3b">
+                                        <label class="form-check-label">
+                                            b) Tomar las olas con ángulos sesgados (por la amura)
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta3" id="respuesta3c">
+                                        <label class="form-check-label">
+                                            c) Navegar a modo de planeo incompleto para tener mayor francobordo en proa
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta3" id="respuesta3d">
+                                        <label class="form-check-label">
+                                            d) llevar toda la tripulación y peso a proa, para que vaya mejor afirmada la
+                                            embarcación
+                                        </label>
+                                    </div>
+
+                                    <hr>
+                                    <!-- Pregunta 4 -->
+                                    <p>4. En una embarcación propulsada a motor con una hélice dextro-gira. ¿A qué lado
+                                        caerá la
+                                        PROA dando marcha atrás? Marque la respuesta correcta. </p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta4" id="respuesta4a">
+                                        <label class="form-check-label">
+                                            Babor.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta4" id="respuesta4b">
+                                        <label class="form-check-label">
+                                            Estribor
+                                        </label>
+                                    </div>
+
+                                    <hr>
+                                    <!-- Pregunta 5 -->
+                                    <p>5. El extintor (matafuego) de polvo químico sirve para extinguir fuegos... </p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta5" id="respuesta5a">
+                                        <label class="form-check-label">
+                                            Del tipo A (sólidos)
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta5" id="respuesta5b">
+                                        <label class="form-check-label">
+                                            Del tipo B (Combustibles)
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta5" id="respuesta5c">
+                                        <label class="form-check-label">
+                                            Del tipo C (Eléctricos)
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta5" id="respuesta5d">
+                                        <label class="form-check-label">
+                                            Todas las opciones anteriores
+                                        </label>
+                                    </div>
+
+
+                                    <hr>
+                                    <!-- Pregunta 6 -->
+                                    <p>6. Identifique correctamente las dimensiones principales de la imagen.</p>
+                                    <img src="/curso-cn/recursos-examen/final/gomon con maganitudes a marcar.png">
+                                    <br><br>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta6a">
+                                        <label class="form-check-label">
+                                            1) Calado
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta6b">
+                                        <label class="form-check-label">
+                                            1) Obra muerta
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta6c">
+                                        <label class="form-check-label">
+                                            2) Eslora
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta6d">
+                                        <label class="form-check-label">
+                                            2) Puntal
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta6e">
+                                        <label class="form-check-label">
+                                            3) Francobordo
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta6f">
+                                        <label class="form-check-label">
+                                            3) Puntal
+                                        </label>
+                                    </div>
+
+                                    <hr>
+                                    <!-- Pregunta 7 -->
+                                    <p>7. ¿Cuál es la frecuencia de Socorro y con qué señal se identifica? </p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta7" id="respuesta7a">
+                                        <label class="form-check-label">
+                                            156,800 MHz (CANAL 16) MAYDAY
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta7" id="respuesta7b">
+                                        <label class="form-check-label">
+                                            156,600 MHz (CANAL 12) PAN PAN
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta7" id="respuesta7c">
+                                        <label class="form-check-label">
+                                            156,750 MHz (CANAL 15) SECURITE
+                                        </label>
+                                    </div>
+
+
+                                    <hr>
+                                    <!-- Pregunta 8 -->
+                                    <p>8. Atraque y desatraque.. ¿Cómo conviene acercarse a un muelle? Seleccione la opción
+                                        correcta. </p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta8" id="respuesta8a">
+                                        <label class="form-check-label">
+                                            Conviene hacerlo por ALETA, y amarar primero la popa y luego la proa
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta8" id="respuesta8b">
+                                        <label class="form-check-label">
+                                            Conviene hacerlo por AMURA, y amarar primero la proa y luego la popa
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta8" id="respuesta8c">
+                                        <label class="form-check-label">
+                                            Al llegar al muelle siempre conviene llegar con viento de popa
+                                        </label>
+                                    </div>
+
+
+                                    <hr>
+                                    <!-- Pregunta 9 -->
+                                    <p>9. Seleccione la opción correcta. ¿Por cuánto multiplicar la profundidad del lugar a
+                                        fondear.? Para determinar cuánto CABO Y CHICOTE DE CADENA largar. Fondeo con BUEN
+                                        TIEMPO. Se debe multiplicar la profundidad por...</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta9" id="respuesta9a">
+                                        <label class="form-check-label">
+                                            x 3 veces la profundidad
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta9" id="respuesta9b">
+                                        <label class="form-check-label">
+                                            x 5 veces la profundidad
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta9" id="respuesta9c">
+                                        <label class="form-check-label">
+                                            x 7 veces la profundidad
+                                        </label>
+                                    </div>
+
+
+                                    <hr>
+                                    <!-- Pregunta 10 -->
+                                    <p>10. ¿Qué se entiende por vía de agua? (marcar la opción correcta)</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta10" id="respuesta10a">
+                                        <label class="form-check-label">
+                                            a) Cañería que refrigera el motor
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta10" id="respuesta10b">
+                                        <label class="form-check-label">
+                                            b) Rumbo que se produce en el casco, y en consecuente ingreso de agua
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta10" id="respuesta10c">
+                                        <label class="form-check-label">
+                                            c) Espacio de agua determinado por boyas demarcatorias de canal
+                                        </label>
+                                    </div>
+
+                                    <hr>
+                                    <!-- Pregunta 11 -->
+                                    <p>11. Elige el número con el nombre correcto: </p>
+                                    <img src="/curso-cn/recursos-examen/paso3/ancla de cepo.png">
+                                    <br><br>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta11a">
+                                        <label class="form-check-label">
+                                            1: Cepo.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta11b">
+                                        <label class="form-check-label">
+                                            1: Arganeo.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta11c">
+                                        <label class="form-check-label">
+                                            2: Cepo.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta11d">
+                                        <label class="form-check-label">
+                                            2: Arganeo.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta11e">
+                                        <label class="form-check-label">
+                                            3: Chaveta.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta11f">
+                                        <label class="form-check-label">
+                                            3: Cruz.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta11g">
+                                        <label class="form-check-label">
+                                            4: Pico de loro .
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta11h">
+                                        <label class="form-check-label">
+                                            4: Caña.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta11i">
+                                        <label class="form-check-label">
+                                            5: Chaveta.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta11j">
+                                        <label class="form-check-label">
+                                            5: Mapa
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta11k">
+                                        <label class="form-check-label">
+                                            6: Brazo.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta11l">
+                                        <label class="form-check-label">
+                                            6: Caña.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta11m">
+                                        <label class="form-check-label">
+                                            7: Cruz.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta11n">
+                                        <label class="form-check-label">
+                                            7: Brazo.
+                                        </label>
+                                    </div>
+
+                                    <hr>
+                                    <!-- Pregunta 12 -->
+                                    <p>12. ¿Para que se usa un tramo de cadena entre el ancla y el cabo de fondeo? Marque
+                                        LAS 3
+                                        respuestas correctas... </p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta12a">
+                                        <label class="form-check-label">
+                                            a) Para que no se corte el cabo si hay elementos filosos
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta12b">
+                                        <label class="form-check-label">
+                                            b) Que caiga el cabo al raz del fondo para que el ancla trabaje mejor
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta12c">
+                                        <label class="form-check-label">
+                                            c) Ayudar a que se forme una catenária para que funcione como amortiguador
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta12d">
+                                        <label class="form-check-label">
+                                            d) Para que funcione mejor el orinque
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta12e">
+                                        <label class="form-check-label">
+                                            e) Para que se pueda sacar el ancla con mayor facilidad en caso de enganche
+                                        </label>
+                                    </div>
+
+
+                                    <hr>
+                                    <!-- Pregunta 13 -->
+                                    <p>13. ¿Cuáles de las siguientes son las precauciones que se deben tener en el momento
+                                        de
+                                        detenerse y bajarse de una embarcación con motor de combustión?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta13" id="respuesta13a">
+                                        <label class="form-check-label">
+                                            Cerrar llave de combustible.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta13" id="respuesta13b">
+                                        <label class="form-check-label">
+                                            Cortar baterías.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta13" id="respuesta13c">
+                                        <label class="form-check-label">
+                                            Ventilar compartimiento motor y sentinas.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta13" id="respuesta13d">
+                                        <label class="form-check-label">
+                                            Todas las anteriores.
+                                        </label>
+                                    </div>
+                                    <hr>
+                                    <!-- Pregunta 14 -->
+                                    <p>14. Al ABARLOARSE dos embarcaciones, donde una remolca a la otra, el Spring del
+                                        remolcado
+                                        debe hacerse firme en la popa del mismo, y en la proa del remolcador. </p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta14" id="respuesta14a">
+                                        <label class="form-check-label">
+                                            VERDADERO.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta14" id="respuesta14b">
+                                        <label class="form-check-label">
+                                            FALSO.
+                                        </label>
+                                    </div>
+                                    <hr>
+                                    <!-- Pregunta 15 -->
+                                    <p>15. Indicios de que se viene un Pampero: </p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta15" id="respuesta15a">
+                                        <label class="form-check-label">
+                                            El clima se pone frío, sube la presión de golpe y empieza a soplar del Este.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta15" id="respuesta15b">
+                                        <label class="form-check-label">
+                                            El clima se pone pesado y caluroso, desciende la presión atmosférica, a veces
+                                            una
+                                            intensa calma con calor previo, visualización de un “cigarro”
+                                        </label>
+                                    </div>
+                                    <hr>
+                                    <!-- Pregunta 16 -->
+                                    <p>16. Seleccione la opción correcta: </p>
+                                    <img src="/curso-cn/recursos-examen/paso3/fondeo.png">
+                                    <br><br>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta16" id="respuesta16a">
+                                        <label class="form-check-label">
+                                            A: ORINQUE/ B: ANCLA / C: CADENA / D: CABO / E: BOYARÍN.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta16" id="respuesta16b">
+                                        <label class="form-check-label">
+                                            A: BOYARÍN / B: ORINQUE / C: ANCLA / D: CADENA / E: CABO .
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta16" id="respuesta16c">
+                                        <label class="form-check-label">
+                                            A: CABO / B: BOYARÍN / C: ORINQUE / D: ANCLA / E: CADENA.
+                                        </label>
+                                    </div>
+
+                                    <hr>
+                                    <!-- Pregunta 17 -->
+                                    <p>17. Está anclado y decide irse, ¿qué hace primero? </p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta17" id="respuesta17a">
+                                        <label class="form-check-label">
+                                            Arranca el motor y luego leva el ancla.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta17" id="respuesta17b">
+                                        <label class="form-check-label">
+                                            Leva el ancla y luego arranca el motor.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta17" id="respuesta17c">
+                                        <label class="form-check-label">
+                                            Arranca el motor y arrastra el ancla.
+                                        </label>
+                                    </div>
+
+                                    <hr>
+                                    <!-- Pregunta 18 -->
+                                    <p>18. ¿Cuál es la primer Regla de Oro de las varaduras? </p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta18" id="respuesta18a">
+                                        <label class="form-check-label">
+                                            Escorar el barco y ponga marcha avante
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta18" id="respuesta18b">
+                                        <label class="form-check-label">
+                                            Se sale por donde se entró.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta18" id="respuesta18c">
+                                        <label class="form-check-label">
+                                            Lanzar un ancla inmediatamente.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta18" id="respuesta18d">
+                                        <label class="form-check-label">
+                                            Ponga motor a toda marcha hacia avante.
+                                        </label>
+                                    </div>
+
+
+                                    <hr>
+                                    <!-- Pregunta 19 -->
+                                    <p>19. Durante la navegación a motor ¿Qué hay que controlar frecuentemente para
+                                        verificar
+                                        que el motor refrigera? </p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta19" id="respuesta19a">
+                                        <label class="form-check-label">
+                                            a) El nivel de aceite.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta19" id="respuesta19b">
+                                        <label class="form-check-label">
+                                            b) La salida de agua de refrigeración. Un chorro de agua permanente a la vista.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="pregunta19" id="respuesta19c">
+                                        <label class="form-check-label">
+                                            c) Si la sentina tiene agua.
+                                        </label>
+                                    </div>
+
+
+                                    <hr>
+                                    <!-- Pregunta 20 -->
+                                    <p>20. Estamos navegando, y observamos enormes nubes de gran desarrollo vertical , con forma de hongo o yunke,  que avanzan en nuestra dirección... ¿Qué nos indica, y qué  precauciones debemos tomar? Marcar las 2 opciones correctas. </p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta20a">
+                                        <label class="form-check-label">
+                                            a) Ninguna, es anuncio de calma.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta20b">
+                                        <label class="form-check-label">
+                                            b) Nos indica probables vientos suaves que vienen a nosotros.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta20c">
+                                        <label class="form-check-label">
+                                            c) Indica probable tormenta intensa, incluso con granizo
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="respuesta20d">
+                                        <label class="form-check-label">
+                                            d) Buscar una costa y quedarse al socaire (reparo), y si es posible salir del
+                                            agua.
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" onclick="terminarUno()" class="btn btn-secondary"
+                                    data-dismiss="modal">Finalizar autoevaluación</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal fade" id="ventanaEvaluacion2" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">LEGISLACIÓN Y REGLAMENTACIÓN - Curso Conductor Náutico</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>Atención!!: Busca un lugar tranquilo y sin interrupciones. Al
+                                    finalizar todos los ejercicios, debes pulsar en "Finalizar autoevaluación", para ver
+                                    tu
+                                    nota y avanzar. Navegante a Navegar !!!</p>
+
+                                    <!-- QUIZ 2 -->
+                                    <div class="quiz">
+                                        <hr>
+                                        <!-- Pregunta 1 -->
+                                        <p>1. Un barco que se aproxima a un recodo en un canal angosto angosto, (Según RIPA),
+                                            que
+                                            señal acústica debe realizar?</p>
+                                        <img src="/curso-cn/recursos-examen/final/recodo.png">
+                                        <br><br>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta1a" name="prg1">
+                                            <label class="form-check-label">
+                                                1 pitada larga seguida de 3 pitadas cortas.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta1b" name="prg1">
+                                            <label class="form-check-label">
+                                                1 pitada larga.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta1c" name="prg1">
+                                            <label class="form-check-label">
+                                                1 pitada corta.
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 2 -->
+                                        <p>2. Según la regla 27 del RIPA, si vemos un barco navegando de noche que se le ven DOS LUCES ROJAS TODO HORIZONTE EN VERTICAL, y las luces de navegación, y que si lo ves luego DE DIA TIENE A LA VISTA DOS BOLAS NEGRAS, estamos en presencia de un buque... </p>
+                                        <img src="/curso-cn/recursos-examen/final/buques señalizados.png">
+                                        <br><br>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta2a" name="prg2">
+                                            <label class="form-check-label">
+                                                a) Un buque varado.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta2b" name="prg2">
+                                            <label class="form-check-label">
+                                                b) Un buque sin gobierno.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta2c" name="prg2">
+                                            <label class="form-check-label">
+                                                c) Un buque con maniobra restringida.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta2d" name="prg2">
+                                            <label class="form-check-label">
+                                                d) Un buque fondeado.
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 3 -->
+                                        <p>3. ¿Cómo de identifica una embarcación? Marcar la respuesta correcta. </p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta3a" name="prg3">
+                                            <label class="form-check-label">
+                                                Por su nombre y matrícula.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta3b" name="prg3">
+                                            <label class="form-check-label">
+                                                Por su nombre y eslora.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta3c" name="prg3">
+                                            <label class="form-check-label">
+                                                Por la eslora, manga y puntal.
+                                            </label>
+                                        </div>
+
+                                        <hr>
+                                        <!-- Pregunta 4 -->
+                                        <p>4. Si dos buques navegando en el mismo rumbo, uno detrás del otro y uno alcanzando al
+                                            otro (Regla 13 RIPA, Buque que alcanza). Marque la opción correcta: </p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta4a" name="prg4">
+                                            <label class="form-check-label">
+                                                El buque alcanzante deberá acelerar la marcha para pasarlo prontamente.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta4b" name="prg4">
+                                            <label class="form-check-label">
+                                                El buque alcanzante se mantendrá apartado de la derrota del alcanzado siempre.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta4c" name="prg4">
+                                            <label class="form-check-label">
+                                                El barco alcanzado deberá derivar y dar paso al que alcanza.
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 5 -->
+                                        <p>5. Enumere en orden de prioridad cuales son las embarcaciones que tienen derecho de paso por sobre las otras. El número 1 significa que tiene más prioridad, el número 3 la de menor prioridad.</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta5a" name="prg5">
+                                            <label class="form-check-label">
+                                                1: Velero a vela - 2: Embarcación sin gobierno - 3: Lancha.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta5b" name="prg5">
+                                            <label class="form-check-label">
+                                                1: Embarcación sin gobierno - 2: Velero a Vela - 3: Lancha.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta5c" name="prg5">
+                                            <label class="form-check-label">
+                                                1. Embarcación sin gobierno - 2: Lancha - 3: Velero a vela
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 6.1 -->
+                                        <p>6.1 Seleccione el nombre correcto de la boya de la imagen: </p>
+                                        <img src="/curso-cn/recursos-examen/final/amarilla negra triang arriba.png">
+                                        <br><br>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta61a" name="prg6">
+                                            <label class="form-check-label">
+                                                Cardinal Norte
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta61b" name="prg6">
+                                            <label class="form-check-label">
+                                                Peligro Aislado
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta61c" name="prg6">
+                                            <label class="form-check-label">
+                                                Cardinal Este
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 6.2 -->
+                                        <p>6.2 Seleccione el nombre correcto de la boya de la imagen: </p>
+                                        <img src="/curso-cn/recursos-examen/final/amarilla.png">
+                                        <br><br>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta62a" name="prg62">
+                                            <label class="form-check-label">
+                                                Señales Especiales.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta62b" name="prg62">
+                                            <label class="form-check-label">
+                                                Peligro Aislado.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta62c" name="prg62">
+                                            <label class="form-check-label">
+                                                Cardinal Este.
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 6.3 -->
+                                        <p>6.3 Seleccione el nombre correcto de la boya de la imagen: </p>
+                                        <img src="/curso-cn/recursos-examen/final/peligro aislado.png">
+                                        <br><br>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta63a" name="prg63">
+                                            <label class="form-check-label">
+                                                Señales Especiales.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta63b" name="prg63">
+                                            <label class="form-check-label">
+                                                Cardinal Norte.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta63c" name="prg63">
+                                            <label class="form-check-label">
+                                                Cardinal Este.
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 6.4 -->
+                                        <p>6.4 Seleccione el nombre correcto de la boya de la imagen: </p>
+                                        <img src="/curso-cn/recursos-examen/final/rojo negra.png">
+                                        <br><br>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta64a" name="prg64">
+                                            <label class="form-check-label">
+                                                Señales Especiales.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta64b" name="prg64">
+                                            <label class="form-check-label">
+                                                Peligro aislado.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta64c" name="prg64">
+                                            <label class="form-check-label">
+                                                Cardinal Norte.
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 7 -->
+                                        <p>7 Según sistema IALA (B), Si navego por el Río Uruguay, y pretendo mantenerme dentro
+                                            del
+                                            canal, y mi rumbo es hacia el SUR, aguas abajo. ¿Qué boya del canal corresponde
+                                            dejar a
+                                            la banda de estribor? </p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta7a" name="prg7">
+                                            <label class="form-check-label">
+                                                Boya de canal color verde.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta7b" name="prg7">
+                                            <label class="form-check-label">
+                                                Boya de canal color roja.
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 8 -->
+                                        <p>8. Si estoy navegando de noche y vislumbro una embarcación con una luz verde bien
+                                            definida. ¿ qué banda / lado de la embarcación estoy viendo? </p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta8a" name="prg8">
+                                            <label class="form-check-label">
+                                                Babor.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta8b" name="prg8">
+                                            <label class="form-check-label">
+                                                Estribor.
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 9 -->
+                                        <p>9. La regla 25 (RIPA) hace referencia a que las embarcaciones de menos de 7 metros de
+                                            eslora (y velocidad menor a 7 nudos), exhibirán, si es posible, luces de costado (verde y roja) y luz de alcance
+                                            (blanca), de lo contrario deberán tener a mano para uso inmediato una linterna
+                                            eléctrica
+                                            o farol que muestre una luz blanca, la cual será exhibida con tiempo suficiente para
+                                            evitar el abordaje.</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta9a" name="prg9">
+                                            <label class="form-check-label">
+                                                VERDADERO.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta9b" name="prg9">
+                                            <label class="form-check-label">
+                                                FALSO.
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 10 -->
+                                        <p>10 Si estoy saliendo del puerto de Concepción del Uruguay de noche, ¿de qué color
+                                            serán
+                                            las boyas que identifican la salida y el canal? Seleccione la opción correcta. </p>
+                                        <img src="/curso-cn/recursos-examen/final/puerto colon.png">
+                                        <br><br>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta10a" name="prg10">
+                                            <label class="form-check-label">
+                                                A: VERDES / B: ROJAS.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta10b" name="prg10">
+                                            <label class="form-check-label">
+                                                A: ROJAS / B: VERDES.
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 11 -->
+                                        <p>11. Me encuentro navegando de noche, corriente a favor, hacia la desembocadura del
+                                            río
+                                            (ej de Paysandú a Concepción del Uruguay), y veo una luz ROJA en el agua que
+                                            DESTELLA.
+                                            Marque la opción correcta. </p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta11a" name="prg11">
+                                            <label class="form-check-label">
+                                                Es una boya de AGUAS SEGURAS, la puedo pasar por cualquier lado
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta11b" name="prg11">
+                                            <label class="form-check-label">
+                                                Es una boya LATERAL ROJA, debo dejarla a mi ESTRIBOR para mantenerme dentro del
+                                                canal
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta11c" name="prg11">
+                                            <label class="form-check-label">
+                                                Es una EMBARCACION que me está mostrando su BANDA DE BABOR
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta11d" name="prg11">
+                                            <label class="form-check-label">
+                                                Es una boya LATERAL ROJA, debo dejarla a mi BABOR para mantenerme dentro del
+                                                canal
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 12 -->
+                                        <p>12. Según la regla 30 del RIPA, un buque con menos de 50 m. de eslora, que exhibiere
+                                            en
+                                            el lugar más visible una luz blanca todo horizonte o una bola, identifica... </p>
+                                        <img src="/curso-cn/recursos-examen/final/buque señalado una bola.png">
+                                        <br><br>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta12a" name="prg12">
+                                            <label class="form-check-label">
+                                                Un buque sin gobierno.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta12b" name="prg12">
+                                            <label class="form-check-label">
+                                                Un buque con maniobra restringida.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta12c" name="prg12">
+                                            <label class="form-check-label">
+                                                Un buque varado.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta12d" name="prg12">
+                                            <label class="form-check-label">
+                                                Un buque fondeado.
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 13 -->
+                                        <p>13. ¿Qué trayecto deberá seguir la embarcación para respetar las boyas indicadas?
+                                            Marque
+                                            la opción correcta: </p>
+                                        <img src="/curso-cn/recursos-examen/final/trayectos de embarcaciones segun boyado.png">
+                                        <br><br>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta13a" name="prg13">
+                                            <label class="form-check-label">
+                                                A.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta13b" name="prg13">
+                                            <label class="form-check-label">
+                                                B
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta13c" name="prg13">
+                                            <label class="form-check-label">
+                                                C
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta13d" name="prg13">
+                                            <label class="form-check-label">
+                                                D
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 14 -->
+                                        <p>14. Si estoy navegando de noche, y observo una luz que destella, ¿qué es lo más
+                                            probable
+                                            que este viendo?</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta14a" name="prg14">
+                                            <label class="form-check-label">
+                                                Una boya de canal.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta14b" name="prg14">
+                                            <label class="form-check-label">
+                                                Una embarcación navegando.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta14c" name="prg14">
+                                            <label class="form-check-label">
+                                                Una draga trabajando.
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 15 -->
+                                        <p>15. Seleccione el color de las luces indicadas, según su ubicación</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta15a" name="prg15">
+                                            <label class="form-check-label">
+                                                Banda de babor: VERDE / Banda de estribor: ROJA / Luz de alcance: BLANCA / Luz
+                                                de
+                                                fondeo todo horizonte: BLANCA.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta15b" name="prg15">
+                                            <label class="form-check-label">
+                                                Banda de babor: ROJA / Banda de estribor: VERDE / Luz de alcance: BLANCA / Luz
+                                                de
+                                                fondeo todo horizonte: BLANCA.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta15c" name="prg15">
+                                            <label class="form-check-label">
+                                                Banda de babor: ROJO / Banda de estribor: VERDE / Luz de alcance: BLANCA / Luz
+                                                de
+                                                fondeo todo horizonte: ROJA.
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 16 -->
+                                        <p>16. Navegando Usted escucha: 1ro una pitada larga, luego cuando el barco lo avista
+                                            usted
+                                            escucha cinco pitadas cortas, y al ver que usted no reacciona emite el otro barco
+                                            una
+                                            pitada corta. ¿Qué quiso trasmitir el capitán?</p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta16a" name="prg16">
+                                            <label class="form-check-label">
+                                                ¡Saludos! - Está en mi rumbo - Caigo a estribor.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta16b" name="prg16">
+                                            <label class="form-check-label">
+                                                Aproximación a un recodo - Obstáculos más adelante - Caigo a babor.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta16c" name="prg16">
+                                            <label class="form-check-label">
+                                                Aproximación a un recodo - No entiendo sus intenciones - Caigo a estribor.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta16d" name="prg16">
+                                            <label class="form-check-label">
+                                                Aproximación a un recodo - Caigo a babor - No entiendo sus intenciones.
+                                            </label>
+                                        </div>
+
+                                        <hr>
+                                        <!-- Pregunta 17 -->
+                                        <p>17. Según el sistema IALA (B), si navego por el Río Uruguay y pretendo mantenerme
+                                            dentro
+                                            del canal, rumbo hacia el norte, aguas arriba: ¿qué boya corresponde dejar a la
+                                            banda de
+                                            estribor? </p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta17a" name="prg17">
+                                            <label class="form-check-label">
+                                                Boya de canal color verde.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta17b" name="prg17">
+                                            <label class="form-check-label">
+                                                Boya de canal color roja.
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 18 -->
+                                        <p>18. Situación de "vuelta encontrada" (se encuentran de frente): cuando dos buques de
+                                            propulsión mecánica naveguen de vuelta encontrada a rumbos opuestos o casi opuestos,
+                                            con
+                                            riesgo de abordaje, cada uno de ellos caerá a ESTRIBOR de forma que pase por la
+                                            banda de
+                                            babor del otro. </p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta18a" name="prg18">
+                                            <label class="form-check-label">
+                                                VERDADERO.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta18b" name="prg18">
+                                            <label class="form-check-label">
+                                                FALSO.
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 19 -->
+                                        <p>19. Me encuentro navegando de noche y veo la siguiente figura, debo caer a estribor
+                                            dado
+                                            que viene navegando hacia mí. </p>
+                                        <img src="/curso-cn/recursos-examen/final/BARCO de frente.png">
+                                        <br><br>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta19a" name="prg19">
+                                            <label class="form-check-label">
+                                                VERDADERO.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta19b" name="prg19">
+                                            <label class="form-check-label">
+                                                FALSO.
+                                            </label>
+                                        </div>
+
+
+                                        <hr>
+                                        <!-- Pregunta 20 -->
+                                        <p>20. Las boyas de bifurcación, CANAL PREFERIDO A ESTRIBOR, la cual es TODA VERDE con
+                                            una
+                                            FRANJA ROJA se tomará como si fuera una boya VERDE, si pretendo mantenerme en el
+                                            canal
+                                            principal. </p>
+                                        <img src="/curso-cn/recursos-examen/final/boyas bifurcación.png">
+                                        <br><br>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta20a" name="prg20">
+                                            <label class="form-check-label">
+                                                VERDADERO.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="repuesta20b" name="prg20">
+                                            <label class="form-check-label">
+                                                FALSO.
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" onclick="terminarDos()" class="btn btn-secondary"
+                                        data-dismiss="modal">Finalizar autoevaluación</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            <script src="/curso-cn/js/jquery.min.js"></script>
+            <script src="/curso-cn/js/popper.js"></script>
+            <script src="/curso-cn/js/bootstrap.min.js"></script>
+            <script src="/curso-cn/js/main.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script src="/tools/dom-to-image.min.js"></script>
+
+            <script src="/curso-cn/js/sweetalert2.min.js"></script>
+            <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
+                integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
+                crossorigin="anonymous"></script>
+
+
+                <script>
+                    const socket = io();
+                    const sessionToken = '<%= userInfo.sessionToken %>';
+                    const stringDatos = '<%- JSON.stringify(userInfo.cursoConductorNautico) %>';
+                    const fechaServidor = '<%- Date(Date.now()) %>'
+                    
+                </script>
+            
+            <script src="/curso-cn/js/pasoFinal.js"></script>
+</body>
+
+
+</html>

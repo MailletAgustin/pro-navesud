@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>Curso Conductor Náutico</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/curso-cn/css/style.css">
+</head>
+
+<!-- PARA ELIMINAR CLIC DERECHO AGREGAR AL BODY :  -->
+
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="p-4 pt-5">
+                <a href="#" class="img logo rounded-circle mb-5"
+                    style="background-image: url(/landing/isotipo-navesud.jpg);"></a>
+                <ul class="list-unstyled components mb-5">
+                    <li><a href="#">Calendario</a></li>
+                    <li><a href="/administracion/usuarios">Usuarios</a></li>
+                    <li><a href="/administracion/gestion">Gestión</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Contenido  -->
+        <div id="content" class="p-4 p-md-5">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Abrir / Cerar menú</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Introducción -->
+            <div class="info" id="final">
+
+                <div id="calendario" class="row justify-content-center">
+                    <div class="col-12">
+                        <h1>Calendario - mesas de examenes</h1>
+                    </div>
+                    <% mesas.forEach(mesa => { %>
+                      <div class="mesa <%= mesa.estado %> col-3">
+                        <h2><%=mesa.fecha%></h2>
+                        <p>Registrados: <span id="m<%= mesa._id%>"><%= mesa.registrados.length %></span> / <%= mesa.maxRegistrados %> </p>
+                        <span>Hora: <%= mesa.horaMesa %> </span> <br>
+                        <span><%= mesa.estado %></span>
+                        <button onclick="verRegistrados('<%= mesa._id %>')">Ver registrados</button>
+                        <br> <br>
+                        <% if (mesa.estado == 'registrando') { %>
+                            <button onclick="cerrarRegistro('<%= mesa._id %>')">Cerrar registro</button>
+                        <% } %> 
+                    </div>  
+                    <% }); %> 
+                    <div class="mesa registro col-4">
+                        <input type="date" id="fechaNuevaMesa" placeholder="Fecha (DIA/MES/AÑO)">
+                        <input type="text" id="maxRegistros" placeholder="Máximo registros">
+                        <input type="text" id="horaMesa" placeholder="Hora (24 hs Formato)">
+                        <button id="boton-nueva-mesa" onclick="nuevaMesa()"><span>agregar mesa</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+<div class="modal fade" id="usuariosRegistradosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog full_modal-dialog" role="document" style="width: 90%;">
+      <div class="modal-content full_modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="usuariosRegistradosTitulo">Usuarios registrados para la mesa: </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="col-12">
+                <table class="table" id="usuariosRegistrados">
+                    <thead>
+                      <tr>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">DNI</th>
+                        <th scope="col">Nacimiento</th>
+                        <th scope="col">Localidad</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Desregistrar</th>
+                        <th scope="col" hidden id="mesaDatos">Mesa para</th>
+                        <th hidden scope="col"> Cuit / Cuil </th>
+                        <th hidden scope="col"> Experiencia </th>
+                        <th hidden scope="col"> Donde rinde </th>
+                        <th hidden scope="col"> Instagram </th>
+                        <th hidden scope="col"> Facebook </th>
+                        <th hidden scope="col"> Lancha con fuera de borda, y volante</th>
+                        <th hidden scope="col"> Lancha o bote con fuera de borda y caña (sentado en popa)</th>
+                        <th hidden scope="col"> Moto de agua o jet sky</th>
+                        <th hidden scope="col"> Crucerito de menos de 7 mtrs de eslora</th>
+                        <th hidden scope="col"> Rio Uruguay, zona Colón</th>
+                        <th hidden scope="col"> Rio Uruguay, Lago Salto Grande</th>
+                        <th hidden scope="col"> Rio Uruguay, Concordia</th>
+                        <th hidden scope="col"> Rio De La Plata, Delta</th>
+                        <th hidden scope="col"> Rio de la Plata, aguas abiertas</th>
+                        <th hidden scope="col"> Rio Gualeguay</th>
+                        <th hidden scope="col"> Rio Paraná</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody id="listUsuariosRegistrados">
+                      
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" onclick="ExportToExcel('xlsx')">Exportar a excel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+            <script src="/curso-cn/js/jquery.min.js"></script>
+            <script src="/curso-cn/js/popper.js"></script>
+            <script src="/curso-cn/js/bootstrap.min.js"></script>
+            <script src="/curso-cn/js/main.js"></script>
+
+            <style>
+                .mayuscula {
+                    text-transform: uppercase;
+                }
+.full_modal-dialog {
+  width: 98% !important;
+  height: 92% !important;
+  min-width: 98% !important;
+  min-height: 92% !important;
+  max-width: 98% !important;
+  max-height: 92% !important;
+  padding: 0 !important;
+}
+.full_modal-content {
+  height: 99% !important;
+  min-height: 99% !important;
+  max-height: 99% !important;
+}   
+.modal-body {
+    background-color: #fff;
+}
+                .registro {
+                    border: solid 1px rgb(0, 0, 10);
+                }
+                .registro > input{
+                    all: unset;
+                    border: solid 1px rgba(0, 0, 10, 0.205);
+                    padding: 10px;
+                    margin: 5px;
+                    color: #000;
+                }
+                #boton-nueva-mesa {
+                    all: unset;
+                    margin-top: 5px;
+                    color: #00ff;
+                    font-weight: bold;
+                    border: solid 1px #00ff;
+                    padding: 10px;
+                    border-radius: 15px;
+                }
+                #boton-nueva-mesa:hover {
+                    color: rgb(33, 120, 201);
+                    border: solid 1px rgb(33, 120, 201);
+                    border-radius: 15px;
+                }
+                #calendario {
+                    text-align: center;
+                    background-color: #dff0fc;
+                    border-radius: 10px;
+                    padding: 20px;
+                    color: #fff;
+                }
+                .mesa {
+                    padding: 10px;
+                    border-radius: 10px;
+                    margin: 10px;
+                }
+                .registrando {
+                    background-color: rgb(54, 141, 13);
+                }
+                .completa {
+                    background-color: rgb(185, 156, 24);
+                }
+                .finalizada {
+                    background-color: rgb(37, 51, 179);
+                }
+            </style>
+
+            <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
+                integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
+                crossorigin="anonymous"></script>
+                <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+
+                <script>
+                    var socket = io();
+                    function nuevaMesa() {
+                        maxRegistros = $('#maxRegistros').val();
+                        fecha = $('#fechaNuevaMesa').val();
+                        horaMesa = $('#horaMesa').val();
+                        if (maxRegistros && fecha && horaMesa) {
+                            document.getElementById('boton-nueva-mesa').disabled = true;
+                            socket.emit('nuevaMesa', {
+                                fecha: fecha,
+                                maxRegistros: maxRegistros,
+                                horaMesa: horaMesa
+                            })
+                        }
+                    }
+                    function cerrarRegistro(mesaId) {
+                            socket.emit('cerrar-registro', mesaId)
+                    }
+                    function verRegistrados(mesaId) {
+                        // Limpiar tabla y buscar usuarios.
+                        $('#listUsuariosRegistrados').empty();
+                        $('#usuariosRegistradosModal').modal('show');
+                        socket.emit('getUsuariosRegistrados', (mesaId));
+                    }
+                    socket.on('listarUsuarioRegistrado', (data) => {
+                        $('#usuariosRegistradosTitulo').text(`Usuarios registrados para la mesa ${data.mesa.fecha} - ${data.mesa.horaMesa}`);
+                        html = `
+                        <tr id="${data.user._id}">
+                                <td class="mayuscula">${data.user.lastName}</td>
+                                <td class="mayuscula">${data.user.name}</td>
+                                <td>${data.user.moreInfo.dni}</td>
+                                <td>${data.user.moreInfo.fechanacimiento}</td>
+                                <td>${data.user.moreInfo.ciudad}</td>
+                                <td>${data.user.moreInfo.telefono}</td>
+                                <td>${data.user.email}</td>
+                                <td><button type="button" onclick="desregistrar('${data.user._id}')" class="btn btn-danger">X</button></td>
+                                <th hidden scope="col"> ${data.mesa.fecha} - ${data.mesa.horaMesa}HS </th>
+                                <th hidden scope="col"> ${data.user.moreInfo.cuitcuil} </th>
+                                <th hidden scope="col"> ${data.user.moreInfo.experiencia} </th>
+                                <th hidden scope="col"> ${data.user.moreInfo.porque} </th>
+                                <th hidden scope="col"> ${data.user.moreInfo.instagram} </th>
+                                <th hidden scope="col"> ${data.user.moreInfo.facebook} </th>
+                                <th hidden scope="col"> ${data.user.moreInfo.embarcacionesA} </th>
+                                <th hidden scope="col"> ${data.user.moreInfo.embarcacionesB} </th>
+                                <th hidden scope="col"> ${data.user.moreInfo.embarcacionesC} </th>
+                                <th hidden scope="col"> ${data.user.moreInfo.embarcacionesD} </th>
+                                <th hidden scope="col"> ${data.user.moreInfo.rioA} </th>
+                                <th hidden scope="col"> ${data.user.moreInfo.rioB}</th>
+                                <th hidden scope="col"> ${data.user.moreInfo.rioC}</th>
+                                <th hidden scope="col"> ${data.user.moreInfo.rioD}</th>
+                                <th hidden scope="col"> ${data.user.moreInfo.rioE}</th>
+                                <th hidden scope="col"> ${data.user.moreInfo.rioF}</th>
+                                <th hidden scope="col"> ${data.user.moreInfo.rioG}</th>
+                        </tr>
+                        `
+                        $('#listUsuariosRegistrados').append(html);
+                    });
+                    socket.on('mesa-registrada', () => {
+                        alert('Mesa registrada');
+                        document.getElementById('boton-nueva-mesa').disabled = false;
+                        document.location.reload();
+                    })
+                    socket.on('registro-cerrado', () => {
+                        alert('Registro cerrado');
+                        document.location.reload();
+                    })
+                    function ExportToExcel(type, fn, dl) {
+       var elt = document.getElementById('usuariosRegistrados');
+       var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+       return dl ?
+         XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+         XLSX.writeFile(wb, fn || ('Lista usuarios registrado.' + (type || 'xlsx')));
+    }
+function desregistrar(id) {
+    if (window.confirm("Vas a desregistrar este usuario? Deberá volver a registrarse manualmente.")) {
+        socket.emit('desregistrar', {id});
+        $(`#${id}`).remove();
+        console.log('Usuario eliminado');
+    }
+}
+socket.on('actualizarMesa', (data) => {
+    $(`#${data.id}`).text($(`#${data.id}`).text()  - 1)
+});
+</script>
+
+
+</body>
+
+
+</html>

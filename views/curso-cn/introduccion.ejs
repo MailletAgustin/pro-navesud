@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>Curso Conductor Náutico</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/curso-cn/css/style.css">
+</head>
+
+<!-- PARA ELIMINAR CLIC DERECHO AGREGAR AL BODY : oncontextmenu="return false;" -->
+
+<body oncontextmenu="return false;" id="masterContainer">
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="p-4 pt-5">
+                <a href="#" class="img logo rounded-circle mb-5"
+                    style="background-image: url(/curso-cn/img/isotipo-navesud.jpg);"></a>
+                <ul class="list-unstyled components mb-5">
+                    <li><a href="#">Introducción</a></li>
+                    <li><a href="#" id="menuPaso1"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp Paso 1</a></li>
+                    <li><a href="#" id="menuPaso2"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp Paso 2</a></li>
+                    <li><a href="#" id="menuPaso3"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp Paso 3</a></li>
+                    <li><a href="#" id="menuFinal"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp Final</a></li>
+                    <li><a href="/cursos/conductor-nautico/calendario" id="calendario"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp
+                            Mesas de Examen</a></li>
+                    <li><a id="ayuda" href="#"><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp Necesito
+                            ayuda</a> </a></li>
+                </ul>
+            </div>
+        </nav>
+
+        
+        <!-- Contenido  -->
+        <div id="content" class="p-4 p-md-5">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Abrir / Cerar menú</span>
+                    </button>
+                </div>
+            </nav>
+
+            <%- include('modal-ayuda') %> 
+            <%- include('dias-restantes', {diasRestantes: userInfo.cursoConductorNautico.diasRestantes}) %> 
+
+            <!-- Introducción -->
+            <div class="info" id="introduccion">
+                <h2 class="mb-4">Introducción - ¡Bienvenido, <%= userInfo.name %>!</h2>
+
+
+                <p>Ahora sí, ¡Iniciamos el curso <span style="font-weight: bold;">CONDUCTOR NÁUTICO PASO A PASO</span>!
+                    Te dejo a continuación una charla introductoria, donde aprenderás todo
+                    lo necesario para aprovecharlo al máximo. </p>
+                <p>Recordá que deberás ver todos los videos por completo para avanzar al próximo Paso, y a su vez
+                    aprobar la autoevaluación.</p>
+                
+                
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated mb-1" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%" id="introVideoProgressBar">Cargando...</div>
+                </div>
+                <div class="embed-responsive embed-responsive-16by9"> <video class="embed-responsive-item" 
+                        controls
+                        controlsList="nodownload noplaybackrate" id="introduccion1"
+                        src="https://hnavesud.com/curso-conductor-nautico/introduccion/video1.mp4"
+                        > </video>
+                </div>
+                
+                <div class="float-right mt-4">
+                    <a href="/cursos/conductor-nautico/paso-1"><button class="btn download" id="botonIrPaso1" disabled>Ir al PASO 1 </button></a>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
+        integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
+        crossorigin="anonymous"></script>
+        <script src="/curso-cn/js/jquery.min.js"></script>
+        <script src="/curso-cn/js/popper.js"></script>
+        <script src="/curso-cn/js/bootstrap.min.js"></script>
+        <script src="/curso-cn/js/main.js"></script>
+        
+        <script>
+            const socket = io();
+            const sessionToken = '<%= userInfo.sessionToken %>';
+            const stringDatos = '<%- JSON.stringify(userInfo.cursoConductorNautico) %>';
+            const fechaServidor = '<%- Date(Date.now()) %>'
+        </script>
+
+        <script src="/curso-cn/js/introduccion.js"></script>
+</body>
+
+</html>

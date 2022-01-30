@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('header.ejs', {
+   global: global 
+}) %> 
+
+<body>
+    <%- include('menu.ejs') %>
+
+        <!-- Hero -->
+        <div class="container-fluid p-3 p-sm-5" id="#home">
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <!-- Hero -->
+                    <h1 class="fw-bold display-5">
+                        NAVESUD, <span> <br> Navegantes Seguros.</span>
+                    </h1>
+                    <p> <span class="fst-italic fw-bold"> Proponemos contagiarte la pasión y el amor por la navegación.
+                        </span> Es un antes y un después en la vida de cada persona. <span class="fst-italic fw-bold">
+                            Adquirí ahora mismo el arte de la navegación a Vela y/o a motor de manera segura. </span> Te
+                        formamos para que puedas rendir para obtener los Carnet Deportivos</p>
+                    <a href="#actividades" style="width: 185px; height: 45px; font-size: 14pt" type="button"
+                        class="btn fw-bold btn-primary">Quiero ser parte</a>
+                </div>
+                <div class="col-12 col-sm-6 order-first order-sm-last">
+                    <!-- iFrame de Youtube -->
+                    <br>
+                    <iframe width="100%" height="325px" src="https://www.youtube.com/embed/TpE85MT8b1M"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructor -->
+        <div class="container-fluid p-3 p-sm-5" id="instructor" style="background-color: #D5D5D5">
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <!-- iFrame de Youtube -->
+                    <br> <br>
+                    <h1 class="text-center fw-bold display-5">Hugo Ugartemendía</h1>
+                    <br>
+                    <iframe width="100%" height="350px" src="https://www.youtube.com/embed/w5Ek7uOGTdw"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+
+                </div>
+                <div class="col-12 col-sm-6 p-3 p-sm-5 ">
+                    <p style="line-height: 24px; color: rgb(53, 53, 53); text-align: justify;">Fundador, instructor,
+                        entrerriano, Ing. Industrial UBA e Ingeniero en Higiene y Seguridad UTN, Ex docente
+                        Universitario y Ex funcionario de Relaciones Institucionales de la Fac. Ing. UBA. Coordinador
+                        Intercambios. <br> Socio del Rotary Club Colón, y ex presidente del Club Náutico Colón.</p>
+                    <p style="line-height: 24px; color: rgb(53, 53, 53); text-align: justify;">Se dedicó a ejercer la
+                        profesión asesorando a empresas en optimización de procesos de productos y servicios, y en
+                        implementación de sistemas de gestión de calidad ISO 9001 / ISO 14.000, hoy se encuentra a cargo
+                        de negocios inmobiliarios (VIO Emprendimientos),<span class="fw-bold"> pero su gran pasión es la
+                            náutica, la vela, lo que lo llevó a iniciar un giro en su vida fundando NAVESUD y lanzando
+                            la escuela náutica en Colón Entre Ríos.</span></p>
+                    <p style="line-height: 24px; color: rgb(53, 53, 53); text-align: justify;">Navega el RIO URUGUAY
+                        desde muy pequeño, en su adolescencia realizando Remo, Esquí y Windsuf, siendo Timonel Yate Vela
+                        Motor desde 1994, y hace un par de años Patrón de Yate Vela Motor.</p>
+                    <p style="line-height: 24px; color: rgb(53, 53, 53); text-align: justify;"> <span class="fw-bold">
+                            Ha realizado diversas travesías y regatas en el Río Uruguay, Río Paraguay, Río Paraná, Río
+                            de la Plata y navegación oceánica desde Sao Lorenzo do Sul, Río Grande Brasil hasta
+                            Montevideo Uruguay con escala en Punta del Este. </span> </p>
+                    <center><a href="#actividades" style="width: 185px; height: 45px; font-size: 14pt;" type="button"
+                            class="fw-bold btn btn-primary">Quiero aprender</a></center>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actividades -->
+        <div class="container-fluid py-5 p-3 p-sm-5" id="actividades" style="background-color: #033C81 ">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-10">
+                    <h1 class="text-center fw-bold display-5" style="color:#fff;">Nuestras Actividades</h1>
+                    <p style="color: #fff;" class="text-center px-5">Contamos con años de experiencia y adquisición de
+                        conocimientos. Desarrollamos una metodología para que puedas aprender con nosotros <span
+                            class="fw-bold"> todo acerca de la navegación segura, de la manera más efectiva.</span></p>
+                    <!-- Curso conductor náutico -->
+                    <div class="card mb-3">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-md-4">
+                                <img src="landing/presentacion-curso-conductor-nautico.jpg"
+                                    class="card-img" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Curso Conductor Náutico</h5>
+                                    <p class="card-text">NAVESUD te enseña en 3 PASOS como conducir una lancha de manera
+                                        segura, adquirirás los conocimientos para rendir y obtener el CARNET DE
+                                        CONDUCTOR NÁUTICO DEPORTIVO.</p>
+                                    <p class="card-text">Para embarcaciones de hasta 7 metros de eslora (largo) y una
+                                        potencia máxima de 140HP de motor, y motos de agua sin límite de potencia.</p>
+                                    <a href="/info/conductor-nautico" class="btn btn-primary fw-bold">Más información sobre el curso</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="container-fluid p-0 p-sm-5" id="contacto">
+            <div class="row p-3 p-sm-5 ">
+                <div class="col-12 col-sm-6">
+                    <h1 class="fw-bold display-4">Contacto</h1>
+                    <p><span class="fw-bold">En navesud estamos siempre pendientes de las personas que tienen
+                            dudas.</span> Si eres una de ellas, no dudes en contactarnos con el formulario.</p>
+                    <p>Adicionalmente, puedes obtener respuestas en cualquiera de <span class="fw-bold">nuestros canales
+                            de comunicación oficial: </span></p>
+
+                    <!-- Facebook -->
+                    <a class="btn btn-primary" style="background-color: #3b5998;"
+                        href="https://www.facebook.com/navesud/" role="button"><i class="fa fa-facebook-f"
+                            style="font-size: 22pt;"></i></a>
+
+                    <!-- Instagram -->
+                    <a class="btn btn-primary" style="background-color: #ac2bac;"
+                        href="https://www.instagram.com/navesud/" role="button"><i class="fa fa-instagram"
+                            style="font-size: 22pt;"></i></a>
+
+                    <!-- Youtube -->
+                    <a class="btn btn-primary" style="background-color: #ed302f;"
+                        href="https://www.youtube.com/channel/UCYK2J_-WUcRKysovrd78WGA" role="button"><i
+                            class="fa fa-youtube" style="font-size: 22pt;"></i></a>
+
+                    <!-- Whatsapp -->
+                    <a class="btn btn-primary" style="background-color: #25d366;" href="https://wa.link/d2c92s"
+                        role="button"><i class="fa fa-whatsapp" style="font-size: 22pt;"></i></a>
+                    <br><br>
+                    <iframe frameborder="0" scrolling="no" width="100%" height="300px" marginheight="0" marginwidth="0"
+                        src="https://maps.google.com/maps?q=Gouchon%2012%20Col%C3%B3n%20Entre%20R%C3%ADos&amp;t=m&amp;z=14&amp;output=embed&amp;iwloc=near"
+                        title="Gouchon 12 Colón Entre Ríos" aria-label="Gouchon 12 Colón Entre Ríos">
+                    </iframe>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <br><br><br>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Nombre">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Apellido">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input type="email" class="form-control" placeholder="Email">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input type="email" class="form-control" placeholder="Confirmar email">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <select class="form-select">
+                                <option selected>Curso de Conductor Náutico</option>
+                                <option value="1">Curso de Timonel Yate Motor</option>
+                                <option value="2">Curso de Timonel Yate Vela Motor</option>
+                                <option value="3">Travesias Educativas</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <textarea class="form-control" placeholder="Mensaje" id="textArea" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<%- include('./footer.ejs') %>   
+</body>
+</html>

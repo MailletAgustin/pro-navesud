@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>Curso Conductor Náutico</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/curso-cn/css/style.css">
+</head>
+
+<!-- PARA ELIMINAR CLIC DERECHO AGREGAR AL BODY :  -->
+
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="p-4 pt-5">
+                <a href="#" class="img logo rounded-circle mb-5"
+                    style="background-image: url(/landing/isotipo-navesud.jpg);"></a>
+                <ul class="list-unstyled components mb-5">
+                    <li><a href="/administracion">Calendario</a></li>
+                    <li><a href="/administracion/usuarios">Usuarios</a></li>
+                    <li><a href="/administracion/gestion">Gestión</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Contenido  -->
+        <div id="content" class="p-4 p-md-5">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Abrir / Cerar menú</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Introducción -->
+            <div class="info">
+                <div class="row">
+                    <div class="col-8">
+                        <form class="p-4 w-100" id="crear-usuario-form" style="background-color: rgb(101, 206, 255); text-align: center;">
+                            <h3>Crear un nuevo usuario:</h3>
+                            <input required id="nombreCompletoNuevoUsuario" class="form-control" type="text" placeholder="Nombre completo">
+                            <input required id="apellidoNuevoUsuario" class="form-control" type="text" placeholder="Apellido">
+                            <br><br>
+                            <input required id="correoUsuarioNuevo" class="form-control" type="email" placeholder="Correo electrónico">
+                            <input required id="claveUsuarioNuevo" class="form-control" type="password" placeholder="Contraseña">
+                            <br><br>
+                            <select id="tipoUsuarioNuevo" name="tipoUsuarioNuevo" class="form-control">
+                                <option value="gratis">Gratuito</option>
+                                <option value="pagado">Pagado</option>
+                            </select>
+                            <input type="number" style="display:none" id="pagoTotal" class="form-control" placeholder="[Neto, solo numero]">
+                            <br><br>
+                            <input id="botonCrearUsuario" class="form-control" type="button" value="Registrar nuevo usuario">                        
+                        </form>
+                    </div>
+                   
+                    <div id="seccionFiltroUsuarios" class="col-4 p-4">
+                        <h4>Buscar usuarios</h4>
+                        <select id="filtroAvance" class="form-control">
+                            <option value="none">Sin filtro (ver todos)</option>
+                            <option value="sinDatos">No completaron datos</option>
+                            <option value="introduccion">Estan en la introducción</option>
+                            <option value="paso1">Estan en el paso 1</option>
+                            <option value="paso2">Estan en el paso 2</option>
+                            <option value="paso3">Estan en el paso 3</option>
+                            <option value="pasoFinal">Estan en el paso final</option>
+                            <option value="cursoAprobado">Aprobaron el curso</option>
+                        </select>
+                        <input type="button" id="buscarUsuarios" class="form-control mt-2 btn-primary" value="Buscar">
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row" id="rowUsuarios">
+                    <span id="tituloUsuarios"></span>
+                    <div class="col-12">
+                        <h4 class="bold" id="tableFilter"></h4>
+                        <div class="table-responsive">
+                        <table id="userTable" class="table">
+                            <thead>
+                              <tr>
+                                <th hidden scope="col">FILTRO APLICADO</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Donde rinde</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Ciudad</th>
+                                <th scope="col">Vencimiento</th>
+                                <th hidden scope="col">Tipo</th>
+                                <th hidden scope="col">Cuit/cuil</th>
+                                <th hidden scope="col">Experiencia</th>
+                                <th hidden scope="col">Donde rinde</th>
+                                <th hidden scope="col">Instagram</th>
+                                <th hidden scope="col">Facebook</th>
+                                <th hidden scope="col">Pago total</th>
+                              </tr>
+                            </thead>
+                            <tbody id="bodyUserTable">
+                              
+                            </tbody>
+                          </table>
+                          <button onclick="ExportToExcel('xlsx')" class="form-control">Exportar a excel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script src="/curso-cn/js/jquery.min.js"></script>
+            <script src="/curso-cn/js/popper.js"></script>
+            <script src="/curso-cn/js/bootstrap.min.js"></script>
+            <script src="/curso-cn/js/main.js"></script>
+            <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+
+
+            <script src="/curso-cn/js/moment.min.js"></script>
+
+            <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
+                integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
+                crossorigin="anonymous"></script>
+            <style>
+                .form-control {
+                    display: inline;
+                    width: auto;
+                }
+                #crear-usuario-form {
+                    -webkit-box-shadow: -1px 4px 16px 1px rgba(0,0,0,0.75);
+                    -moz-box-shadow: -1px 4px 16px 1px rgba(0,0,0,0.75);
+                    box-shadow: -1px 4px 16px 1px rgba(0,0,0,0.75);
+                }
+                #seccionFiltroUsuarios {
+                    -webkit-box-shadow: -1px 4px 16px 1px rgba(0,0,0,0.75);
+                    -moz-box-shadow: -1px 4px 16px 1px rgba(0,0,0,0.75);
+                    box-shadow: -1px 4px 16px 1px rgba(0,0,0,0.75);
+                    text-align: center;
+                }
+                .userTarget {
+                    border: solid 1px #00f;
+                    text-align: center;
+                }
+                .gratis {
+                    background-color: green;
+                }
+            </style>
+                <script>
+                    var socket = io();
+                    $('#tipoUsuarioNuevo').on('change', () => {
+                        if ($('#tipoUsuarioNuevo').val() == 'pagado') {
+                            $('#pagoTotal').show();
+                        }
+                        if ($('#tipoUsuarioNuevo').val() == 'gratis') {
+                            $('#pagoTotal').hide();
+                        }
+                    });
+
+                    $('#botonCrearUsuario').on('click', () => {
+                        document.getElementById('botonCrearUsuario').disabled = true;
+                        let pagoTotal = $('#pagoTotal').val();
+                        data = {
+                            nombre:   $('#nombreCompletoNuevoUsuario').val(),
+                            apellido: $('#apellidoNuevoUsuario').val(),
+                            correo: $('#correoUsuarioNuevo').val(),
+                            password: $('#claveUsuarioNuevo').val(),
+                            tipo: $('#tipoUsuarioNuevo').val(),
+                            pagoTotal
+                        }
+                        console.log(data);
+                        socket.emit('nuevoUsuarioDesdePanelAdministrador', (data));
+                    });
+
+                    socket.on('registro-exitoso', () => {
+                        alert('Registro de usuario exitoso!')
+                        location.reload();
+                    });
+
+
+                    $('#buscarUsuarios').on('click', () => {
+                        document.getElementById('buscarUsuarios').disabled = true;
+                        $('#bodyUserTable').empty();
+                        $('#tituloUsuarios').empty();
+                        filtros = {
+                            avance: $('#filtroAvance').val()
+                        }
+                        console.log(filtros);
+                        socket.emit('verUsuariosConFiltro', (filtros));
+                    });
+                    socket.on('mostrar-usuarios', (docs) => {
+                        document.getElementById('buscarUsuarios').disabled = false;
+                        
+                        $('#tableFilter').text('Viendo los usuarios que: ' + $("#filtroAvance").children("option").filter(":selected").text());
+                        $('#tituloUsuarios').append(`<div class="col-12"><h3>Total usuarios: ${docs.length}. Estamos contando los usuarios de PRUEBA.<h3></div>`)
+                            
+                            docs.forEach(user => {
+                            if (user.moreInfo == undefined || user.moreInfo.telefono == undefined) {
+                                telefono = 'Aún no registrado'
+                            } else {
+                                telefono = user.moreInfo.telefono;
+                            }
+                            if (user.moreInfo == undefined || user.moreInfo.ciudad == undefined) {
+                                ciudad = 'Aún no registrado'
+                            } else {
+                                ciudad = user.moreInfo.ciudad;
+                            }
+                            if (user.tipo && user.tipo == 'gratis') {
+                                back = 'gratis'
+                            } else {
+                                back = 'normal'
+                            }
+                            // Calcular dias restante:
+                            fechaRegistro = moment(user.fechaRegistro);
+                            // alert(fechaRegistro)
+                            fechaVencimiento = fechaRegistro.add(40, 'day');
+                            // alert(fechaVencimiento)
+                            if (user.renovacion) {
+                                fechaVencimiento = moment(user.renovacion).add(15, 'day');
+                            }
+                            let textoDiasRestantes;
+
+                            if (user.cursoConductorNautico && user.cursoConductorNautico.diasRestantes) {
+                                if (user.cursoConductorNautico.diasRestantes == 'expiro' || user.cursoConductorNautico.diasRestantes<=0) {
+                                    textoDiasRestantes = 'Expiró';
+                                } else {
+                                    textoDiasRestantes = user.cursoConductorNautico.diasRestantes + ' días';
+                                }
+                            } else {
+                                textoDiasRestantes = '40 días [Aún no empezó]';
+                            }
+                          
+
+                            let cuitcuil, experiencia, instagram, facebook, porque;
+                            if (user.moreInfo) {
+                                cuitcuil = user.moreInfo.cuitcuil;
+                                facebook = user.moreInfo.facebook;
+                                experiencia = user.moreInfo.experiencia;
+                                porque = user.moreInfo.porque;
+                                instagram = user.moreInfo.instagram;
+                            }
+                            let pagoTotal = 0;
+                            let liquido = 0;
+                            
+                            if ((user.tipo == undefined || user.tipo == 'pagado') && !user.pagoTotal) {
+                                pagoTotal = 6300;
+                                liquido = 5578;
+                            }
+                            if (user.pagoTotal) {
+                                pagoTotal = user.pagoTotal;
+                                // liquido = FORMULA;
+                            } 
+                            let dondeRinde = 0;
+                            if (user.moreInfo && user.moreInfo.porque) {
+                                if (user.moreInfo.porque == 'Voy a rendir con prefectura naval argentina.') {
+                                dondeRinde = 'Con prefectura'
+                                }
+                                if (user.moreInfo.porque == 'Voy a rendir con el club náutico colón.') {
+                                    dondeRinde = 'Con club náutico'
+                                }
+                            }
+                            if (dondeRinde == 0) {
+                                dondeRinde = 'Dato no adquirido'
+                            }
+                            html = ` 
+                            <tr class="${back}">
+                                <td hidden>${$("#filtroAvance").children("option").filter(":selected").text()}</td>
+                                <td>${user.name} ${user.lastName}</td>
+                                <td>${user.email}</td>
+                                <td>${dondeRinde}</td>
+                                <td>${telefono}</td>
+                                <td>${ciudad}</td>
+                                <td>${textoDiasRestantes}</td>
+                                <td hidden>${back} </td>
+                                <td hidden>${cuitcuil} </td>
+                                <td hidden>${experiencia} </td>
+                                <td hidden>${porque} </td>
+                                <td hidden>${instagram} </td>
+                                <td hidden>${facebook} </td>
+                                <td hidden>${pagoTotal} </td>
+                              </tr>
+                            `
+                            $('#bodyUserTable').append(html)
+                        });
+                        
+                    });
+                    function sortOn (arr, prop) {
+                        arr.sort (
+                            function (a, b) {
+                                if (a[prop] < b[prop]){
+                                    return -1;
+                                } else if (a[prop] > b[prop]){
+                                    return 1;
+                                } else {
+                                    return 0;   
+                                }
+                            }
+                        );
+                    }
+function ExportToExcel(type, fn, dl) {
+       var elt = document.getElementById('userTable');
+       var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+       return dl ?
+         XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+         XLSX.writeFile(wb, fn || ('Usuarios filtrados.' + (type || 'xlsx')));
+    }
+                </script>
+</body>
+
+
+</html>

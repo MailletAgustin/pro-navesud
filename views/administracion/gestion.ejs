@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>Curso Conductor Náutico</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/curso-cn/css/style.css">
+</head>
+
+<!-- PARA ELIMINAR CLIC DERECHO AGREGAR AL BODY :  -->
+
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="p-4 pt-5">
+                <a href="#" class="img logo rounded-circle mb-5"
+                    style="background-image: url(/landing/isotipo-navesud.jpg);"></a>
+                <ul class="list-unstyled components mb-5">
+                    <li><a href="/administracion">Calendario</a></li>
+                    <li><a href="/administracion/usuarios">Usuarios</a></li>
+                    <li><a href="/administracion/gestion">Gestión</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Contenido  -->
+        <div id="content" class="p-4 p-md-5">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Abrir / Cerar menú</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Introducción -->
+            <div class="info">
+                <h4>Reporte de ventas</h4>
+                <br>
+                <div class="row">                   
+                    <div class="col-6 p-4" id="rowReporteVentas">
+                        <div class="row">
+                            <div class="col-6">
+                                Desde
+                                <input type="date" name="desde" id="desde">
+                            </div>
+                            <div class="col-6">
+                                Hasta
+                                <input type="date" name="hasta" id="hasta">
+                            </div>
+                        </div>
+                        <input type="button" id="botonBuscar" class="form-control mt-2 btn-primary" value="Generar reporte">
+                        <input type="button" id="botonDescargar" onclick="ExportToExcel('xlsx')" class="form-control mt-2 btn-secondary lab" value="Descargar detalle">
+                    </div>
+                    <div class="col-6">
+                        <canvas id="porcentajeUsuariosGratuitos" width="100%"></canvas>
+                    </div>     
+                </div>
+                <div class="row mt-5">
+                    <div class="col-12 lab">
+                        <h4 id="intervaloInforme"></h4>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-4 lab">
+                        <h3>Alumnos registrados</h3>
+                        <h4 id="totalUsuarios"></h4>
+                    </div>
+                    <div class="col-4 lab">
+                        <h3>Total vendido.</h3>
+                        <h4 id="totalVendido"></h4>
+                    </div>
+                </div>
+                <hr>
+                <div class="row mt-5">
+                    <div class="col-12 lab">
+                        <h3>Detalle</h3>
+                        <div class="table-responsive">
+                            <table id="detalleTabla" class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Apellido</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Fecha de registro</th>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col">Cobrado</th>
+                                    <th scope="col" hidden id="intervalo">Intervalo:</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="bodyUserTable">
+                                  
+                                </tbody>
+                              </table>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <script src="/curso-cn/js/jquery.min.js"></script>
+            <script src="/curso-cn/js/popper.js"></script>
+            <script src="/curso-cn/js/bootstrap.min.js"></script>
+            <script src="/curso-cn/js/main.js"></script>
+            <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <script src="/curso-cn/js/moment.min.js"></script>
+
+            <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
+                integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
+                crossorigin="anonymous"></script>
+                <style>
+                    .mayuscula {
+                        text-transform: uppercase;
+                    }
+                    #rowReporteVentas {
+                        -webkit-box-shadow: -1px 4px 16px 1px rgba(0,0,0,0.75);
+                        -moz-box-shadow: -1px 4px 16px 1px rgba(0,0,0,0.75);
+                        box-shadow: -1px 4px 16px 1px rgba(0,0,0,0.75);
+                    }
+                    .lab {
+                        visibility: hidden;
+                    }
+                </style>
+                <script>
+                    var socket = io();
+                    let busqueda = true;;
+                    $('#botonBuscar').on('click', (e) => {
+                        if (busqueda) {
+                            $('#botonBuscar').attr("disabled", true)
+                            setTimeout(() => {
+                                $('#botonBuscar').attr("disabled", false);
+                                $('#botonBuscar').val('Recargar y volver a generar')
+                            }, 5000);
+                            desde = moment($('#desde').val());
+                            hasta = moment($('#hasta').val());
+                            socket.emit('generar-reporte', {
+                                desde,
+                                hasta
+                            })
+                            busqueda = false;
+                        } else {
+                            location.reload();
+                        }
+                    })
+                    socket.on('nuevo-reporte', (data) => {
+                        console.log(data.filtrados);
+                        registros = data.filtrados;
+                        let registrosGratuitos = 0;
+                        let registrosPagados = 0;
+                        let tipoUsuario;
+                        let ganancia;
+                        let gananciaTotal = 0;
+                        let usuariosPagados = 0;
+                        $('#intervalo').text(moment($('#desde').val()).format("DD/MM/YYYY") + ' - ' + moment($('#hasta').val()).format("DD/MM/YYYY"));
+                        registros.forEach(registro => {
+                            if ((!registro.tipo || registro.tipo == "pagado")) {
+                                registrosPagados++;
+                                tipoUsuario = 'pagado'
+                                if (registro.pagoTotal) {
+                                    ganancia = registro.pagoTotal;
+                                } else {
+                                    ganancia = 6300;
+                                }
+                            } else {
+                                registrosGratuitos++;
+                                tipoUsuario = 'gratuito'
+                                ganancia = 0;
+                            }
+                            gananciaTotal = gananciaTotal + parseInt(ganancia);
+
+                            html = ` 
+                            <tr>
+                                <td class="mayuscula">${registro.lastName}</td>
+                                <td class="mayuscula">${registro.name}</td>
+                                <td>${registro.email}</td>
+                                <td>${registro.fechaRegistro}</td>
+                                <td>${tipoUsuario}</td>
+                                <td>$${ganancia}</td>
+                              </tr>
+                            `
+                            $('#bodyUserTable').append(html)
+                        });
+                        
+                        new Chart(document.getElementById("porcentajeUsuariosGratuitos"), {
+                        type: 'pie',
+                        data: {
+                        labels: ["Gratuitos", "Pagos"],
+                        datasets: [{
+                            label: "Population (millions)",
+                            backgroundColor: ["#3e95cd", "#8e5ea2"],
+                            data: [registrosGratuitos,registrosPagados]
+                        }]
+                        },
+                        options: {
+                        title: {
+                            display: true,
+                            text: 'Predicted world population (millions) in 2050'
+                        }
+                        }
+                    });
+                        $('.lab').css("visibility", "visible")
+                        $('#totalUsuarios').text(registrosGratuitos + registrosPagados);
+                        $('#intervaloInforme').text(`Intervalo de tiempo: desde ${$('#desde').val()}, hasta ${$('#hasta').val()}`);
+                        $('#totalVendido').text(gananciaTotal);
+                });
+                function ExportToExcel(type, fn, dl) {
+                    var elt = document.getElementById('detalleTabla');
+                    var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+                    return dl ?
+                        XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+                        XLSX.writeFile(wb, fn || ('Reporte Usuarios.' + (type || 'xlsx')));
+                }
+                </script>
+</body>
+</html>

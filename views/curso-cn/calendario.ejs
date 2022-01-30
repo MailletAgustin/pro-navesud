@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>Curso Conductor Náutico</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/curso-cn/css/style.css">
+</head>
+
+<!-- PARA ELIMINAR CLIC DERECHO AGREGAR AL BODY :  -->
+
+<body oncontextmenu="return false;">
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="p-4 pt-5">
+                <a href="#" class="img logo rounded-circle mb-5"
+                    style="background-image: url(/img/isotipo-navesud.jpg);"></a>
+                <ul class="list-unstyled components mb-5">
+                    <li><a href="./">Volver al curso</a></li>
+
+                    <li><a href="" id="calendarioMenu"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp
+                            Mesas de Examen</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Contenido  -->
+        <div id="content" class="p-4 p-md-5">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Abrir / Cerar menú</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Introducción -->
+            <div class="info" id="final">
+                <h1>Mesas de Examen</h1>
+                <p>Por favor, <span> lee detenidamente estos 6 puntos:</span></p>
+                <hr>
+                <h3>Punto 1: Tenes dos opciones:</h3>
+                <ul>
+                    <li><span>Opción 1. Podes rendir con el Club Náutico Colón Entre Ríos y nosotros, costo $1500
+                            pesos que se pagan el día de examen. Incluye seguro y derecho de examen.</span></li>
+                    <li>Opción 2. Podes sino rendir sin costo adicional en cualquier fecha que habilite y evalué Prefectura Naval
+                        Argentina en sus dependencias en Argentina; hace clic en el siguiente link para consultar a tu
+                        Prefectura más cercana. <a target="_BLANK"
+                            href="https://www.argentina.gob.ar/prefecturanaval/guia-dependencias-dnau">https://www.argentina.gob.ar/prefecturanaval/guia-dependencias-dnau</a>
+                    </li>
+                </ul>
+                <h3>Requisitos</h3>
+                <ul>
+                    <li>Ser mayor de 18 años.</li>
+                    <li>DNI original y FOTOCOPIA.</li>
+                    <li>Constancia de CUIL.</li>
+                    <li>CERTIFICADO MEDICO de puño y letra que diga. <span>“Aptitud psicofísica y audiovisual
+                            compatibles con el ejercicio de la navegación”. </span>Se debe especificar Nombre y
+                        Apellido, DNI, Grupo Sanguíneo y Factor del examinado, lugar y fecha. (válido por 90 días a
+                        partir de la fecha de extensión). Firma y sello aclaratorio del médico interviniente.</li>
+                    <li>2 FOTOS 3,5cm x 3,5cm de frente, fondo celeste (sin anteojos, salvo que sean recetados)</li>
+                    <li>Un correo electrónico (que uses frecuentemente o de un familiar)</li>
+                    <li>Costo $ 2.308,28 (monto lo determina Prefectura, puede variar). una vez presentas los papeles,
+                        te envían de PNA por email boleta para que pagues.</li>
+                    <li>Acta de examen</li>
+                </ul>
+                <hr>
+                <p style="color: #000000; font-weight: bold;">En caso de que optes por la opción 1, rendir con Club Náutico Colón y nosotros, lee los siguientes puntos: </p>
+                <h3>Punto 2: Inscribite a mesa de examen</h3>
+                <p style="color: rgb(255, 0, 0); text-align:left; font-size: 18pt;  ">Importante</p>
+                <p><span>1. Tenes tiempo hasta 10 dias antes de la fecha de Examen.</span></p>
+                <p><span>2. Para presentarte a rendir, es OBLIGATORIO tener si o si APROBADO este curso.</span></p>
+                <p>Sino, no se te permitirá rendir, tenes tiempo hasta el día anterior al examen.</p>
+                <p><span>3. Inscribite solo si estás seguro que lo vas a terminar a tiempo. Este curso toma aprox 15 horas. Los cupos son limitados, y sino le estarías quitando la posibilidad de rendir a otro navegante.</span></p>
+                <p><span>4. Se requiere mínimo 8 inscriptos para confirmar mesa.</span></p>
+                <br>
+                <h3>Punto 3: Calendario de examenes</h3>
+                <p>Estas son las futuras fechas y horarios, hace clic en el botón "Inscribirme" para registrarte.
+                    <span>El botón solo aparecerá habilitado si tienes todo aprobado. </span>
+                </p>
+                <!-- CALENDARIO -->
+                <div id="calendario" class="row justify-content-center">
+                    <div class="col-12">
+                        <h1>Calendario - mesas de examenes</h1>
+                    </div> 
+
+                    <% if (userInfo.mesaExamen == undefined) { %>
+                        <% mesas.forEach(mesa=> { %>
+                            <% if (mesa.estado == 'registrando' ) {%>
+                                <div class="mesa <%= mesa.estado %> col-12 col-md-3">
+                                    <h2 style="color: #fff; font-weight: 600;">
+                                        <%=mesa.fecha%>
+                                    </h2>
+                                    <span>Hora: <%= mesa.horaMesa %> </span> 
+                                    <hr>
+                                    <p style="font-weight: 300;">Registrados: <%= mesa.registrados.length %> / <%= mesa.maxRegistrados %>
+                                    </p>
+                                    <!-- <span style="font-weight: 300;">Podes inscribirte hasta el día X/X/X</span> -->
+                                    <br>
+                                    
+                                        <button id="boton-inscribirse"
+                                            onclick="inscribirse('<%= mesa._id %>', '<%= userInfo._id %>')">Inscribirme</button>
+                                </div>
+                                <% } %>
+                                    <% }); %>
+                                        <% } else {%>
+                                            <h2>Ya te registraste para la mesa de examen. Te esperamos el: <%
+                                                    mesas.forEach(mesa=> { %>
+                                                    <% if (mesa._id==userInfo.mesaExamen) { %>
+                                                        <%= mesa.fecha %> , a las <%= mesa.horaMesa %>.
+                                                                <% } %>
+                                                                    <% }); %>
+                                            </h2>
+                                            <% } %>
+                                            
+                                        </div>
+                                        <p style="color: #000; text-align:center; font-size: 18pt;  "> <span> El examen dura tres horas, entre la parte teórica y práctica.</span></p>
+
+                                        <br>
+                                        <p>¿Que pasa si llueve? Se suspende por alerta meteorológica o si las condiciones del tiempo ponen en riesgo la seguridad de las personas.</p>
+                                        <p>Fechas y horarios sujetos a modificación por clima, covid 19 y/o autorización de Prefectura Naval Argentina.</p>
+            </div>
+            <style>
+                .registro {
+                    border: solid 1px rgb(0, 0, 10);
+                }
+                .registro>input {
+                    all: unset;
+                    border: solid 1px rgba(0, 0, 10, 0.205);
+                    padding: 10px;
+                    margin: 5px;
+                    color: #000;
+                }
+                #boton-nueva-mesa {
+                    all: unset;
+                    margin-top: 5px;
+                    color: #00ff;
+                    font-weight: bold;
+                    border: solid 1px #00ff;
+                    padding: 10px;
+                    border-radius: 15px;
+                }
+                #boton-nueva-mesa:hover {
+                    color: rgb(33, 120, 201);
+                    border: solid 1px rgb(33, 120, 201);
+                    border-radius: 15px;
+                }
+                #calendario {
+                    text-align: center;
+                    background-color: #00eeff;
+                    border-radius: 10px;
+                    padding: 20px;
+                    color: #fff;
+                }
+                .mesa {
+                    padding: 10px;
+                    border-radius: 10px;
+                    margin: 10px;
+                }
+                .registrando {
+                    background-color: rgb(54, 141, 13);
+                }
+                .completa {
+                    background-color: rgb(185, 156, 24);
+                }
+                .finalizada {
+                    background-color: rgb(37, 51, 179);
+                }
+            </style>
+
+            <h3>Punto 4: Para el día del examen</h3>
+            <p><span> Lugar: Palacio de Turismo de Colón </span> (en el Puerto, frente a Prefectura
+                Naval Argentina) Llega 10 minutos antes de tu turno asignado, y espera afuera en la
+                vereda a ser llamado. Mantene siempre distancia social, y saluda sin tocarse.</p>
+            <p><span> Llevar para el examen: </span>Barbijo, sanitizante (alcohol en gel o amonio
+                cuaternario), DNI, Cabo para hacer nudos, birome, chaleco salvavidas, y <SPAN> EMBARCACIÓN
+                PARA RENDIR LA PRÁCTICA.</SPAN></p>
+            <p> <span> Recomendación: </span> bajar la embarcación luego de que rindas el examen
+                teórico, no antes. (Salvo que tengas quien la cuide).</p>
+            <p><span> De la embarcación:</span> Asegurarte de llevar también los elementos de
+                seguridad, y en especial bichero, y salvavidas circular o bidón de 20ltr (aprox) con
+                un cabito atado para hacer hombre al agua.</p>
+            <p><span>¿Cómo será la dinámica del examen?</span></p>
+            <ul>
+                <li>1°) Cuando se los llama, colocarse alcohol e ir directo al 1er piso. Se Firma
+                    acta
+                    y abona derecho de examen y seguro.</li>
+                <li>2°) Se rinden dos materias. Son 10 preguntas de cada una. Se aprueba con siete
+                    (7). Si no se aprueba se recupera solo la materia que saliste mal en la
+                    siguiente
+                    fecha (fuerza!! estudia que tienes que andar bien!!)</li>
+                <li>3°) Luego de rendir teórico, se te evaluarán los NUDOS.</li>
+                <li>4°) Finalmente se va a realizar la practica embarcado en la bajada de lancha que
+                    está casi pegada al puerto, hacia el norte (calle paso de los Andes).
+                    Colocarse alcohol o amonio cuaternario antes de subir de lancha y al bajar.</li>
+            </ul>
+            <h3>Punto 5: Para tramitar el carnet</h3>
+            <p>Si deseas ganar tiempo, el mismo día del examen podes llevar la siguiente
+                documentación (ver punto 6) para que verifique Prefectura, y luego si aprobas
+                presentarla:</p>
+            <ul>
+                <li><span> Si vivís en el Dpto Colón</span>, podrás ir sin turno a Prefectura el día hábil
+                    siguiente al examen para presentar los papeles . Debes indicar el día que
+                    rendiste, y que fue con el CLUB NÁUTICO COLÓN Y NAVESUD.</li>
+                <li><span> Si NO vivís en el Dpto Colón</span>, trae el día del examen todos los papeles
+                    solicitados y firmarás delante de los veedores de Prefectura (no antes) y luego
+                    seguirán el trámite por email.</li>
+            </ul>
+
+            <h3>Punto 6: Papeles a presentar</h3>
+            <p>Además de los solicitados en Punto 2 (requisitos), debes llevar impresos dos (2)
+                formularios.</p>
+            <ul>
+                <li>FORMULARIO 1. FICHA INDIVIDUAL <a
+                        href="https://hnavesud.com/curso-conductor-nautico/ficha-individual.docx" target="_blank"><button
+                            class="btn download" style="background-color: transparent;"><i class="fa fa-download"></i> DESCARGAR ACÁ</button></a>
+                </li>
+                <li>FORMULARIO 2. SOLICITUD DE CERTIFICADO NAUTICO <a
+                    href="https://hnavesud.com/curso-conductor-nautico/solicitud-carnet-nautico.docx" target="_blank"><button
+                        class="btn download" style="background-color: transparent;"><i class="fa fa-download"></i> DESCARGAR ACÁ</button></a></li>
+            </ul>
+            <p>¿Cómo llenar estos formularios?</p>
+            <ul>
+                <li>Completar por computadora en MAYUSCULA</li>
+                <li>Pegar una foto en cada formulario, en el espacio indicado.</li>
+                <li>NO firmarlos, se firma delante de la Autoridad de PNA</li>
+            </ul>
+
+            <p>FORMULARIO 1. La FICHA INDIVIDUAL.</p>
+            <ul>
+                <li>Debes imprimir el formulario en doble faz. En una sola hoja. </li>
+                <li>Donde dice REJU CLON …… dejar espacio, luego completa PNA</li>
+                <li>Donde dice Reg. N° N , colocar N2- y tu DNI</li>
+            </ul>
+
+            <p>FORMULARIO 2. SOLICITUD DE CERTIFICADO NAUTICO.</p>
+            <ul>
+                <li>Donde dice “Solicita”: marcar con una X en Obtención, salvo sea una
+                    Renovación, en cuyo caso marcar ahí.</li>
+                <li>Donde dice “Habilitación”: marcar con una X en N2</li>
+                <li>Donde dice “Examen rendido en”: Colocar CLUB NAUTICO COLON E.R.</li>
+            </ul>
+
+            <h3>¿Te quedó alguna duda?</h3>
+            <p>Te pedimos vuelvas a leer nuevamente detenidamente todos los puntos, y si todavía te
+                quedó alguna inquietud entonces escribinos a <a href="mailito:hola@navesud.com.ar">hola@navesud.com.ar</a> o envianos un
+                whatsapp a <a target="_BLANK" href="https://wa.link/j7cr6x">+54 93447437748</a> y con mucho gusto te responderemos.</p>
+        </div>
+
+    </div>
+
+    <style>
+        span {
+            font-weight: bold;
+        }
+    </style>
+    <script src="/curso-cn/js/jquery.min.js"></script>
+    <script src="/curso-cn/js/popper.js"></script>
+    <script src="/curso-cn/js/bootstrap.min.js"></script>
+    <script src="/curso-cn/js/main.js"></script>
+    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
+        integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
+        crossorigin="anonymous"></script>
+    <script>
+        var socket = io();
+        function inscribirse(mesaId, userId) {
+            document.getElementById('boton-inscribirse').disabled = true;
+            socket.emit('inscripcion', {
+                mesaId: mesaId,
+                userId: userId
+            });
+        }
+        socket.on('registro-terminado', () => {
+            alert('Te registraste con éxito');
+            document.location.reload();
+        });
+    </script>
+</body>
+
+</html>

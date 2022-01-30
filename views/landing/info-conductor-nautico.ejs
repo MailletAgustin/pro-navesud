@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('header.ejs', { global: global }) %>
+
+    <body>
+        <%- include('menu.ejs') %>
+
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-7">
+                        <h1>Curso Conductor Náutico $6300</h1>
+                        <p> <span> NAVESUD </span> te enseña en <span>3 PASOS </span> como conducir una lancha de manera
+                            segura, adquirirás los conocimientos para rendir y obtener el <span> CARNET DE CONDUCTOR
+                                NÁUTICO DEPORTIVO.</span></p>
+                        <small>Para embarcaciones de hasta 7 metros de eslora (largo) y una potencia máxima de 140HP de
+                            motor, y motos de agua sin límite de potencia. </small>
+                        <hr>
+                        <h4><span style="text-decoration:underline;">El curso incluye:</span></h4>
+                        <ul>
+                            <li><span>12 CLASES ONLINE distribuidas en 3 PASOS</span> Explicado de manera simple todo el
+                                contenido que exige Prefectura Naval Argentina y más. Totalmente <span>
+                                    AUTOADMINISTRABLES</span>, esto significa que <span> puedes verlas el día y horario que
+                                quieras </span> las veces que quieras.</li>
+                            <li><span>VIDEOS TUTORIALES</span> Dentro de las clases tendrás videos tutoriales de cómo
+                                hacer NUDOS MARINEROS, cómo usar un RADIO VHF, y cómo realizar
+                                MANIOBRAS que deberás dominar. Los podrás reproducir las veces que quieras
+                                incluso desde tu celular.</li>
+                            <li><span>APUNTES</span> Material Complementario de cada PASO, en formato PDF que podrás
+                                descargar e imprimir. Necesitarás leerlo bien para rendir. </li>
+                            <li><span>3 AUTOEVALUACIONES</span> para fijar conceptos, al finalizar cada PASO.</li>
+                            <li><span>[GRATIS]: CLASE ESPECIAL</span> de reconocimiento de zona y peligros a la
+                                navegación.</li>
+                            <li><span>[GRATIS]: 2 AUTOEVALUACIONES CON PREGUNTAS TIPO EXAMEN FINAL</span> para ir a
+                                rendir más tranquilos.</li>
+                            <li><span>[GRATIS]: TUTOR,</span> tendrás a disposición un email y un celular para realizar
+                                consultas académicas, en caso te quede alguna duda luego de ver cada clase.</li>
+                            <li><span>Coordinación de mesa de examen con el Club Náutico Colón Entre Ríos.</span></li>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4" id="tarjeta-compra">
+                        <iframe height="220px" width="100%" allowfullscreen title="Reproductor de vídeo youtube"
+                            src="https://www.youtube.com/embed/TpE85MT8b1M?feature=oembed&amp;start&amp;end&amp;wmode=opaque&amp;loop=0&amp;controls=1&amp;mute=0&amp;rel=0&amp;modestbranding=0"></iframe>
+                        <form action="/pagos/conductor-nautico" method="POST">
+                            <div class="row mt-2">
+                                <div class="col-6">
+                                    <input type="text" name="nombre" id="nombre" required class="form-control"
+                                        placeholder="Nombre completo">
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" name="apellido" id="apellido"required class="form-control"
+                                        placeholder="Apellido">
+                                </div>
+
+                                <div class="col-12">
+                                    <br>
+                                    <input type="email" name="primerCorreo" id="primerCorreo"required class="form-control"
+                                        placeholder="Correo Electrónico">
+                                    <br>
+                                    <input type="email" name="segundoCorreo" id="segundoCorreo" required class="form-control"
+                                        placeholder="Confirmar Correo">
+                                    <br>
+                                </div>
+                                <div class="col-6">
+                                    <input type="password" name="primerContra" id="primerContra" required class="form-control"
+                                        placeholder="Contraseña">
+                                </div>
+                                <div class="col-6">
+                                    <input type="password" name="segundaContra" id="segundaContra" required class="form-control"
+                                        placeholder="Confirmar contraseña">
+                                </div>
+                                <div class="col-12">
+                                    <br>
+                                    <p>Este email y contraseña te servirán para acceder al curso.</p>
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">Pagar y acceder al curso</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <h4 style="text-decoration: underline;"><span>INICIA A CURSAR AHORA, ESTES DONDE ESTES</span></h4>
+                        <ul>
+                            <li><span>TEÓRICAS:</span> AUTOADMINISTRABLE, una vez pagues y te inscribas tendrás
+                                acceso a las clases, autoevaluaciones y apuntes por 40 días corridos. Podes
+                                iniciar ni bien te inscribes.</li>
+                            <li><span>PRÁCTICAS:</span> Se indicarán las maniobras y nudos que el Conductor Náutico
+                                debe dominar, y cada uno lo deberá practicar por su cuenta en su embarcación.
+                                En caso necesites un instructor, contáctanos para contratar clases especiales
+                                de práctica.</li>
+                        </ul>
+
+                        <h4 style="text-decoration: underline;"><span>MESAS DE EXAMEN para CARNET:</span></h4>
+                        <p>Aprobado este curso online tenes dos opciones:</p>
+                        <ul>
+                            <li><span>1. Rendir en tu PREFECTURA NAVAL ARGENTINA más cercana.</span></li>
+                            <li><span>2. Rendir con el CLUB NÁUTICO COLÓN</span> y nosotros. (1500$ derecho de examen y seguro, se paga el mismo día). Próximas mesas del club: Sábado 26 de febrero 2022. <span> Todos los meses hay prevista mesa de examen.</span> <br> Debes ser mayor de 18 años, y tener en cuenta que:
+                                <br>
+                                <ul>
+                                    <p><span> a. Podes inscribirte en cualquier momento, hasta 10 días antes de la
+                                    fecha de examen. (Se cierra inscripción 10 dias antes de la fecha de
+                                    examen)</p> </span>
+                                
+                                
+                                    <span><p>b. Es condicional que tengas sí o sí APROBADO este CURSO ONLINE a más
+                                    tardar el día anterior al examen. Sino no se te permitirá rendir.</p> </span>
+
+                                    <span><p>c. El curso online toma en total aproximadamente 15 horas, así que
+                                        organízate para inscribirte a la mesa, solo si estás seguro que lo vas
+                                        a terminar a tiempo. Los cupos son limitados, y sino le estarías
+                                        quitando la posibilidad de rendir a otro navegante.</p></span>
+                                        
+                                    </ul>
+                        
+                            </li>
+
+                        </ul>
+
+                        <h4 style="text-decoration: underline;"><span>Preguntas frecuentes:</span></h4>
+                        <br>
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        1. ¿Las clases teóricas donde se cursan?
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                    aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        Se hacen de manera virtual, por computadora o celular, en el día y horario que
+                                        quieras.
+                                        Al inscribirte se te solicita un email y que coloques una contraseña.  <span> Agéndalo
+                                        bien, dado que
+                                        con esos datos tendrás acceso a las clases.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        2. ¿Qué son las autoevaluaciones?
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>Son preguntas de examen que debes responder luego de leer material
+                                            complementario del
+                                            PASO y de ver los videos de cada PASO (son 4 clases por PASO).</p>
+                                        <p>Tiene la ventaja que luego de realizarla te dará la nota de manera automática. Es una manera muy buena
+                                            de aprender y
+                                            fijar conceptos.</p>
+                                        <p>Importante, no podrás avanzar hasta que apruebes. Pero puedes hacerlas las
+                                            veces que sean
+                                            necesarias.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        3. ¿El curso incluye clases prácticas de navegación?
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>No. Pero sí debes salir a practicar por tu cuenta antes de rendir para el Carnet. Las maniobras
+                                            serán explicadas en las clases teóricas, cuáles son y cómo realizarlas. Asegúrate de salir con
+                                            alguien con Carnet y documentación en regla.</p>
+                                            <p>En caso de que necesites un instructor, contáctanos para contratar clases especiales de práctica.</p>
+                                        <p><span> No te presentes a rendir si no cuentas con experiencia práctica.</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapsefive" aria-expanded="false"
+                                        aria-controls="collapsefive">
+                                        4. ¿El examen final es también virtual?
+                                    </button>
+                                </h2>
+                                <div id="collapsefive" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        No. <span> El examen es PRESENCIAL</span>, tanto lo rindas con nosotros y el Club Náutico Colón, o en
+forma libre con Prefectura Naval Argentina. En cualquiera de los casos se te evaluará en forma
+presencial preguntas teóricas, y también nudos marineros y maniobras en embarcación.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+
+                                        5. Me comentaron el curso es muy bueno y deseo aprender más, pero no rendir el
+                                        examen final. ¿Puedo igualmente hacer el curso sin rendir?
+                                    </button>
+                                </h2>
+                                <div id="collapsesix" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        Sí claro. El curso es muy completo. Te brindará herramientas para que te sientas
+                                        más seguro cuando salgas a navegar.
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseseven" aria-expanded="false"
+                                        aria-controls="collapseseven">
+                                        6. ¿Puedo hacer el curso virtual con ustedes y luego rendir por mi cuenta en la
+                                        Prefectura más cercana a mi domicilio?
+                                    </button>
+                                </h2>
+                                <div id="collapseseven" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        Sí claro!!. De hecho este es uno de los objetivo de NAVESUD, poder llegar a todos los rincones
+                                        del país de manera virtual con contenidos sólidos para aprender a navegar seguro y cumplir
+                                        además con el programa de PNA, y luego que cada uno pueda rendir por su cuenta en la
+                                        Prefectura más cercana.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseeight" aria-expanded="false"
+                                        aria-controls="collapseeight">
+                                        7. ¿Dónde está la Prefectura más cercana a mi domicilio para averiguar si toman
+                                        examen? </button>
+                                </h2>
+                                <div id="collapseeight" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        Ingresa a <a
+                                            href="https://www.argentina.gob.ar/prefecturanaval/guia-dependencias-dnau">www.navesud.com.ar/miprefecturacercana</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapsenine" aria-expanded="false"
+                                        aria-controls="collapsenine">
+                                        8. ¿Quién emite el Carnet, NAVESUD, el Club Náutico o Prefectura Naval
+                                        Argentina?
+                                    </button>
+                                </h2>
+                                <div id="collapsenine" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        Prefectura Naval Argentina es la que emite el carnet, con validez nacional, sin importar donde rindas.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseten" aria-expanded="false" aria-controls="collapseten">
+                                        9. ¿Tiene costo la emisión del Carnet ante Prefectura? </button>
+                                </h2>
+                                <div id="collapseten" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        Sí. Es un costo administrativo que cobra Prefectura al momento de que presentes
+                                        la constancia de examen aprobado y demás documentación que te pide. Ve al
+                                        siguiente link <a
+                                            href="https://www.argentina.gob.ar/servicio/obtener-el-certificado-de-conductor-nautico">www.navesud.com.ar/carnetconductornautico</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapsetwelve" aria-expanded="false"
+                                        aria-controls="collapsetwelve">
+                                        10. ¿El carnet de Conductor Náutico me habilita para trabajar?
+                                    </button>
+                                </h2>
+                                <div id="collapsetwelve" class="accordion-collapse collapse"
+                                    aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        Este es un Carnet Deportivo, por ende no es comercial. No habilita para el
+                                        transporte de personas de manera lucrativa. Es para conducir embarcaciones
+                                        deportivas de placer. Quiere decir, sin cobrarle a los que transportas.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+
+            <%- include('./footer.ejs') %>
+    </body>
+
+    <style>
+        .container {
+            text-align: justify;
+        }
+        span {
+            font-weight: bold;
+        }
+        ul>li {
+            padding-bottom: 5px;
+        }
+        #tarjeta-compra {
+            background-color: #f7f7f7;
+            box-shadow: 1px 2px 14px 0px rgba(0, 0, 0, 0.71);
+            -webkit-box-shadow: 1px 2px 14px 0px rgba(0, 0, 0, 0.71);
+            -moz-box-shadow: 1px 2px 14px 0px rgba(0, 0, 0, 0.71);
+            padding: 15px;
+        }
+    </style>
+
+</html>

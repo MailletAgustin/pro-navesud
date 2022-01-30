@@ -1,0 +1,1012 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>Curso Conductor Náutico</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/curso-cn/css/style.css">
+    <link rel="stylesheet" href="/curso-cn/css/sweetalert2.min.css">
+</head>
+
+<!-- PARA ELIMINAR CLIC DERECHO AGREGAR AL BODY :  -->
+
+<body oncontextmenu="return false;">
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="p-4 pt-5">
+                <a href="#" class="img logo rounded-circle mb-5"
+                    style="background-image: url(/landing/isotipo-navesud.jpg);"></a>
+                <ul class="list-unstyled components mb-5">
+                    <li><a href="./">Introducción</a></li>
+                    <li><a href="./paso-1" id="menuPaso1"><i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbsp Paso 1</a></li>
+                    <li><a href="#" id="menuPaso2"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp Paso 2</a></li>
+                    <li><a href="#" id="menuPaso3"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp Paso 3</a></li>
+                    <li><a href="#" id="menuFinal"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp Final</a></li>
+                    <li><a href="/cursos/conductor-nautico/calendario" id="calendario"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp Mesas de Examen</a></li>
+                    <li><a id="ayuda" href="#"><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp Necesito
+                        ayuda</a> </a></li>
+                </ul>
+            </div>
+        </nav>
+        
+
+        <!-- Contenido  -->
+        <div id="content" class="p-4 p-md-5">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Abrir / Cerar menú</span>
+                    </button>
+                </div>
+            </nav>
+
+            <div id="paso1">
+                <h2 class="mb-4">Paso 1 - Lo primero que tengo que saber</h2>
+                <%- include('dias-restantes', {diasRestantes: userInfo.cursoConductorNautico.diasRestantes})%>
+                <%- include('modal-ayuda.ejs') %> 
+                <p>¿En qué consiste este módulo? Temario:</p>
+                <ul>
+                    <li><a href="#clase1">Clase 1 - Embarcaciones, partes y más.</a></li>
+                    <li><a href="#clase2">Clase 2 - Hablemos de motores.</a></li>
+                    <li><a href="#clase3">Clase 3 - Sin nudos no hay capitán.</a></li>
+                    <li><a href="#clase4">Clase 4 - Maniobras con cabos.</a></li>
+                </ul>
+                <p>Vas a necesitar el siguiente material de estudio complementario. Podes descargarlo haciendo clic a
+                    continuación.</p>
+                <a href="https://hnavesud.com/curso-conductor-nautico/paso-1/ARCHIVO1.pdf" target="_blank"><button class="btn download"><i class="fa fa-download"></i> COMPLEMENTO PASO 1 CN</button></a>
+                <!-- <button class="btn download"><i class="fa fa-download"></i> Archivo 2</button> -->
+            
+                <h3 id="clase1" class="mt-4">Clase 1 - Embarcaciones, partes y más</h3>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated mb-1" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%;" id="BARpaso1video1">Cargando...</div>
+                </div>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video id="paso1video1" class="embed-responsive-item" controls controlsList="nodownload noplaybackrate"
+                        src="https://hnavesud.com/curso-conductor-nautico/paso-1/video1.mp4"> </video>
+                </div>
+            
+                <h3 id="clase2" class="mt-4">Clase 2 - Hablemos de motores</h3>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated mb-1" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%" id="BARpaso1video2">Cargando...</div>
+                </div>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video id="paso1video2" class="embed-responsive-item" controls controlsList="nodownload noplaybackrate"
+                        src="https://hnavesud.com/curso-conductor-nautico/paso-1/video2.mp4"> </video>
+                </div>
+            
+                <h3 id="clase3" class="mt-4">Clase 3 - Sin nudos no hay capitán</h3>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated mb-1" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%" id="BARpaso1video3">Cargando...</div>
+                </div>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video id="paso1video3" class="embed-responsive-item" controls controlsList="nodownload noplaybackrate"
+                        src="https://hnavesud.com/curso-conductor-nautico/paso-1/video3.mp4"> </video>
+                </div>
+            
+                <h3 id="clase4" class="mt-4">Clase 4 - Maniobras con cabos</h3>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated mb-1" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%" id="BARpaso1video4">Cargando...</div>
+                </div>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video id="paso1video4" class="embed-responsive-item" controls controlsList="nodownload noplaybackrate"
+                        src="https://hnavesud.com/curso-conductor-nautico/paso-1/video4.mp4"> </video>
+                </div>
+            
+                <div class="mt-4">
+                    <p>¡Ayudanos a mejorar! Por favor, </p>
+                    <!-- Encuesta en ventana MODAL (bootstrap) (embebed from google) -->
+                    <button data-toggle="modal" data-target="#ventanaEncuesta1" class="btn download"><i class="fa fa-hand-o-right"></i> &nbsp Realizar encuesta PASO 1
+                    </button>
+                </div>
+                <div class="mt-4">
+                    <p>Para pasar al PASO 2, debes ver todos los videos de las clases del PASO 1 y aprobar la siguiente
+                        autoevaluación. Se aprueba con 7 y la podés realizar las veces necesarias hasta aprobar.</p>
+                    <button disabled data-toggle="modal" data-target="#ventanaEvaluacion1" id="autoevaluacion1" class="btn download"><i class="fa fa-hand-o-right"></i> &nbsp [Cargando ...]</button>
+                </div>
+                <div class="float-right mt-4">
+                    <a href="paso-2"> <button id="irPaso2fromPaso1" class="btn download" disabled>Ir al PASO 2 </button></a>
+                </div>
+            
+                <!-- Modal Encuesta 1 -->
+                <div class="modal fade" id="ventanaEncuesta1" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Encuesta - Paso 1 - Curso Conductor Náutico</h5>
+                            </div>
+                            <div class="modal-body">
+                                <center>
+                                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOiGBVZ3DJfHjLKDf7XtwPu4exduNefQ43mscnPW9YKeLv7w/viewform?embedded=true" width="640" height="1544" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
+                            </center>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Modal evaluacion 1 -->
+                <div class="modal fade" id="ventanaEvaluacion1" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Autoevaluación - Paso 1 - Curso Conductor Náutico</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="texto-importante">
+                                    <p class="text-justify">Atención!!: Busca un lugar tranquilo y sin interrupciones. Al
+                                        finalizar todos los ejercicios, debes pulsar en "Finalizar autoevaluación", para ver tu nota y avanzar. Navegante a Navegar !!!</p>
+                                        <p>Nombre: <span class="text-uppercase"> <%= userInfo.name %></span></p>
+                                        <p>Apellido: <span class="text-uppercase"><%= userInfo.lastName %></span></p>
+                                </div>
+
+                                <!-- QUIZ -->
+                                <div class="quiz">
+                                    <hr>
+                               <!-- Pregunta 1 -->
+                                <p>1. ¿Qué opción nombra las partes de la embarcación en forma correcta?</p>
+                                <img src="/curso-cn/recursos-examen/paso1/Partes de embarcación.png">
+                                <br><br>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta1" id="respuesta1a">
+                                    <label class="form-check-label" for="respuesta1a">
+                                        A: Línea de Crujía / B: Amura / C: Estribor / D: Popa / E: Través.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta1" id="respuesta1b">
+                                    <label class="form-check-label" for="respuesta1b">
+                                        A: Línea de Flotación / B: Través / C: Babor / D: Espejo/ E: Amura.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta1" id="respuesta1c">
+                                    <label class="form-check-label" for="respuesta1c">
+                                        A: Línea de Crujía / B: Través / C: Estribor / D: Popa / E: Amura.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 2 -->
+                                <p>2. Identifíque correctamente las dimensiones principales de la imagen.</p>
+                                <img src="/curso-cn/recursos-examen/paso1/gomon con maganitudes a marcar.png">
+                                <br><br>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta2a">
+                                    <label class="form-check-label" for="respuesta2a">
+                                    1 ) Calado
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta2b">
+                                    <label class="form-check-label" for="respuesta2b">
+                                    1 ) Obra muerta
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta2c">
+                                    <label class="form-check-label" for="respuesta2c">
+                                    2) Eslora
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta2d">
+                                    <label class="form-check-label" for="respuesta2d">
+                                    2) Puntal
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta2e">
+                                    <label class="form-check-label" for="respuesta2e">
+                                    3) Francobordo
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta2f">
+                                    <label class="form-check-label" for="respuesta2f">
+                                    3) Puntal
+                                    </label>
+                                </div>
+                                
+                                <hr>
+                                <!-- Pregunta 3 -->
+                                <p>3. Marque la opción correcta. ¿Cómo se llama la ALTURA medida desde el extremo inferior del casco o pata del motor, hasta la línea de flotación?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta3" id="respuesta3a">
+                                    <label class="form-check-label" for="respuesta3a">
+                                        a) puntual.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta3" id="respuesta3b">
+                                    <label class="form-check-label" for="respuesta3b">
+                                        b) francobordo del casco o con motor
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta3" id="respuesta3c">
+                                    <label class="form-check-label" for="respuesta3c">
+                                        c) calado del casco, o con motor.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta3" id="respuesta3d">
+                                    <label class="form-check-label" for="respuesta3d">
+                                        d) crujía.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta3" id="respuesta3e">
+                                    <label class="form-check-label" for="respuesta3e">
+                                        e) obra muerta.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 4 -->
+                                <p>4. Seleccione TRES (3) características principales de los 3 nudos náuticos.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta4a">
+                                    <label class="form-check-label" for="respuesta4a">
+                                        Que sea fácil de hacer.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta4b">
+                                    <label class="form-check-label" for="respuesta4b">
+                                        Que tenga una funcionalidad o varias.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta4c">
+                                    <label class="form-check-label" for="respuesta4c">
+                                        Que utilice la menor cantidad de cabo posible.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta4d">
+                                    <label class="form-check-label" for="respuesta4d">
+                                        Que sea fácil de deshacer.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta4e">
+                                    <label class="form-check-label" for="respuesta4e">
+                                        Que no se desamarre fácilmente con las manos.
+                                    </label>
+                                </div>
+                            
+                                <hr>
+                                <!-- Pregunta 5 -->
+                                <p>5. Seleccione 1) el nombre correcto del nudo ilustrado y 2) su utilidad.</p>
+                                <img src="/curso-cn/recursos-examen/paso1/As de guia.png">
+                                <br><br>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta5a">
+                                    <label class="form-check-label" for="respuesta5a">
+                                        Ballestrinque
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta5b">
+                                    <label class="form-check-label" for="respuesta5b">
+                                        As de Guía.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta5c">
+                                    <label class="form-check-label" for="respuesta5c">
+                                        Lasca u ocho.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta5d">
+                                    <label class="form-check-label" for="respuesta5d">
+                                        Sirve para crear una gaza fija.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta5e">
+                                    <label class="form-check-label" for="respuesta5e">
+                                        Nudo de retenida o tope.
+                                    </label>
+                                </div>
+                            
+                                <hr>
+                                <!-- Pregunta 6 -->
+                                <p>6. Seleccione 1) el nombre correcto del nudo ilustrado y 2) su utilidad.</p>
+                                <img src="/curso-cn/recursos-examen/paso1/Llano o de rizo.png">
+                                <br><br>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta6a">
+                                    <label class="form-check-label" for="respuesta6a">
+                                        Lasca u ocho.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta6b">
+                                    <label class="form-check-label" for="respuesta6b">
+                                        Llano o de rizo.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta6c">
+                                    <label class="form-check-label" for="respuesta6c">
+                                        Ballestrinque.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta6d">
+                                    <label class="form-check-label" for="respuesta6d">
+                                        Nudo de empalme para unir cabos de la misma mena.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta6e">
+                                    <label class="form-check-label" for="respuesta6e">
+                                        Nudo de retenida o tope.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 7 -->
+                                <p>7. Seleccione 1) el nombre correcto del nudo ilustrado y 2) su característica.</p>
+                                <img src="/curso-cn/recursos-examen/paso1/ballestrinque.png">
+                                <br><br>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta7a">
+                                    <label class="form-check-label" for="respuesta7a">
+                                        Lasca u ocho.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta7b">
+                                    <label class="form-check-label" for="respuesta7b">
+                                        Ballestrinque.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta7c">
+                                    <label class="form-check-label" for="respuesta7c">
+                                        Llano o de rizo.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta7d">
+                                    <label class="form-check-label" for="respuesta7d">
+                                        Nudo de retenida o tope.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta7e">
+                                    <label class="form-check-label" for="respuesta7e">
+                                        Si la presión no es constante puede aflojarse con facilidad.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 8 -->
+                                <p>8. Seleccione 1) el nombre correcto del nudo ilustrado 2) su utilidad.</p>
+                                <img src="/curso-cn/recursos-examen/paso1/Lasca u ocho.png">
+                                <br><br>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta8a">
+                                    <label class="form-check-label" for="respuesta8a">
+                                        Lasca u ocho.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta8b">
+                                    <label class="form-check-label" for="respuesta8b">
+                                        As de guía.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta8c">
+                                    <label class="form-check-label" for="respuesta8c">
+                                        Sirve para crear una gaza fija
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta8d">
+                                    <label class="form-check-label" for="respuesta8d">
+                                        Nudo de retenida o tope.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta8e">
+                                    <label class="form-check-label" for="respuesta8e">
+                                        Si la presión no es constante puede aflojarse con facilidad.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 9 -->
+                                <p>9. Marque la opción correcta: "Enrollar un cabo en vueltas cerradas para evitar que se enmarañe o estorbe al trabajo en una embarcación se llama..."</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta9" id="respuesta9a">
+                                    <label class="form-check-label" for="respuesta9a">
+                                        a) engalgar.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta9" id="respuesta9b">
+                                    <label class="form-check-label" for="respuesta9b">
+                                        b) adujar.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta9" id="respuesta9c">
+                                    <label class="form-check-label" for="respuesta9c">
+                                        c) cazar.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta9" id="respuesta9d">
+                                    <label class="form-check-label" for="respuesta9d">
+                                        d) falcacear.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 10 -->
+                                <p>10. No revolee, ni tironee, ni haga demasiada fuerza. Las maniobras pueden hacerse - casi siempre - con ritmo, timming, sin revolear nada y sin hacer demasiada fuerza.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta10" id="respuesta10a">
+                                    <label class="form-check-label" for="respuesta10a">
+                                        a) Verdadero.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta10" id="respuesta10b">
+                                    <label class="form-check-label" for="respuesta10b">
+                                        b) Falso.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 11 -->    
+                                <p>11. ¿Cuál es el mejor lugar para esperar una tormenta?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta11" id="respuesta11a">
+                                    <label class="form-check-label" for="respuesta11a">
+                                        a) En tierra firme o en la Sede del Club
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta11" id="respuesta11b">
+                                    <label class="form-check-label" for="respuesta11b">
+                                        b) Navegando en el medio de rio
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta11" id="respuesta11c">
+                                    <label class="form-check-label" for="respuesta11c">
+                                        c) Anclado, cerca de la costa
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 12 -->
+                                <p>12. Hélice dextrógira: es la hélice que gira en sentido horario (mirando desde atrás) cuando la embarcación va avante (hacia adelante)</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta12" id="respuesta12a">
+                                    <label class="form-check-label" for="respuesta12a">
+                                        a) Verdadero.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta12" id="respuesta12b">
+                                    <label class="form-check-label" for="respuesta12b">
+                                        b) Falso.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 13 -->
+                                <p>13. En una embarcación propulsada a motor con una hélice dextrógira. ¿A qué lado caerá la PROA dando arrancada en MARCHA ATRAS? Marque la respuesta correcta.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta13" id="respuesta13a">
+                                    <label class="form-check-label" for="respuesta13a">
+                                        a) Estribor.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta13" id="respuesta13b">
+                                    <label class="form-check-label" for="respuesta13b">
+                                        b) Babor.
+                                    </label>
+                                </div>
+            
+            
+                                <hr>
+                                <!-- Pregunta 14 -->
+                                <p>14. Atraque y desatraque: ¿Cómo conviene acercase a un muelle? Seleccione la opción correcta.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta14" id="respuesta14a">
+                                    <label class="form-check-label" for="respuesta14a">
+                                        a) Conviene hacerlo de aleta, y amarrar primero la popa y luego la proa.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta14" id="respuesta14b">
+                                    <label class="form-check-label" for="respuesta14b">
+                                        b) Conviene hacerlo de amura, y amarrar primer la proa y luego la popa.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta14" id="respuesta14c">
+                                    <label class="form-check-label" for="respuesta14c">
+                                        c) Al llegar al muelle siempre conviene llegar con viento de popa.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 15 -->
+                                <p>15. Indique el modo correcto (la velocidad ), para salir del puerto, club o lugar de bajada de lancha.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta15" id="respuesta15a">
+                                    <label class="form-check-label" for="respuesta15a">
+                                        a) Salir a alta velocidad enseguida, de manera de no estorbar en esa zona, demorar lo mínimo posible.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta15" id="respuesta15b">
+                                    <label class="form-check-label" for="respuesta15b">
+                                        b) Navegar a la mínima velocidad de maniobra. (lo más despacio posible, pero que pueda controlar la dirección de la embarcación, y haga la menor cantidad de olas)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta15" id="respuesta15c">
+                                    <label class="form-check-label" for="respuesta15c">
+                                        c) Navegando a planeo incompleto, evitando embarcar ola por proa.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 16 -->
+                                <p>16. ¿Cuáles cabos de amarra en un muelle evitan que el barco se desplace hacia atrás y adelante, una vez amarrado?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta16" id="respuesta16a">
+                                    <label class="form-check-label" for="respuesta16a">
+                                        a) Springs.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta16" id="respuesta16b">
+                                    <label class="form-check-label" for="respuesta16b">
+                                        b) Través/Travesines.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta16" id="respuesta16c">
+                                    <label class="form-check-label" for="respuesta16c">
+                                        c) Largos.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 17 -->
+                                <p>17. Al abarloarse dos embarcaciones, donde una remolca a la otra, el SPRING del remolcado debe hacerse firme en la popa del mismo, y el otro extremo en la proa del remolcador. ¿Esto es verdadero o falso?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta17" id="respuesta17a">
+                                    <label class="form-check-label" for="respuesta17a">
+                                        a) Verdadero.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta17" id="respuesta17b">
+                                    <label class="form-check-label" for="respuesta17b">
+                                        b) Falso.
+                                    </label>
+                                </div>
+            
+            
+                                <hr>
+                                <!-- Pregunta 18 -->
+                                <p>18. Si me bajo de la embarcación a un muelle o marina, y no quedará nadie a bordo. ¿Qué NO debo hacer?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta18" id="respuesta18a">
+                                    <label class="form-check-label" for="respuesta18a">
+                                        a) Cerrar llave de combustible y/o perilla de ventilación de tanque de nafta
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta18" id="respuesta18b">
+                                    <label class="form-check-label" for="respuesta18b">
+                                        b) Ventilar compartimiento motor y sentinas.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta18" id="respuesta18c">
+                                    <label class="form-check-label" for="respuesta18c">
+                                        c) Cortar baterías.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta18" id="respuesta18d">
+                                    <label class="form-check-label" for="respuesta18d">
+                                        d) Dejar cable enchufado de embarcación a tomas del muelle, para recargar bateria.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 19 -->
+                                <p>19. ¿Qué peligro hay si alguien fuma o cocina o enciende aparatos eléctricos mientras se carga combustible?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta19" id="respuesta19a">
+                                    <label class="form-check-label" for="respuesta19a">
+                                        a) Peligro de varadura.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta19" id="respuesta19b">
+                                    <label class="form-check-label" for="respuesta19b">
+                                        b) Peligro de corte de corriente automático.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta19" id="respuesta19c">
+                                    <label class="form-check-label" for="respuesta19c">
+                                        c) Peligro de Explosión e Incendio.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta19" id="respuesta19d">
+                                    <label class="form-check-label" for="respuesta19d">
+                                        d) Peligro de quedarse sin baterías.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 20 -->
+                                <p>20. Durante la navegación a motor ¿Qué hay que controlar frecuentemente para verificar que el motor refrigera?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta20" id="respuesta20a">
+                                    <label class="form-check-label" for="respuesta20a">
+                                        a) El nivel de aceite.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"  name="respuesta20" id="respuesta20b">
+                                    <label class="form-check-label" for="respuesta20b">
+                                        b) La salida de agua de refrigeración. Un chorro de agua permanente a la vista.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta20"  id="respuesta20c">
+                                    <label class="form-check-label" for="respuesta20c">
+                                        c) Si la sentina tiene agua.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 21 -->
+                                <p>21. DURANTE LA NAVEGACION a motor. Los siguientes puntos son controles a realizar, excepto uno. Marque cuál NO es un control al realizar durante la navegación.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"  name="respuesta21" id="respuesta21a">
+                                    <label class="form-check-label" for="respuesta21a">
+                                        a) Verificar agua de refrigeración
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"name="respuesta21" id="respuesta21b">
+                                    <label class="form-check-label" for="respuesta21b">
+                                        b) Controlar cantidad de combustible
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta21"id="respuesta21c">
+                                    <label class="form-check-label" for="respuesta21c">
+                                        c) Inspeccionar de forma ocular cables, tuberías/ mangueras
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta21"id="respuesta21d">
+                                    <label class="form-check-label" for="respuesta21d">
+                                        d) Escuchar la marcha, que sea normal para esa velocidad.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta21"id="respuesta21e">
+                                    <label class="form-check-label" for="respuesta21e">
+                                        e) Verificar esté atado el cabo del ancla
+                                    </label>
+                                </div>
+            
+                                <!-- Pregunta 22 -->
+                                <hr>
+                                <p>22. ¿Para qué se ventila motor y sentina antes de arrancar el motor?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta22" id="respuesta22a">
+                                    <label class="form-check-label" for="respuesta22a">
+                                        Para que la tripulación no se intoxique.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta22" id="respuesta22b">
+                                    <label class="form-check-label" for="respuesta22b">
+                                        Para ventilar gases y vapores y evitar explosiones.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta22" id="respuesta22c">
+                                    <label class="form-check-label" for="respuesta22c">
+                                        Para que el motor arranque, sino no lo hará.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 23 -->
+                                <p>23. Gobierno embarcación a motor con fuera de borda, con empuñadura, timoneando sentado desde popa. Marque verdadero o falso.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta23" id="respuesta23a">
+                                    <label class="form-check-label" for="respuesta23a">
+                                        a) la PROA se va para el lado CONTRARIO que se mueve la EMPUÑADURA O CAÑA
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta23" id="respuesta23b">
+                                    <label class="form-check-label" for="respuesta23b">
+                                        b) la PROA se va para el MISMO lado que se mueve la EMPUÑADURA O CAÑA
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 24 -->
+                                <p>24. ¿Cómo se identifica una embarcación? Marca la respuesta correcta.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta24" id="respuesta24a">
+                                    <label class="form-check-label" for="respuesta24a">
+                                        a) Por su nombre y matrícula.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta24" id="respuesta24b">
+                                    <label class="form-check-label" for="respuesta24b">
+                                        b) Por su nombre y eslora.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta24" id="respuesta24c">
+                                    <label class="form-check-label" for="respuesta24c">
+                                        c) Por la eslora, manga y puntal.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 25 -->
+                                <p>25. ¿Qué es el REGINAVE? Selecciona una opción.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta25" id="respuesta25a">
+                                    <label class="form-check-label" for="respuesta25a">
+                                        a) Es el Régimen de la Navegación Marítima, Fluvial y Lacustre.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta25" id="respuesta25b">
+                                    <label class="form-check-label" for="respuesta25b">
+                                        b) Es el Régimen de Navegación a Vela.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta25" id="respuesta25c">
+                                    <label class="form-check-label" for="respuesta25c">
+                                        c) Es el Régimen de Navegación a Motor.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta25" id="respuesta25d">
+                                    <label class="form-check-label" for="respuesta25d">
+                                        d) Es el Régimen de Navegación.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 26 -->
+                                <p>26. Marque la respuesta correcta. ¿Cuál de estas opciones explica brevemente las características de la habilitación deportiva CONDUCTOR NÁUTICO ?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="pregunta26" id="respuesta26a">
+                                    <label class="form-check-label" for="respuesta26a">
+                                        OPCIÓN A: Hasta 12 metros de eslora - sin límite de potencia / Motos de agua sin límite de potencia / Para realizar navegación en lagos, ríos y Río de la Plata limitado. al oeste de la línea imaginaria que une Punta Atalaya (ARG) con Punta Rosario (República Oriental del Uruguay en proximidades a Juan Lacaze - Puerto Sauce. / En otras zonas del Río de la Plata y en zona marítima hasta cinco millas náuticas (5MN).
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"name="pregunta26" id="respuesta26b">
+                                    <label class="form-check-label" for="respuesta26b">
+                                        OPCIÓN B: Hasta 7 metros de eslora - hasta 140 HP de potencia / Artefactos Náuticos Deportivos (Motos de agua) sin límite de potencia / Para realizar navegación en lagos, ríos y Río de la Plata limitado / Navegación con condiciones climáticas favorables.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"name="pregunta26" id="respuesta26c">
+                                    <label class="form-check-label" for="respuesta26c">
+                                        OPCION C: No importa la eslora, ni potencia de motor, siempre que sea o en rios interiores o lagos.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 27 -->
+                                <p>27. Cuando realizo navegación por ríos interiores con destino a otro puerto Argentino (Ej. Colón a Gualeguaychú), NO necesito hacer ROL, es suficiente con un INFORME RADIAL por seguridad, (excepto que haya disposición de Prefectura Jurisdiccional que sí lo exija). Verdadero o Falso ?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta27" id="respuesta27a">
+                                    <label class="form-check-label" for="respuesta27a">
+                                        a) Verdadero.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta27" id="respuesta27b">
+                                    <label class="form-check-label" for="respuesta27b">
+                                        b) Falso.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 28 -->
+                                <p>28. El carnet de CONDUCTOR NÁUTICO, ¿me habilita para navegar por todo el Río Uruguay Y Río Paraná (Ríos interiores)?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta28" id="respuesta28a">
+                                    <label class="form-check-label" for="respuesta28a">
+                                        a) Verdadero.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta28" id="respuesta28b">
+                                    <label class="form-check-label" for="respuesta28b">
+                                        b) Falso.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 29 -->
+                                <p>29. Al ROL (despacho formal en Prefectura), puedo hacerlo 24hs antes de zarpar, pero MIGRACIONES debo hacerlo momentos previos a zarpar.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"  name="respuesta29" id="respuesta29a">
+                                    <label class="form-check-label" for="respuesta29a">
+                                        a) Verdadero.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta29" id="respuesta29b">
+                                    <label class="form-check-label" for="respuesta29b">
+                                        b) Falso.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 30 -->
+                                <p>30. Tengo obligación de hacer DESPACHO (ROL) si voy por agua a otro país y desembarco?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta30" id="respuesta30a">
+                                    <label class="form-check-label" for="respuesta30a">
+                                        Si, siempre
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta30" id="respuesta30b">
+                                    <label class="form-check-label" for="respuesta30b">
+                                        Si, solo si me quedo a dormir en el otro país.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta30" id="respuesta30c">
+                                    <label class="form-check-label" for="respuesta30c">
+                                        No, no es obligatorio. Haciendo el INFORME por teléfono o radio es suficiente.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 31 -->
+                                <p>31. Si voy desde Colón (ARG) a Paysandú (ROU), ¿debo hacer Despacho (ROL)?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta31" id="respuesta31a">
+                                    <label class="form-check-label" for="respuesta31a">
+                                        a) Verdadero.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="respuesta31" id="respuesta31b">
+                                    <label class="form-check-label" for="respuesta31b">
+                                        b) Falso.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 32 -->
+                                <p>32. Seleccione todos los documentos que debe llevar a bordo de una embarcación deportiva.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta32a">
+                                    <label class="form-check-label" for="respuesta32a">
+                                        a) Certificado de matrícula original (o tarjeta verde) .
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta32b">
+                                    <label class="form-check-label" for="respuesta32b">
+                                        b) Habilitación deportiva (carnet para el tipo de yate que navega).
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta32c">
+                                    <label class="form-check-label" for="respuesta32c">
+                                        c) DNI de todos los presentes.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta32d">
+                                    <label class="form-check-label" for="respuesta32d">
+                                        d) Comprobante de pago de amarra.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta32e">
+                                    <label class="form-check-label" for="respuesta32e">
+                                        d) Autorización del propietario ( Tarjeta Azul) si no va en la embarcación.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="respuesta32f">
+                                    <label class="form-check-label" for="respuesta32f">
+                                        e) Comprobante de Seguro contra todo riesgo.
+                                    </label>
+                                </div>
+            
+                                <hr>
+                                <!-- Pregunta 33 -->
+                                <p>33. PLANEO INCOMPLETO es la transición del DESPLAZAMIENTO al PLANEO. La velocidad es baja, pero la potencia absorbida es alta y por ende el consumo de combustible también. La embarcación eleva demasiado la proa y su rumbo a veces se vuelve inestable.</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"name="respuesta33" id="respuesta33a">
+                                    <label class="form-check-label" for="respuesta33a">
+                                        a) Verdadero.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"name="respuesta33" id="respuesta33b">
+                                    <label class="form-check-label" for="respuesta33b">
+                                        b) Falso.
+                                    </label>
+                                </div>
+                                </div>
+
+
+                                <!-- Finalizar QUIZ -->
+                            <!-- Finaliza BODY del MODAL -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" onclick="terminar()" class="btn btn-secondary" data-dismiss="modal">Finalizar autoevaluación</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="/curso-cn/js/jquery.min.js"></script>
+        <script src="/curso-cn/js/popper.js"></script>
+        <script src="/curso-cn/js/bootstrap.min.js"></script>
+        <script src="/curso-cn/js/main.js"></script>
+        <script src="/curso-cn/js/sweetalert2.min.js"></script>
+        <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
+        integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
+        crossorigin="anonymous"></script>
+        
+        <script>
+            const socket = io();
+            const sessionToken = '<%= userInfo.sessionToken %>';
+            const stringDatos = '<%- JSON.stringify(userInfo.cursoConductorNautico) %>';
+            const fechaServidor = '<%- Date(Date.now()) %>'
+        </script>
+        
+        <script src="/curso-cn/js/paso1.js"></script>
+
+</body>
+</html>

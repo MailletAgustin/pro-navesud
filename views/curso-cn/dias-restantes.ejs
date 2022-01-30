@@ -1,0 +1,29 @@
+<div class="diasRestantes">
+  <h1>Te quedan <%= diasRestantes %> días para finalizar el curso</h1>
+  <p>Inscribite con tiempo al examen presencial para el Carnet.</p>
+  <button class="btn download" onclick="location.href = './calendario';">Ver mesas de examenes</button>
+</div>
+
+
+
+<script>
+  let dias = '<%- diasRestantes %>';
+  if (dias == 'expiro' || dias <= 0) {
+    mostrarCartel();
+  }
+
+  function mostrarCartel() {
+    setTimeout(() => {
+      document.getElementById('masterContainer').innerHTML = `
+      
+      <div style="min-height: 100vh; padding-left: 10%; padding-right: 10%; padding-top: 10%;" class="diasRestantes">
+        <h1>¡Ups! Tu usuario venció.</h1>
+        <p>Los 40 días de tu usuario han vencido. ¡Pero no te preocupes! Aún puedes solicitar 15 días más para finalizar el curso. Si vencen estos 15 días, luego deberás pagar el curso para acceder.</p>
+        <button class="btn download" onclick="window.location = 'https://wa.link/j7cr6x';">Solicitar por WhatsApp</button>
+        <button class="btn download" onclick="window.location = 'mailito:hola@navesud.com.ar';">Solicitar por Correo</button>
+      </div>
+
+      `;
+    }, 200);
+  }
+</script>
