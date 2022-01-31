@@ -1,5 +1,5 @@
 console.clear();
-let APPMODE = 'DEV';
+let APPMODE = 'PROD';
 
 let https, io;
 const Console = require("Console");
@@ -119,7 +119,7 @@ var medianoche = new CronJob('0 0 0 * * *', function() {
       
       // Restar un día a los días restantes
       Console.warn('Restando días a todos los usuarios');
-      if (doc.cursoConductorNautico && doc.cursoConductorNautico.diasRestantes) {
+      if (doc.cursoConductorNautico && doc.cursoConductorNautico.diasRestantes && doc.cursoConductorNautico.diasRestantes != 'expiro') {
         tempObj = {
           diasRestantes: doc.cursoConductorNautico.diasRestantes -1
         }
