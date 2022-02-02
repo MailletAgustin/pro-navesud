@@ -1,5 +1,5 @@
 console.clear();
-let APPMODE = 'PROD';
+let APPMODE = 'DEV';
 
 let https, io;
 const Console = require("Console");
@@ -110,6 +110,7 @@ http.listen(port, () => {
 
 // Tareas programadas
 const CronJob = require('cron').CronJob;
+const { type } = require("os");
 // Se ejecuta cada medianoche
 var medianoche = new CronJob('0 0 0 * * *', function() {
   db.Usuario.find( (err, docs) => {
@@ -120,17 +121,24 @@ var medianoche = new CronJob('0 0 0 * * *', function() {
       // Restar un día a los días restantes
       Console.warn('Restando días a todos los usuarios');
       if (doc.cursoConductorNautico && doc.cursoConductorNautico.diasRestantes && doc.cursoConductorNautico.diasRestantes != 'expiro') {
-        tempObj = {
-          diasRestantes: doc.cursoConductorNautico.diasRestantes -1
+        let tempObj;
+        // Revisar si ya no le quedan dias restantes
+        // ##############
+        if (doc.cursoConductorNautico.diasRestantes - 1 <= 0) {
+          tempObj = {
+            diasRestantes: 'expiro'
+          }
+        } else {
+          tempObj = {
+            diasRestantes: doc.cursoConductorNautico.diasRestantes -1
+          }
         }
         doc.cursoConductorNautico = {...doc.cursoConductorNautico, ...tempObj}
       }
+
       Console.success('Dias restados a todos los usuarios');
       
       // Revisar si lleva mas de 7 días inactivo
-      // ##############
-
-      // Revisar si ya no le quedan dias restantes
       // ##############
 
       doc.save();
@@ -139,4 +147,3 @@ var medianoche = new CronJob('0 0 0 * * *', function() {
 });
 
 medianoche.start();
-
