@@ -8325,11 +8325,11 @@
       color: #f2f2f2;
     }
 
-    .diasRestantes > button {
+    .diasRestantes > button, .diasRestantes > form > button {
       background-color: #f2f2f2;
       color: #0f0f0f;
     }
-    .diasRestantes > button:hover {
+    .diasRestantes > button:hover, .diasRestantes > form > button:hover {
       background-color: #004085;
       color: #fefefe;
     }

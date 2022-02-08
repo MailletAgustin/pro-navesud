@@ -49,7 +49,7 @@
             </nav>
 
             <%- include('modal-ayuda') %> 
-            <%- include('dias-restantes', {diasRestantes: userInfo.cursoConductorNautico.diasRestantes}) %> 
+            <%- include('dias-restantes', {diasRestantes: userInfo.cursoConductorNautico.diasRestantes, userInfo: userInfo}) %> 
 
             <!-- Introducción -->
             <div class="info" id="introduccion">

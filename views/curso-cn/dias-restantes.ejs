@@ -8,22 +8,46 @@
 
 <script>
   let dias = '<%- diasRestantes %>';
-  if (dias == 'expiro' || dias <= 0) {
-    mostrarCartel();
+  let renovado = '<%- userInfo.cursoConductorNautico.renovado %>';
+  let estado = '<%- userInfo.cursoConductorNautico.estado %>';
+  if ((dias == 'expiro' || dias <= 0) && !renovado && estado != 'aprobado') {
+    mostrarCartelRenovacion();
+  }
+  
+  if ((dias == 'expiro' || dias <= 0) && (renovado == 'true' || estado == 'aprobado')) {
+    mostrarCartelFinal();
   }
 
-  function mostrarCartel() {
+  function mostrarCartelRenovacion() {
     setTimeout(() => {
       document.getElementById('masterContainer').innerHTML = `
       
       <div style="min-height: 100vh; padding-left: 10%; padding-right: 10%; padding-top: 10%;" class="diasRestantes">
         <h1>¡Ups! Tu usuario venció.</h1>
         <p>Los 40 días de tu usuario han vencido. ¡Pero no te preocupes! Aún puedes solicitar 15 días más para finalizar el curso. Si vencen estos 15 días, luego deberás pagar el curso para acceder.</p>
-        <button class="btn download" onclick="window.location = 'https://wa.link/j7cr6x';">Solicitar por WhatsApp</button>
-        <button class="btn download" onclick="window.location = 'mailito:hola@navesud.com.ar';">Solicitar por Correo</button>
+        <form action="/cursos/conductor-nautico/solicitar-extension" method="post">
+          <input type="text" value="<%- userInfo._id %>" name="idCode" id="idCode" hidden></input>
+          <button type="submit" class="btn download">Solicitar 15 días de extensión.</button>
+        </form>
+      </div>
+
+      `;
+    }, 200);
+  }
+
+  function mostrarCartelFinal() {
+    setTimeout(() => {
+      document.getElementById('masterContainer').innerHTML = `
+      
+      <div style="min-height: 100vh; padding-left: 10%; padding-right: 10%; padding-top: 10%;" class="diasRestantes">
+        <h1>¡Ups! Tu usuario venció.</h1>
+        <p>Los días de tu usuario han vencido. Esperamos que el curso haya sido de útilidad y nos encantaría mantenernos en contacto contigo. Si tienes alguna duda o sugerencia, puedes contarnos por estos medios.</p>
+        <button class="btn download" onclick="window.location = 'https://wa.link/j7cr6x';">WhatsApp</button>
+        <button class="btn download" onclick="window.location = 'mailito:hola@navesud.com.ar';">Correo Electrónico</button>
       </div>
 
       `;
     }, 200);
   }
 </script>
+

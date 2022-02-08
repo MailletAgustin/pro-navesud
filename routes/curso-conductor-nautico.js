@@ -268,6 +268,26 @@ function calendario(req, res, db) {
       });
   }
 }
+
+function solicitarExtension(req, res, db) {
+  console.log(req.body.idCode);
+  db.Usuario.findOne({_id: req.body.idCode}, (err, doc) => {
+    if (err) {
+      Console.warn(err)
+    } else {
+      Console.success('Agregando días a : ' + doc.email);
+      auxTemp = {
+        renovado: true,
+        diasRestantes: 15
+      }
+
+      doc.cursoConductorNautico = {...doc.cursoConductorNautico, ...auxTemp}
+      doc.save();
+    }
+  });
+  res.redirect('/cursos/conductor-nautico');
+}
+
 module.exports = {
   home,
   paso1,
@@ -276,4 +296,5 @@ module.exports = {
   pasoFinal,
   calendario,
   completarInformacion,
+  solicitarExtension
 };
