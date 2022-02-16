@@ -1,5 +1,5 @@
 console.clear();
-let APPMODE = 'DEV';
+let APPMODE = 'PROD';
 
 let https, io;
 const Console = require("Console");
@@ -108,43 +108,44 @@ http.listen(port, () => {
   Console.log("[Creado] Servidor escuchando en puerto: " + port);
 });
 
-
-// Tareas programadas
-const CronJob = require('cron').CronJob;
-const { type } = require("os");
-// Se ejecuta cada medianoche
-var medianoche = new CronJob('0 0 0 * * *', function() {
-  db.Usuario.find( (err, docs) => {
-    docs.forEach((doc) => {
-      // Desconectar a todos los usuarios
-      doc.sessionToken = '';
-      
-      // Restar un día a los días restantes
-      Console.warn('Restando días a todos los usuarios');
-      if (doc.cursoConductorNautico && doc.cursoConductorNautico.diasRestantes && doc.cursoConductorNautico.diasRestantes != 'expiro') {
-        let tempObj;
-        // Revisar si ya no le quedan dias restantes
-        // ##############
-        if (doc.cursoConductorNautico.diasRestantes - 1 <= 0) {
-          tempObj = {
-            diasRestantes: 'expiro'
+if (APPMODE == 'PROD') {
+  // Tareas programadas
+  const CronJob = require('cron').CronJob;
+  const { type } = require("os");
+  // Se ejecuta cada medianoche
+  var medianoche = new CronJob('0 0 0 * * *', function() {
+    db.Usuario.find( (err, docs) => {
+      docs.forEach((doc) => {
+        // Desconectar a todos los usuarios
+        doc.sessionToken = '';
+        
+        // Restar un día a los días restantes
+        Console.warn('Restando días a todos los usuarios');
+        if (doc.cursoConductorNautico && doc.cursoConductorNautico.diasRestantes && doc.cursoConductorNautico.diasRestantes != 'expiro') {
+          let tempObj;
+          // Revisar si ya no le quedan dias restantes
+          // ##############
+          if (doc.cursoConductorNautico.diasRestantes - 1 <= 0) {
+            tempObj = {
+              diasRestantes: 'expiro'
+            }
+          } else {
+            tempObj = {
+              diasRestantes: doc.cursoConductorNautico.diasRestantes -1
+            }
           }
-        } else {
-          tempObj = {
-            diasRestantes: doc.cursoConductorNautico.diasRestantes -1
-          }
+          doc.cursoConductorNautico = {...doc.cursoConductorNautico, ...tempObj}
         }
-        doc.cursoConductorNautico = {...doc.cursoConductorNautico, ...tempObj}
-      }
 
-      Console.success('Dias restados a todos los usuarios');
-      
-      // Revisar si lleva mas de 7 días inactivo
-      // ##############
+        Console.success('Dias restados a todos los usuarios');
+        
+        // Revisar si lleva mas de 7 días inactivo
+        // ##############
 
-      doc.save();
+        doc.save();
+      });
     });
   });
-});
 
-medianoche.start();
+  medianoche.start();
+}

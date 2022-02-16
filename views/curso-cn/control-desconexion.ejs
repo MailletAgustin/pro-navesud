@@ -1,0 +1,22 @@
+<script>
+    socket.on("disconnect", () => {
+        mostrarCartelDesconexion();
+    });
+
+    function mostrarCartelDesconexion() {
+    setTimeout(() => {
+      document.getElementById('masterContainer').innerHTML = `
+      
+      <div style="min-height: 100vh; padding-left: 10%; padding-right: 10%; padding-top: 10%;" class="diasRestantes">
+        <h1>¡Ups! Te desconectaste de internet.</h1>
+        <p>Para continuar cursando, por favor vuelve a reconectarte a internet. Recuerda que cada clase y evaluación está siendo guardada para que tengas una mejor experiencia durante el curso. Si esto sigue pasando muy seguido, no dudes en contactarte con el soporte técnico para encontrar una solución.</p>
+        <button class="btn download" onclick="window.reload()">Reconectarse y volver a clases</button>
+        <br>
+        <button class="btn download" onclick="window.location = 'https://wa.link/h1c3j3';">Contactarse con soporte técnico.</button>
+      </div>
+
+      `;
+    }, 200);
+  }
+
+</script>
