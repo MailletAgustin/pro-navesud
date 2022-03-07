@@ -8384,3 +8384,11 @@
         display: none;
       }
     }
+
+  .disabled {
+    pointer-events: none;
+  }
+
+  img {
+    max-width: 100%;
+  }

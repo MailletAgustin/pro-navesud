@@ -85,6 +85,7 @@ app.get('/cursos/conductor-nautico/paso-3', (req, res, next) => {cursoConductorN
 app.get('/cursos/conductor-nautico/paso-final', (req, res, next) => {cursoConductorNautico.pasoFinal(req, res, db)});
 app.get('/cursos/conductor-nautico/calendario', (req, res, next) => {cursoConductorNautico.calendario(req, res, db)});
 app.post('/cursos/conductor-nautico/solicitar-extension', (req, res, next) => {cursoConductorNautico.solicitarExtension(req, res, db)});
+app.post('/cursos/conductor-nautico/confirmar-examen', (req, res, next) => {cursoConductorNautico.confirmarExamen(req, res, db)});
 
 // Administracion
 app.get('/administracion', (req, res) => {administracion.mesasExamen(req, res, db)});

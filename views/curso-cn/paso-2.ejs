@@ -22,19 +22,10 @@
         <nav id="sidebar">
             <div class="p-4 pt-5">
                 <a href="#" class="img logo rounded-circle mb-5"
-                    style="background-image: url(/landing/isotipo-navesud.jpg);"></a>
-                <ul class="list-unstyled components mb-5">
-                    <li><a href="./">Introducción</a></li>
-                    <li><a href="./paso-1" id="menuPaso1"><i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbsp Paso
-                            1</a></li>
-                    <li><a href="./paso-2" id="menuPaso2"><i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbsp Paso
-                            2</a></li>
-                    <li><a href="#" id="menuPaso3"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp Paso 3</a></li>
-                    <li><a href="#" id="menuFinal"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp Final</a></li>
-                    <li><a href="/cursos/conductor-nautico/calendario" id="calendario"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp Mesas de Examen</a></li>
-                    <li><a id="ayuda" href="#"><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp Necesito
-                        ayuda</a> </a></li>
-                </ul>
+                    style="background-image: url(/landing/isotipo-navesud.jpg);">
+                </a>
+                <%- include('menu') %> 
+                
             </div>
         </nav>
         
@@ -68,36 +59,24 @@
                     <!-- <button class="btn download"><i class="fa fa-download"></i> Archivo 2</button> -->
 
                 <h3 id="clase1" class="mt-4">Clase 1 - Evitemos colisiones (R.I.P.A).</h3>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated mb-1" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%" id="BARpaso2video1">Cargando...</div>
-                </div>
                 <div class="embed-responsive embed-responsive-16by9">
                     <video id="paso2video1" class="embed-responsive-item" controls controlsList="noplaybackrate nodownload"
                         src="https://hnavesud.com/curso-conductor-nautico/paso-2/video1.mp4"> </video>
                 </div>
 
                 <h3 id="clase2" class="mt-4">Clase 2 - Verificaciones en tierra.</h3>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated mb-1" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%" id="BARpaso2video2">Cargando...</div>
-                </div>
                 <div class="embed-responsive embed-responsive-16by9">
                     <video id="paso2video2" class="embed-responsive-item" controls controlsList="noplaybackrate nodownload"
                         src="https://hnavesud.com/curso-conductor-nautico/paso-2/video2.mp4"> </video>
                 </div>
 
                 <h3 id="clase3" class="mt-4">Clase 3 - ¿Y estas boyas que significan? (IALA B).</h3>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated mb-1" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%" id="BARpaso2video3">Cargando...</div>
-                </div>
                 <div class="embed-responsive embed-responsive-16by9">
                     <video id="paso2video3" class="embed-responsive-item" controls controlsList="noplaybackrate nodownload"
                         src="https://hnavesud.com/curso-conductor-nautico/paso-2/video3.mp4"> </video>
                 </div>
 
                 <h3 id="clase4" class="mt-4">Clase 4 - Seguridad y medio ambiente.</h3>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated mb-1" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%" id="BARpaso2video4">Cargando...</div>
-                </div>
                 <div class="embed-responsive embed-responsive-16by9">
                     <video id="paso2video4" class="embed-responsive-item" controls controlsList="noplaybackrate nodownload"
                         src="https://hnavesud.com/curso-conductor-nautico/paso-2/video4.mp4"> </video>
@@ -114,11 +93,25 @@
                     <p>Para pasar al PASO 3, debes ver todos los videos de las clases del PASO 2 y aprobar la siguiente
                         autoevaluación. Se aprueba con 7 y la podés realizar las veces necesarias hasta aprobar.</p>
                         <p><span>Si no ves todos los videos al 100% sin adelantar, no podrás avanzar al siguiente paso.</span></p>
-                        <button data-toggle="modal" data-target="#ventanaEvaluacion1" id="autoevaluacion1" disabled
-                        class="btn download"><i class="fa fa-hand-o-right"></i> &nbsp [Cargando ...]</button>
+                        <button data-toggle="modal" data-target="#ventanaEvaluacion1" id="autoevaluacion1"
+                        class="btn download"><i class="fa fa-hand-o-right"></i> &nbsp Realizar autoevaluación (Paso 2)</button>
+                        <h3 class="mt-2">
+                            <% if (userInfo.cursoConductorNautico.paso2.autoevaluacion == 'noRealizada') { %> 
+                                Nota actual: Sin realizar.
+                             <% } else { %>
+                                Nota actual: <%= userInfo.cursoConductorNautico.paso2.autoevaluacion %> / 100
+                            <% } %> 
+                        </h3>
                 </div>
                 <div class="float-right mt-4">
-                    <a href="paso-3"><button id="irPaso3fromPaso2" class="btn download" disabled>Ir al PASO 3 </button></a>
+                    <a href="paso-3">
+                        <button class="btn download" id="botonIrPaso3"
+                        <% if (userInfo.cursoConductorNautico.paso2.autoevaluacion < global.nota_aprobado || userInfo.cursoConductorNautico.paso2.autoevaluacion == 'noRealizada') { %>
+                            <%= "disabled" %>
+                            <% } %>
+                            >Ir al PASO 3 
+                        </button>
+                    </a>
                 </div>
 
                 <!-- Modal Encuesta 2 -->
@@ -1023,7 +1016,7 @@
                             <!-- Finaliza BODY del MODAL -->
 
                         <div class="modal-footer">
-                            <button type="button" onclick="terminar()" class="btn btn-secondary"
+                            <button type="button" onclick="terminar('<%= userInfo._id %>')" class="btn btn-secondary"
                                 data-dismiss="modal">Finalizar autoevaluación</button>
                         </div>
                     </div>
@@ -1031,6 +1024,9 @@
                 </div>
             </div>
         </div>
+        <form action="/cursos/conductor-nautico/confirmar-examen" hidden id="examenForm" method="POST">
+            <input name="data" type="text" id="dataInput">
+        </form>
     </div>
 
     <script src="/curso-cn/js/jquery.min.js"></script>
@@ -1042,15 +1038,7 @@
         integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
         crossorigin="anonymous"></script>
 
-    <script>
-        const socket = io();
-        const sessionToken = '<%= userInfo.sessionToken %>';
-        const stringDatos = '<%- JSON.stringify(userInfo.cursoConductorNautico) %>';
-        const fechaServidor = '<%- Date(Date.now()) %>'
-    </script>
-
     <script src="/curso-cn/js/paso2.js"></script>
-    <%- include('./control-desconexion') %>
 </body>
 
 

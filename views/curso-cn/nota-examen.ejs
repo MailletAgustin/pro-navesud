@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nota de examen</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+</head>
+<body>
+    <% if (data.nota >= globalVars.nota_aprobado) { %> 
+        <!-- Si aprobó -->
+
+        <section class="hero is-info is-fullheight">
+            <div class="hero-body">
+              <div class="container has-text-centered">
+                <p class="title">
+                  ¡Felicidades, Navegante!
+                </p>
+                <p class="subtitle">
+                  Has aprobado la autoevaluación con nota <%= data.nota %> / 100.
+                </p>
+                <% if (data.incorrectas.length > 0) { %>
+                    <p>Las preguntas que has respondido de forma incorrecta fueron las siguientes:</p>
+                    <br>
+                    
+                        <% data.incorrectas.forEach(incorrecta => { %>
+                            <span class="tag is-danger is-light"><%= incorrecta %></span>
+                        <% }); %> 
+                    
+                    <br><br>
+                <% } %>  
+              <a href="<%= data.redireccion %>"> <button class="button is-link">Continuar con el curso</button> </a>
+              </div>
+            </div>
+          </section>
+
+    <% } else { %> 
+        <!-- Si no aprobó -->
+        <section class="hero is-info is-fullheight">
+            <div class="hero-body">
+              <div class="container has-text-centered">
+                <p class="title">
+                  ¡Ups!
+                </p>
+                <p class="subtitle">
+                  No has aprobado la autoevaluación, tu nota es <%= data.nota %> / 100.
+                </p>
+                <% if (data.incorrectas.length > 0) { %>
+                    <p>Las preguntas que has respondido de forma incorrecta fueron las siguientes:</p>
+                    <br>
+                    
+                        <% data.incorrectas.forEach(incorrecta => { %>
+                            <span class="tag is-danger is-light"><%= incorrecta %></span>
+                        <% }); %> 
+                    
+                    <br><br>
+                <% } %>  
+              <a href="<%= data.redireccion %>"> <button class="button is-link">Volver a intentarlo</button> </a>
+              </div>
+            </div>
+          </section>
+    <% } %> 
+</body>
+</html>

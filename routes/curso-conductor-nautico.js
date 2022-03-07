@@ -1,5 +1,6 @@
 const Console = require("Console");
 const globalVars = require("../global.json");
+const correos = require("../functions/correos");
 
 function home(req, res, db) {
   if (req.cookies.sessionToken) {
@@ -167,6 +168,7 @@ function completarInformacion(req, res, db) {
   Console.warn("Completando información del usuario ...");
   db.Usuario.findOne({ sessionToken: req.body.sessionToken }, (err, doc) => {
     if (doc) {
+      doc.estado = "introduccion";
       doc.name = req.body.nombre;
       doc.lastName = req.body.apellido;
       doc.moreInfo = {
@@ -198,6 +200,7 @@ function completarInformacion(req, res, db) {
         diasExtension: 15,
         introduccion: {
           video1: "",
+          autoevaluacion: "noRealizada"
         },
         paso1: {
           video1: "",
@@ -227,6 +230,7 @@ function completarInformacion(req, res, db) {
       };
       doc.active = true;
       doc.save();
+      
       Console.success(
         `[Completado] ${doc.moreInfo.apellido} ${doc.moreInfo.nombre} llenó sus datos.`
       );
@@ -288,6 +292,255 @@ function solicitarExtension(req, res, db) {
   res.redirect('/cursos/conductor-nautico');
 }
 
+function confirmarExamen(req, res, db) {
+  data = JSON.parse(req.body.data);
+  if (data.autoevaluacion == 'introduccion') {
+    db.Usuario.findOne({_id: data.userId}, (err, doc) => {
+      if (doc) {
+        // Actualizar la nota siempre y cuando sea mayor a que la anterior
+          if (data.nota > doc.cursoConductorNautico.introduccion.autoevaluacion || doc.cursoConductorNautico.introduccion.autoevaluacion == 'noRealizada') {
+            aux = doc.cursoConductorNautico;
+            if (!doc.cursoConductorNautico.introduccion.aprobado && data.nota >= globalVars.nota_aprobado) {
+              aux.introduccion = {
+                ...doc.cursoConductorNautico.introduccion,
+                autoevaluacion: data.nota,
+                aprobado: true
+              }
+              aux.estado = "paso1";
+              // Enviar correo (Introductorio) (No hay correo al aprobar introductorio)
+            } else {
+              aux.introduccion = {
+                ...doc.cursoConductorNautico.introduccion,
+                autoevaluacion: data.nota
+              }
+            }
+            doc.cursoConductorNautico = {
+              ...doc.cursoConductorNautico,
+              aux
+            }
+            doc.save();
+          }
+          
+        // Renderizar estado del examen
+        res.render('curso-cn/nota-examen', {
+          data,
+          globalVars
+        });
+      }
+    })
+  }
+  if (data.autoevaluacion == 'paso1') {
+    console.log(data);
+    db.Usuario.findOne({_id: data.userId}, (err, doc) => {
+      if (doc) {
+        // Actualizar la nota siempre y cuando sea mayor a que la anterior
+          if (data.nota > doc.cursoConductorNautico.paso1.autoevaluacion || doc.cursoConductorNautico.paso1.autoevaluacion == 'noRealizada') {
+            aux = doc.cursoConductorNautico;
+            if (!doc.cursoConductorNautico.paso1.aprobado && data.nota >= globalVars.nota_aprobado) {
+              aux.paso1 = {
+                ...doc.cursoConductorNautico.paso1,
+                autoevaluacion: data.nota,
+                aprobado: true
+              }
+              aux.estado = "paso2";
+              // Enviar correo (Aprobó paso1)
+              correos.aproboPaso1(doc.email, doc.name)
+
+            } else {
+              aux.paso1 = {
+                ...doc.cursoConductorNautico.paso1,
+                autoevaluacion: data.nota
+              }
+            }
+            doc.cursoConductorNautico = {
+              ...doc.cursoConductorNautico,
+              aux
+            }
+            doc.save();
+          }
+          
+        // Renderizar estado del examen
+        res.render('curso-cn/nota-examen', {
+          data,
+          globalVars
+        });
+      }
+    })
+  }
+  if (data.autoevaluacion == 'paso2') {
+    console.log(data);
+    db.Usuario.findOne({_id: data.userId}, (err, doc) => {
+      console.log(data);
+      if (doc) {
+        // Actualizar la nota siempre y cuando sea mayor a que la anterior
+          if (data.nota > doc.cursoConductorNautico.paso2.autoevaluacion || doc.cursoConductorNautico.paso2.autoevaluacion == 'noRealizada') {
+            aux = doc.cursoConductorNautico;
+            if (!doc.cursoConductorNautico.paso2.aprobado && data.nota >= globalVars.nota_aprobado) {
+              aux.paso2 = {
+                ...doc.cursoConductorNautico.paso2,
+                autoevaluacion: data.nota,
+                aprobado: true
+              }
+              aux.estado = "paso3";
+              // Enviar correo (paso2)
+              correos.aproboPaso2(doc.email, doc.name)
+
+            } else {
+              aux.paso2 = {
+                ...doc.cursoConductorNautico.paso2,
+                autoevaluacion: data.nota
+              }
+            }
+            doc.cursoConductorNautico = {
+              ...doc.cursoConductorNautico,
+              aux
+            }
+            doc.save();
+          }
+          
+        // Renderizar estado del examen
+        res.render('curso-cn/nota-examen', {
+          data,
+          globalVars
+        });
+      }
+    })
+  }
+  if (data.autoevaluacion == 'paso3') {
+    console.log(data);
+    db.Usuario.findOne({_id: data.userId}, (err, doc) => {
+      console.log(data);
+      if (doc) {
+        // Actualizar la nota siempre y cuando sea mayor a que la anterior
+          if (data.nota > doc.cursoConductorNautico.paso3.autoevaluacion || doc.cursoConductorNautico.paso3.autoevaluacion == 'noRealizada') {
+            aux = doc.cursoConductorNautico;
+            if (!doc.cursoConductorNautico.paso3.aprobado && data.nota >= globalVars.nota_aprobado) {
+              aux.paso3 = {
+                ...doc.cursoConductorNautico.paso3,
+                autoevaluacion: data.nota,
+                aprobado: true
+              }
+              aux.estado = "paso-final";
+              // Enviar correo (paso3)
+              correos.aproboPaso3(doc.email, doc.name)
+
+            } else {
+              aux.paso3 = {
+                ...doc.cursoConductorNautico.paso3,
+                autoevaluacion: data.nota
+              }
+            }
+            doc.cursoConductorNautico = {
+              ...doc.cursoConductorNautico,
+              aux
+            }
+            doc.save();
+          }
+          
+        // Renderizar estado del examen
+        res.render('curso-cn/nota-examen', {
+          data,
+          globalVars
+        });
+      }
+    })
+  }
+
+  if (data.autoevaluacion == 'final1') {
+    console.log(data);
+    db.Usuario.findOne({_id: data.userId}, (err, doc) => {
+      if (doc) {
+        // Actualizar la nota siempre y cuando sea mayor a que la anterior
+          if (data.nota > doc.cursoConductorNautico.final.autoevaluacion1 || doc.cursoConductorNautico.final.autoevaluacion1 == 'noRealizada') {
+            aux = doc.cursoConductorNautico;
+            if (!doc.cursoConductorNautico.final.aprobado1 && data.nota >= globalVars.nota_aprobado) {
+              
+              aux.final = {
+                ...doc.cursoConductorNautico.final,
+                autoevaluacion1: data.nota,
+                aprobado1: true
+              }
+
+              // Enviar el correo FINAL              
+              // Se ingresa a la siguiente función por ÚNICA VEZ cuando el usuario aprobó el curso. 
+              if (verificarAprobacion(aux)) {
+                correos.aproboCurso(doc.email, doc.name)
+                aux.estado = "aprobado";
+              };
+
+            } else {
+              aux.final = {
+                ...doc.cursoConductorNautico.final,
+                autoevaluacion1: data.nota
+              }
+            }
+            doc.cursoConductorNautico = {
+              ...doc.cursoConductorNautico,
+              aux
+            }
+            doc.save();
+          }
+          
+        // Renderizar estado del examen
+        res.render('curso-cn/nota-examen', {
+          data,
+          globalVars
+        });
+      }
+    })
+  }
+  if (data.autoevaluacion == 'final2') {
+    console.log(data);
+    db.Usuario.findOne({_id: data.userId}, (err, doc) => {
+      if (doc) {
+        // Actualizar la nota siempre y cuando sea mayor a que la anterior
+          if (data.nota > doc.cursoConductorNautico.final.autoevaluacion2 || doc.cursoConductorNautico.final.autoevaluacion2 == 'noRealizada') {
+            aux = doc.cursoConductorNautico;
+            if (!doc.cursoConductorNautico.final.aprobado2 && data.nota >= globalVars.nota_aprobado) {
+              aux.final = {
+                ...doc.cursoConductorNautico.final,
+                autoevaluacion2: data.nota,
+                aprobado2: true
+              }
+              // Enviar el correo FINAL
+              // Se ingresa a la siguiente función por ÚNICA VEZ cuando el usuario aprobó el curso. 
+              if (verificarAprobacion(aux)) {
+                correos.aproboCurso(doc.email, doc.name)
+                aux.estado = "aprobado";
+              };
+
+            } else {
+              aux.final = {
+                ...doc.cursoConductorNautico.final,
+                autoevaluacion2: data.nota
+              }
+            }
+            doc.cursoConductorNautico = {
+              ...doc.cursoConductorNautico,
+              aux
+            }
+            doc.save();
+          }
+          
+        // Renderizar estado del examen
+        res.render('curso-cn/nota-examen', {
+          data,
+          globalVars
+        });
+      }
+    })
+  }
+}
+
+function verificarAprobacion(aux) {
+  console.log(aux.final);
+  if (aux.final.autoevaluacion1 >= globalVars.nota_aprobado && aux.final.autoevaluacion2 >= globalVars.nota_aprobado) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 module.exports = {
   home,
   paso1,
@@ -296,5 +549,6 @@ module.exports = {
   pasoFinal,
   calendario,
   completarInformacion,
-  solicitarExtension
+  solicitarExtension,
+  confirmarExamen
 };

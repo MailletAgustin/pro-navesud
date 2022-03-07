@@ -22,21 +22,7 @@
             <div class="p-4 pt-5">
                 <a href="#" class="img logo rounded-circle mb-5"
                     style="background-image: url(/landing/isotipo-navesud.jpg);"></a>
-                <ul class="list-unstyled components mb-5">
-                    <li><a href="./">Introducción</a></li>
-                    <li><a href="paso-1" id="menuPaso1"><i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbsp Paso
-                            1</a></li>
-                    <li><a href="paso-2" id="menuPaso2"><i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbsp Paso
-                            2</a></li>
-                    <li><a href="paso-3" id="menuPaso3"><i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbsp Paso
-                            3</a></li>
-                    <li><a href="paso-final" id="menuFinal"><i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbsp
-                            Final</a></li>
-                    <li><a href="/cursos/conductor-nautico/calendario" id="calendario"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp
-                            Mesas de Examen</a></li>
-                    <li><a id="ayuda" href="#"><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp Necesito
-                            ayuda</a> </a></li>
-                </ul>
+                <%- include('menu') %> 
             </div>
         </nav>
 
@@ -53,32 +39,7 @@
                 </nav>
 
                 <!-- Introducción -->
-                <div class="info" id="final">
-                    <div style="display: none" id="container-aprobado">
-                        <h1>¡Felicidades, <%= userInfo.name %>! Aprobaste el curso.</h1>
-                        <p>Podés descargar el siguiente diploma que certifica la aprobación de este curso ingresando desde una computadora y pulsando el botón descargar.</p>
-                        <button onclick="descargarCertificado()" class="btn download">Descargar certificado</button>
-                        <div id="certificado" class="certificado text-center">
-                            <img src="/landing/navesud-logo.png">
-                            <p>Este documento CERTIFICA que</p>
-                            <h2> <%= userInfo.name %> <%= userInfo.lastName %> </h2>
-                            <p>Ha aprobado el Curso ONLINE de <strong> CONDUCTOR NÁUTICO DEPORTIVO </strong> dictado por la ESCUELA NÁUTICA NAVESUD, según el programa de PREFECTURA NAVAL ARGENTINA.</p>
-                            
-                            <div class="row">
-                                <div class="col-6">
-                                    <h3>Ing. Hugo UGARTEMENDÍA</h3>
-                                    <p>Patrón Yate Vela Motor</p>
-                                    <p>Coordinador - Instructor</p>
-                                </div>
-                                <div class="col-6">
-                                    <h3>Cap. Osvaldo E. LAGANA</h3>
-                                    <p>Piloto Yate Vela Motor</p>
-                                    <p>Tutor académico</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
+                <div class="info" id="final">                   
                     <h2 id="desaprobadoTitulo" class="mb-4">¡Llegamos al final, <%= userInfo.name %>!</h2>
                     
                     <%- include('dias-restantes', {diasRestantes: userInfo.cursoConductorNautico.diasRestantes}) %>
@@ -90,13 +51,62 @@
                         Solo resta aprobar las dos autoevaluaciones finales, que contienen preguntas de examenes reales:
                     </p>
                     <br>
+                    <% if (userInfo.cursoConductorNautico.final.autoevaluacion1 >= global.nota_aprobado && userInfo.cursoConductorNautico.final.autoevaluacion2 >= global.nota_aprobado) { %> 
+
+                        <div id="container-aprobado">
+                            <style>
+                                #desaprobadoTitulo {
+                                    display: none;
+                                }
+                                #texto-final {
+                                    display:none;
+                                }
+                            </style>
+                            <h1>¡Felicidades, <%= userInfo.name %>! Aprobaste el curso.</h1>
+                            <p>Podés descargar el siguiente diploma que certifica la aprobación de este curso ingresando desde una computadora y pulsando el botón descargar.</p>
+                            <button onclick="descargarCertificado()" class="btn download">Descargar certificado</button>
+                            <div id="certificado" class="certificado text-center">
+                                <img src="/landing/navesud-logo.png">
+                                <p>Este documento CERTIFICA que</p>
+                                <h2> <%= userInfo.name %> <%= userInfo.lastName %> </h2>
+                                <p>Ha aprobado el Curso ONLINE de <strong> CONDUCTOR NÁUTICO DEPORTIVO </strong> dictado por la ESCUELA NÁUTICA NAVESUD, según el programa de PREFECTURA NAVAL ARGENTINA.</p>
+                                
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3>Ing. Hugo UGARTEMENDÍA</h3>
+                                        <p>Patrón Yate Vela Motor</p>
+                                        <p>Coordinador - Instructor</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3>Cap. Osvaldo E. LAGANA</h3>
+                                        <p>Piloto Yate Vela Motor</p>
+                                        <p>Tutor académico</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    <% } %> 
                     <button data-toggle="modal" data-target="#ventanaEvaluacion1" id="autoevaluacion1"
-                        class="btn download"><i class="fa fa-hand-o-right"></i> [Cargando...]</button>
+                        class="btn download"><i class="fa fa-hand-o-right"></i> &nbsp; Hacer autoevaluación (Seguridad)</button>
+                        <h3 class="mt-2">
+                            <% if (userInfo.cursoConductorNautico.final.autoevaluacion1 == 'noRealizada') { %> 
+                                Nota actual: Sin realizar.
+                             <% } else { %>
+                                Nota actual: <%= userInfo.cursoConductorNautico.final.autoevaluacion1 %> / 100
+                            <% } %> 
+                        </h3>
                     <br>
                     <button data-toggle="modal" data-target="#ventanaEvaluacion2" id="autoevaluacion2"
-                        class="btn download mt-2"><i class="fa fa-hand-o-right"></i> [Cargando...]</button>    
-                </div>
-
+                        class="btn download mt-2"><i class="fa fa-hand-o-right"></i> &nbsp; Hacer autoevaluación (Legislación y Reglamentación)</button>
+                        <h3 class="mt-2">
+                            <% if (userInfo.cursoConductorNautico.final.autoevaluacion2 == 'noRealizada') { %> 
+                                Nota actual: Sin realizar.
+                             <% } else { %>
+                                Nota actual: <%= userInfo.cursoConductorNautico.final.autoevaluacion2 %> / 100
+                            <% } %> 
+                        </h3>    
+                </div>                
 
 
                 <div class="modal fade" id="ventanaEvaluacion1" tabindex="-1" role="dialog">
@@ -695,7 +705,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" onclick="terminarUno()" class="btn btn-secondary"
+                                <button type="button" onclick="terminarUno('<%= userInfo._id %>')" class="btn btn-secondary"
                                     data-dismiss="modal">Finalizar autoevaluación</button>
                             </div>
                         </div>
@@ -1301,13 +1311,18 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" onclick="terminarDos()" class="btn btn-secondary"
+                                    <button type="button" onclick="terminarDos('<%= userInfo._id %>')" class="btn btn-secondary"
                                         data-dismiss="modal">Finalizar autoevaluación</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
+                </div>
+                <form action="/cursos/conductor-nautico/confirmar-examen" hidden id="examenFormUno" method="POST">
+                    <input name="data" type="text" id="dataInputUno">
+                </form>
+                <form action="/cursos/conductor-nautico/confirmar-examen" hidden id="examenFormDos" method="POST">
+                    <input name="data" type="text" id="dataInputDos">
+                </form>
                 </div>
 
             <script src="/curso-cn/js/jquery.min.js"></script>
@@ -1322,17 +1337,7 @@
                 integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
                 crossorigin="anonymous"></script>
 
-
-                <script>
-                    const socket = io();
-                    const sessionToken = '<%= userInfo.sessionToken %>';
-                    const stringDatos = '<%- JSON.stringify(userInfo.cursoConductorNautico) %>';
-                    const fechaServidor = '<%- Date(Date.now()) %>'
-                    
-                </script>
-            
             <script src="/curso-cn/js/pasoFinal.js"></script>
-            <%- include('./control-desconexion') %>
 </body>
 
 

@@ -20,22 +20,11 @@
         <nav id="sidebar">
             <div class="p-4 pt-5">
                 <a href="#" class="img logo rounded-circle mb-5"
-                    style="background-image: url(/curso-cn/img/isotipo-navesud.jpg);"></a>
-                <ul class="list-unstyled components mb-5">
-                    <li><a href="#">Introducción</a></li>
-                    <li><a href="#" id="menuPaso1"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp Paso 1</a></li>
-                    <li><a href="#" id="menuPaso2"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp Paso 2</a></li>
-                    <li><a href="#" id="menuPaso3"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp Paso 3</a></li>
-                    <li><a href="#" id="menuFinal"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp Final</a></li>
-                    <li><a href="/cursos/conductor-nautico/calendario" id="calendario"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp
-                            Mesas de Examen</a></li>
-                    <li><a id="ayuda" href="#"><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp Necesito
-                            ayuda</a> </a></li>
-                </ul>
+                    style="background-image: url(/curso-cn/img/isotipo-navesud.jpg);">
+                </a>
+                <%- include('menu') %> 
             </div>
         </nav>
-
-        
         <!-- Contenido  -->
         <div id="content" class="p-4 p-md-5">
 
@@ -59,27 +48,148 @@
                 <p>Ahora sí, ¡Iniciamos el curso <span style="font-weight: bold;">CONDUCTOR NÁUTICO PASO A PASO</span>!
                     Te dejo a continuación una charla introductoria, donde aprenderás todo
                     lo necesario para aprovecharlo al máximo. </p>
-                <p>Recordá que deberás ver todos los videos por completo para avanzar al próximo Paso, y a su vez
-                    aprobar la autoevaluación.</p>
-                
-                
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated mb-1" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%" id="introVideoProgressBar">Cargando...</div>
-                </div>
+            
                 <div class="embed-responsive embed-responsive-16by9"> <video class="embed-responsive-item" 
                         controls
                         controlsList="nodownload noplaybackrate" id="introduccion1"
                         src="https://hnavesud.com/curso-conductor-nautico/introduccion/video1.mp4"
                         > </video>
                 </div>
-                
+                <br>
+                <p>Recordá que deberás ver todos los videos por completo y aprobar la autoevaluación para continuar al próximo paso.</p>
+                <div class="float-left mt-4">
+                    <button class="btn download" data-toggle="modal" data-target="#ventanaEvaluacion1" id="autoevaluacion1"><i class="fa fa-hand-o-right"></i> &nbsp; Realizar autoevaluación (Introductoria) </button>
+                    <h3 class="mt-2">
+                        <% if (userInfo.cursoConductorNautico.introduccion.autoevaluacion == 'noRealizada') { %> 
+                            Nota actual: Sin realizar.
+                         <% } else { %>
+                            Nota actual: <%= userInfo.cursoConductorNautico.introduccion.autoevaluacion %> / 100
+                        <% } %> 
+                    </h3>
+                </div>
                 <div class="float-right mt-4">
-                    <a href="/cursos/conductor-nautico/paso-1"><button class="btn download" id="botonIrPaso1" disabled>Ir al PASO 1 </button></a>
+                    <a href="/cursos/conductor-nautico/paso-1">
+                        <button class="btn download" id="botonIrPaso1"
+                        <% if (userInfo.cursoConductorNautico.introduccion.autoevaluacion < global.nota_aprobado || userInfo.cursoConductorNautico.introduccion.autoevaluacion == 'noRealizada') { %>
+                            <%= "disabled" %>
+                            <% } %>
+                            >Ir al PASO 1 
+                        </button>
+                    </a>
+                </div>
+
+                <!-- Autoevaluación Introductoria -->
+                <!-- Modal evaluacion 1 -->
+                <div class="modal fade" id="ventanaEvaluacion1" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Autoevaluación - Introducción - Curso Conductor Náutico</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="texto-importante">
+                                    <p class="text-justify">Atención!!: Busca un lugar tranquilo y sin interrupciones. Al
+                                        finalizar todos los ejercicios, debes pulsar en "Finalizar autoevaluación", para ver tu nota y avanzar. Navegante a Navegar !!!</p>
+                                </div>
+
+                                <!-- QUIZ -->
+                                <div class="quiz">
+                                    <hr>
+                                    <!-- Pregunta 1 -->
+                                    <p>1. ¿Para quien está pensado este curso?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta1" id="respuesta1a">
+                                        <label class="form-check-label" for="respuesta1a">
+                                            a. Para alguien que arranca totalmente desde cero, paso a paso.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta1" id="respuesta1b">
+                                        <label class="form-check-label" for="respuesta1b">
+                                            b. Para alguien que tiene mucha experiencia navegando.
+                                        </label>
+                                    </div>
+
+                                    <hr>
+                                    <!-- Pregunta 2 -->
+                                    <p>2. ¿Cual es el objetivo de este curso?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta2" id="respuesta2a">
+                                        <label class="form-check-label" for="respuesta2a">
+                                            a. Aprender a conducir una embarcación de manera segura y tener los conocimientos necesarios para obtener el carnet.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta2" id="respuesta2b">
+                                        <label class="form-check-label" for="respuesta2b">
+                                            b. Solo para sacar el carnet.
+                                        </label>
+                                    </div>
+                                    
+                                    <hr>
+                                    <!-- Pregunta 3 -->
+                                    <p>3. ¿Cual es la manera correcta de cursar?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta3" id="respuesta3a">
+                                        <label class="form-check-label" for="respuesta3a">
+                                            a. Hacer las autoevaluaciones rápido y no mirar los videos.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta3" id="respuesta3b">
+                                        <label class="form-check-label" for="respuesta3b">
+                                            b. Mirar todos los videos, de principio a fin, aprobar las autoevaluaciones y avanzar paso a paso.
+                                        </label>
+                                    </div>
+                                    <hr>
+                                    
+                                    <!-- Pregunta 4 -->
+                                    <p>4. Luego de terminar el curso, ¿Como obtengo el carnet?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta4" id="respuesta4a">
+                                        <label class="form-check-label" for="respuesta4a">
+                                            a. Acercandote a tu prefectura mas cercana o rindiendo con algún club náutico.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta4" id="respuesta4b">
+                                        <label class="form-check-label" for="respuesta4b">
+                                            b. No necesito el carnet.
+                                        </label>
+                                    </div>
+                                    <hr>
+                                    
+                                    <!-- Pregunta 5 -->
+                                    <p>5. ¿Cuantos días tengo para hacer el curso desde que lo compré?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta5" id="respuesta5a">
+                                        <label class="form-check-label" for="respuesta5a">
+                                            a. 40 días.
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="respuesta5" id="respuesta5b">
+                                        <label class="form-check-label" for="respuesta5b">
+                                            b. 15 días.
+                                        </label>
+                                    </div>
+                                    <br>
+
+                                <!-- Finalizar QUIZ -->
+                                <!-- Finaliza BODY del MODAL -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" onclick="terminar('<%= userInfo._id %>')" class="btn btn-secondary" data-dismiss="modal">Finalizar autoevaluación</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
+            <form action="/cursos/conductor-nautico/confirmar-examen" hidden id="examenForm" method="POST">
+                <input name="data" type="text" id="dataInput">
+            </form>
         </div>
-
         <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
         integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
         crossorigin="anonymous"></script>
@@ -87,16 +197,8 @@
         <script src="/curso-cn/js/popper.js"></script>
         <script src="/curso-cn/js/bootstrap.min.js"></script>
         <script src="/curso-cn/js/main.js"></script>
-        
-        <script>
-            const socket = io();
-            const sessionToken = '<%= userInfo.sessionToken %>';
-            const stringDatos = '<%- JSON.stringify(userInfo.cursoConductorNautico) %>';
-            const fechaServidor = '<%- Date(Date.now()) %>'
-        </script>
 
         <script src="/curso-cn/js/introduccion.js"></script>
-        <%- include('./control-desconexion') %> 
 </body>
 
 </html>

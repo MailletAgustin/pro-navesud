@@ -1,0 +1,66 @@
+<ul class="list-unstyled components mb-5">
+    <li><a href="./">Introducción</a></li>
+    
+    <!-- Paso 1 Menu -->
+    <li>
+        <% if (userInfo.cursoConductorNautico.introduccion.autoevaluacion >= global.nota_aprobado ) { %>
+            <a href="/cursos/conductor-nautico/paso-1" id="menuPaso1">
+            <i class="fa fa-unlock" aria-hidden="true"></i>
+            &nbsp Paso 1</a>
+        <% }  else { %>
+            <a href="/cursos/conductor-nautico/paso-1" class="disabled" id="menuPaso1">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            &nbsp Paso 1</a>
+        <% } %> 
+    </li>
+
+    <!-- Paso 2 Menu -->
+    <li>
+        
+        <% if (userInfo.cursoConductorNautico.paso1.autoevaluacion >= global.nota_aprobado ) { %>
+            <a href="/cursos/conductor-nautico/paso-2" id="menuPaso2">
+            <i class="fa fa-unlock" aria-hidden="true"></i>
+            &nbsp Paso 2</a>
+        <% }  else { %>
+            <a href="/cursos/conductor-nautico/paso-2" class="disabled" id="menuPaso2">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            &nbsp Paso 2</a>
+        <% } %> 
+
+    </li>
+
+    <!-- Paso 3 Menu -->
+    <li>
+        
+        <% if (userInfo.cursoConductorNautico.paso2.autoevaluacion >= global.nota_aprobado ) { %>
+            <a href="/cursos/conductor-nautico/paso-3" id="menuPaso3">
+            <i class="fa fa-unlock" aria-hidden="true"></i>
+            &nbsp Paso 3</a>
+        <% }  else { %>
+            <a href="/cursos/conductor-nautico/paso-3" class="disabled" id="menuPaso3">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            &nbsp Paso 3</a>
+        <% } %> 
+
+    </li>
+
+    <!-- Paso 4 Menu -->
+    <li>
+
+        <% if (userInfo.cursoConductorNautico.paso3.autoevaluacion >= global.nota_aprobado ) { %>
+            <a href="/cursos/conductor-nautico/paso-final" id="menuPasoFinal">
+            <i class="fa fa-unlock" aria-hidden="true"></i>
+            &nbsp Final</a>
+        <% }  else { %>
+            <a href="/cursos/conductor-nautico/paso-final" class="disabled" id="menuPasoFinal">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            &nbsp Final</a>
+        <% } %> 
+
+    <li><a href="/cursos/conductor-nautico/calendario" id="calendario">
+        <i class="fa fa-file-text" aria-hidden="true"></i>
+        &nbsp Mesas de Examen</a>
+    </li>
+    <li><a id="ayuda" href="#"><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp Necesito
+            ayuda</a> </a></li>
+</ul>
