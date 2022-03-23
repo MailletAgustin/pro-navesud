@@ -15,6 +15,7 @@ function create(socket, db) {
     socket.on('desregistrar', (data) => { mesas.desregistrar(socket, data, db) });
     socket.on('nuevoUsuarioDesdePanelAdministrador', (data) => {usuarios.nuevoUsuarioDesdePanelAdministrador(socket, data, db)});
     socket.on('verUsuariosConFiltro', (data) => {usuarios.verUsuariosConFiltro(socket, data, db)});
+    socket.on('findMoreData', (data) => {usuarios.findMoreData(socket, data, db)});
     socket.on('generar-reporte', async (data) => {
         if (data.hasta && data.desde) {
             all = await db.Usuario.find();

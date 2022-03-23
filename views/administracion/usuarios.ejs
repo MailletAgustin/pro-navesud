@@ -83,6 +83,8 @@
                 <div class="row" id="rowUsuarios">
                     <span id="tituloUsuarios"></span>
                     <div class="col-12">
+                        <input type="text" id="filtroBuscar" class="form-control" placeholder="Buscar usuarios..">
+                        
                         <h4 class="bold" id="tableFilter"></h4>
                         <div class="table-responsive">
                         <table id="userTable" class="table">
@@ -95,6 +97,7 @@
                                 <th scope="col">Teléfono</th>
                                 <th scope="col">Ciudad</th>
                                 <th scope="col">Vencimiento</th>
+                                <th scope="col"><i class="fa fa-eye editar" aria-hidden="true"></i></th>
                                 <th hidden scope="col">Tipo</th>
                                 <th hidden scope="col">Cuit/cuil</th>
                                 <th hidden scope="col">Experiencia</th>
@@ -113,7 +116,71 @@
                     </div>
                 </div>
             </div>
-
+            <div id="datosUsuario" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="datosNombre">Mas datos - </h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="container dataShow">
+                          <div class="row">
+                              <div class="col">
+                                <p>Nombre: <span id="dataNombre"></span></p>
+                              </div>
+                              <div class="col">
+                                <p>Apellido: <span id="dataApellido"></span></p>
+                              </div>
+                              <div class="col">
+                                <p>Tipo: <span id="dataTipo"></span></p>
+                              </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Fecha registro: <span id="dataRegisterDay"></span></p>
+                            </div>
+                            <div class="col">
+                                <p>Ultimo inicio: <span id="dataLastLogin"></span></p>
+                            </div>
+                            <div class="col">
+                                <p>Dias desconectado: <span id="dataDaysLogout"></span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Dias restantes: <span id="dataDaysLeft"></span></p>
+                            </div>
+                            <div class="col">
+                                <p>Extension restante: <span id="dataExtensionLeft"></span></p>
+                            </div>
+                            <div class="col">
+                                <p>Estado: <span id="dataState"></span></p>
+                            </div>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="container">
+                          <div class="row">
+                              <div class="col-6">
+                                  <h4>Agregar días restantes</h4>
+                                  <form action="/cursos/conductor-nautico/agregar-dias" method="post">
+                                    <input type="number" required id="cantidadDias" name="cantidadDias" class="form-control w-80" placeholder="Numero de dias">
+                                    <input hidden type="text" id="idUsuario" name="idUsuario">
+                                    <input type="submit" class="form-control btn-primary w-20" value="+">
+                                </form>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <script src="/curso-cn/js/jquery.min.js"></script>
             <script src="/curso-cn/js/popper.js"></script>
             <script src="/curso-cn/js/bootstrap.min.js"></script>
@@ -127,6 +194,10 @@
                 integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
                 crossorigin="anonymous"></script>
             <style>
+                .dataShow > .row > .col > p > span {
+                    font-weight: bold;
+                    color: #000;
+                }
                 .form-control {
                     display: inline;
                     width: auto;
@@ -148,6 +219,9 @@
                 }
                 .gratis {
                     background-color: green;
+                }
+                .editar:hover {
+                    cursor:zoom-in;
                 }
             </style>
                 <script>
@@ -192,6 +266,7 @@
                         console.log(filtros);
                         socket.emit('verUsuariosConFiltro', (filtros));
                     });
+                    
                     socket.on('mostrar-usuarios', (docs) => {
                         document.getElementById('buscarUsuarios').disabled = false;
                         
@@ -275,6 +350,7 @@
                                 <td>${telefono}</td>
                                 <td>${ciudad}</td>
                                 <td>${textoDiasRestantes}</td>
+                                <td><i onclick="findMoreData('${user._id}')" class="fa fa-eye editar" aria-hidden="true"></i></td>
                                 <td hidden>${back} </td>
                                 <td hidden>${cuitcuil} </td>
                                 <td hidden>${experiencia} </td>
@@ -301,13 +377,70 @@
                             }
                         );
                     }
-function ExportToExcel(type, fn, dl) {
-       var elt = document.getElementById('userTable');
-       var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
-       return dl ?
-         XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
-         XLSX.writeFile(wb, fn || ('Usuarios filtrados.' + (type || 'xlsx')));
-    }
+                    function ExportToExcel(type, fn, dl) {
+                        var elt = document.getElementById('userTable');
+                        var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+                        return dl ?
+                            XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+                            XLSX.writeFile(wb, fn || ('Usuarios filtrados.' + (type || 'xlsx')));
+                    }
+
+                </script>
+
+                <script>
+                    function findMoreData(email) {
+                        socket.emit('findMoreData', (email));
+                    }
+
+                    socket.on('showMoreData', (data) => {
+                        console.log(data);
+                        $('#idUsuario').val(data._id)
+                        $('#datosUsuario').modal('show');
+                        $('#datosNombre').text('Mas datoss - ' + data.name + ' ' + data.lastName);
+                        $('#dataNombre').text(data.name);
+                        $('#dataApellido').text(data.lastName);
+                        $('#dataTipo').text(data.tipo);
+                        $('#dataRegisterDay').text(moment(new Date(data.fechaRegistro)).format("YYYY-MM-DD").toString());
+                        
+                        if (data.lastLogin) {
+                            $('#dataLastLogin').text(moment(new Date(data.lastLogin)).format("YYYY-MM-DD").toString());
+                            $('#dataDaysLogout').text(moment(new Date()).diff(moment(new Date(data.lastLogin)), 'days') + 1);
+                        } else {
+                            $('#dataDaysLogout').text('No registrado');
+                            $('#dataLastLogin').text('No registrado');
+                        }
+
+                        if (data.cursoConductorNautico) {
+                            $('#dataDaysLeft').text(data.cursoConductorNautico.diasRestantes);
+                            $('#dataState').text(data.cursoConductorNautico.estado);
+
+                            if (data.cursoConductorNautico.estado == 'aprobado') {
+                                $('#dataExtensionLeft').text(data.cursoConductorNautico.diasExtension + ', pero aprobó');
+                            } 
+                            
+                            if (data.cursoConductorNautico.diasExtension == undefined) {
+                                $('#dataExtensionLeft').text('No registrado');
+                            } else {
+                                $('#dataExtensionLeft').text(data.cursoConductorNautico.diasExtension);
+                            }
+                        } else {
+                            $('#dataDaysLeft').text('No registrado');
+                            $('#dataExtensionLeft').text('No registrado');
+                            $('#dataState').text('No registrado');
+                        }
+                    });
+
+
+
+                    $(document).ready(function(){
+                        $("#filtroBuscar").on("keyup", function() {
+                            var value = $(this).val().toLowerCase();
+                            $("#userTable tr").filter(function() {
+                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+
                 </script>
 </body>
 

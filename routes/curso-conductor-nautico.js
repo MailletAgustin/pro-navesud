@@ -1,6 +1,7 @@
 const Console = require("Console");
 const globalVars = require("../global.json");
 const correos = require("../functions/correos");
+const { parse } = require("request/lib/cookies");
 
 function home(req, res, db) {
   if (req.cookies.sessionToken) {
@@ -282,7 +283,8 @@ function solicitarExtension(req, res, db) {
       Console.success('Agregando días a : ' + doc.email);
       auxTemp = {
         renovado: true,
-        diasRestantes: 15
+        diasRestantes: 15,
+        diasExtension: 0
       }
 
       doc.cursoConductorNautico = {...doc.cursoConductorNautico, ...auxTemp}
@@ -541,6 +543,23 @@ function verificarAprobacion(aux) {
   }
 }
 
+function agregarDias(req,res, db) {
+  db.Usuario.findOne({_id: req.body.idUsuario}, (err, doc) => {
+    if (err) throw err;
+    diasActuales = parseInt(doc.cursoConductorNautico.diasRestantes);
+    diasNuevos = diasActuales + parseInt(req.body.cantidadDias);
+    aux = {
+      diasRestantes: diasNuevos
+    }
+
+    doc.cursoConductorNautico = {
+      ...doc.cursoConductorNautico,
+      ...aux
+    }
+    doc.save();
+  });
+  res.redirect('/administracion/usuarios');
+}
 module.exports = {
   home,
   paso1,
@@ -550,5 +569,6 @@ module.exports = {
   calendario,
   completarInformacion,
   solicitarExtension,
-  confirmarExamen
+  confirmarExamen,
+  agregarDias
 };

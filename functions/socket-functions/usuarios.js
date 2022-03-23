@@ -165,9 +165,17 @@ function ordenarUsuarios(userList) {
     return usuariosOrdenados;
 }
 
+function findMoreData(socket, data, db) {
+    db.Usuario.findOne({_id: data}, (err, doc) => {
+        if (err) throw err
+        socket.emit('showMoreData', (doc));
+    });
+}
+
 module.exports = {
     setDatos,
     inscribirUsuarioAMesa,
     nuevoUsuarioDesdePanelAdministrador,
-    verUsuariosConFiltro
+    verUsuariosConFiltro,
+    findMoreData
 }

@@ -1,5 +1,5 @@
 console.clear();
-let APPMODE = 'PROD';
+let APPMODE = 'DEV';
 
 let https, io;
 const Console = require("Console");
@@ -86,6 +86,7 @@ app.get('/cursos/conductor-nautico/paso-final', (req, res, next) => {cursoConduc
 app.get('/cursos/conductor-nautico/calendario', (req, res, next) => {cursoConductorNautico.calendario(req, res, db)});
 app.post('/cursos/conductor-nautico/solicitar-extension', (req, res, next) => {cursoConductorNautico.solicitarExtension(req, res, db)});
 app.post('/cursos/conductor-nautico/confirmar-examen', (req, res, next) => {cursoConductorNautico.confirmarExamen(req, res, db)});
+app.post('/cursos/conductor-nautico/agregar-dias', (req, res, next) => {cursoConductorNautico.agregarDias(req, res, db)});
 
 // Administracion
 app.get('/administracion', (req, res) => {administracion.mesasExamen(req, res, db)});
