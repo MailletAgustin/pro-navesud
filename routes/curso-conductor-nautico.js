@@ -546,11 +546,21 @@ function verificarAprobacion(aux) {
 function agregarDias(req,res, db) {
   db.Usuario.findOne({_id: req.body.idUsuario}, (err, doc) => {
     if (err) throw err;
-    diasActuales = parseInt(doc.cursoConductorNautico.diasRestantes);
-    diasNuevos = diasActuales + parseInt(req.body.cantidadDias);
+    let diasNuevos;
+    let diasActuales = parseInt(doc.cursoConductorNautico.diasRestantes);
+    
+
+    if (isNaN(diasActuales)) {
+      diasNuevos = parseInt(req.body.cantidadDias);
+    } else {
+      diasNuevos = diasActuales + parseInt(req.body.cantidadDias);
+    }
+
     aux = {
       diasRestantes: diasNuevos
     }
+
+    console.log(aux);
 
     doc.cursoConductorNautico = {
       ...doc.cursoConductorNautico,
