@@ -34,6 +34,14 @@ var UsuarioSchema = mongoose.Schema({
     lastLogin: String
 });
 
+var PreUserSchema = mongoose.Schema({
+    name: String,
+    lastName: String,
+    email: String,
+    password: String,
+    fechaIntentoPago: { type: String, default: new Date() },
+});
+
 var MesasSchema = mongoose.Schema({
     fecha: String,
     registrados: [],
@@ -44,3 +52,4 @@ var MesasSchema = mongoose.Schema({
 
 exports.Mesas = mongoose.model("Mesas", MesasSchema);
 exports.Usuario = mongoose.model("Usuario", UsuarioSchema);
+exports.PreUser = mongoose.model("PreUser", PreUserSchema);

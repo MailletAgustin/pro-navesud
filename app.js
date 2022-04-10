@@ -73,7 +73,7 @@ app.get("/info/conductor-nautico", (req, res) => landing.infoConductorNautico(re
 app.get("/cursos/listado", (req, res) => landing.listadoCursos(req, res)); // Listado de cursos público
 
 // Pagos
-app.post('/pagos/conductor-nautico', (req, res) => pagos.iniciarPagoConductorNautico(req, res)); //Se inicia el proceso de pago del CURSO CONDUCTOR NAUTICO, se envían datos desde /info/conductor-nautico
+app.post('/pagos/conductor-nautico', (req, res) => pagos.iniciarPagoConductorNautico(req, res, db)); //Se inicia el proceso de pago del CURSO CONDUCTOR NAUTICO, se envían datos desde /info/conductor-nautico
 app.post('/pagos/notificaciones/conductor-nautico', (req, res) => pagos.notificacionPagoConductorNautico(req, res, db)); //Se notifica un cambio en el proceso de pago del CURSO CONDUCTOR NAUTICO (Se pagó, se rechazó, etc). Se envía la BASE DE DATOS para CREAR EL USUARIO si es necesario.
 
 // Curso conductor náutico

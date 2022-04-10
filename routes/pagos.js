@@ -13,7 +13,7 @@ mercadopago.configure({
   access_token: sensible.mercadopagoAccesToken,
 });
 
-function iniciarPagoConductorNautico(req, res) {
+function iniciarPagoConductorNautico(req, res, db) {
   if (
     req.body.nombre &&
     req.body.apellido &&
@@ -33,6 +33,14 @@ function iniciarPagoConductorNautico(req, res) {
     if (emailValidator.validate(correo) && correo === correoValidacion) {
       // Verificar que las contraseñas sean correctas y coincidan
       if (password === passwordValidation) {
+        // Crear PreUser (usuario que no está registrado en la base de datos con intención de pago y que aunqueluego no pague queda registrado)
+        db.PreUser.create({
+          name: nombre,
+          lastName: apellido,
+          email: correo,
+          password: password,
+        });
+
         // Generar datos de pago:
         external_data = JSON.stringify({
           nombre: nombre,
