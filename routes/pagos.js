@@ -6,7 +6,7 @@ const sensible = require("../sensible.json");
 const request = require("request");
 const usuarios = require('../functions/usuarios');
 // Variables
-const precioCursoConductorNautico = 6300;
+const precioCursoConductorNautico = 7500;
 
 // Configuraciones
 mercadopago.configure({
@@ -40,7 +40,7 @@ function iniciarPagoConductorNautico(req, res) {
           correo: correo,
           password: password,
           tipo: "pagado",
-          pagoTotal: 6300,
+          pagoTotal: precioCursoConductorNautico,
         });
 
         // Generar JSON preferencias
