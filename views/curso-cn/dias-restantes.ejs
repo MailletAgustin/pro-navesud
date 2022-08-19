@@ -18,6 +18,14 @@
     mostrarCartelFinal();
   }
 
+  const deleteAllCookies = () => {
+    // Delete sessionToken cookie from browser
+    document.cookie = 'sessionToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    // reload page
+    location.reload();
+  }
+
+
   function mostrarCartelRenovacion() {
     setTimeout(() => {
       document.getElementById('masterContainer').innerHTML = `
@@ -41,9 +49,10 @@
       
       <div style="min-height: 100vh; padding-left: 10%; padding-right: 10%; padding-top: 10%;" class="diasRestantes">
         <h1>¡Ups! Tu usuario venció.</h1>
-        <p>Los días de tu usuario han vencido. Esperamos que el curso haya sido de útilidad y nos encantaría mantenernos en contacto contigo. Si tienes alguna duda o sugerencia, puedes contarnos por estos medios.</p>
+        <p>Los días de tu usuario han vencido. Esperamos que el curso haya sido de útilidad y nos encantaría mantenernos en contacto contigo. Si tienes alguna duda o sugerencia, puedes contarnos por estos medios. <strong> ¿Crees que esto es un error? Puedes desconectarte y volver a intentarlo.</strong></p>
         <button class="btn download" onclick="window.location = 'https://wa.link/j7cr6x';">WhatsApp</button>
         <button class="btn download" onclick="window.location = 'mailito:hola@navesud.com.ar';">Correo Electrónico</button>
+        <button class="btn download" onclick="deleteAllCookies()">Reintentar</button>
       </div>
 
       `;

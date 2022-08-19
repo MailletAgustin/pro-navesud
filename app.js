@@ -119,7 +119,6 @@ if (APPMODE == 'PROD') {
     db.Usuario.find( (err, docs) => {
       docs.forEach((doc) => {
         // Desconectar a todos los usuarios
-        doc.sessionToken = '';
         
         // Restar un día a los días restantes
         Console.warn('Restando días a todos los usuarios');
