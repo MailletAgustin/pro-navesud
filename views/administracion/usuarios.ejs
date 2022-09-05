@@ -41,6 +41,11 @@
                 </div>
             </nav>
 
+            <div class="info">
+                <input type="button" class="form-control mt-2 btn-primary w-100" value="Ver intenciones de pago" onclick="verIntencionesDePago()">
+                <hr>
+                <div class="row text-center userList" id="preUserList"></div>  
+            </div>
             <!-- Introducción -->
             <div class="info">
                 <div class="row">
@@ -180,7 +185,8 @@
                     </div>
                   </div>
                 </div>
-              </div>
+            </div>
+            
             <script src="/curso-cn/js/jquery.min.js"></script>
             <script src="/curso-cn/js/popper.js"></script>
             <script src="/curso-cn/js/bootstrap.min.js"></script>
@@ -194,6 +200,20 @@
                 integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
                 crossorigin="anonymous"></script>
             <style>
+                .userList > .col-4 {
+                    margin: 15px;
+                    background-color: rgb(101, 206, 255);
+                    border-radius: 5px;
+                    padding: 5px;
+                    color: #000;
+                    -webkit-box-shadow: -1px 4px 16px 1px rgba(0,0,0,0.75);
+                    -moz-box-shadow: -1px 4px 16px 1px rgba(0,0,0,0.75);
+                    box-shadow: -1px 4px 16px 1px rgba(0,0,0,0.75);
+                }
+
+                .userList > .col-4 > p {
+                    margin: 0;
+                }
                 .dataShow > .row > .col > p > span {
                     font-weight: bold;
                     color: #000;
@@ -226,6 +246,24 @@
             </style>
                 <script>
                     var socket = io();
+                    function verIntencionesDePago() {
+                        socket.emit('buscarIntencionesDePago');
+                    }
+
+                    socket.on('listadoDePreUsers', (listado) => {
+                        $('#preUserList').empty();
+                        listado.forEach(preUser => {
+                            $('#preUserList').append(`
+                            <div class="col-4">
+                                <p><strong>${preUser.name}</strong></p>
+                                <p><strong>${preUser.lastName}</strong></p>
+                                <p>${preUser.email}</p>
+                                <p class="small">${preUser.fechaIntentoPago.toLocaleString()  }</p>
+                            </div>
+                            `)
+                        });
+                    });
+                    
                     $('#tipoUsuarioNuevo').on('change', () => {
                         if ($('#tipoUsuarioNuevo').val() == 'pagado') {
                             $('#pagoTotal').show();

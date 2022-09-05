@@ -40,11 +40,29 @@
                     </button>
                 </div>
             </nav>
-
+            <div class="info">
+                <div class="row">
+                    <div class="col-6">
+                        <h4 id="precioCursoTitulo">Precio actual del curso: $<%= global.precioCurso %></h4>
+                        <form class="form-inline">
+                            <input type="number" class="form-control mt-2 mr-2" placeholder="Nuevo precio" id="precioNuevoDelCurso">
+                            <input type="button" class="form-control mt-2 btn-primary" value="Modificar" onclick="modificarPrecioCurso($('#precioNuevoDelCurso').val())">
+                        </form>
+                    </div>
+                    <div class="col-6">
+                        <h4 id="precioCursoExamen">Precio actual del examen: $<%= global.precioExamen %></h4>
+                        <form class="form-inline ">
+                            <input type="number" class="form-control mt-2 mr-2" placeholder="Nuevo precio" id="precioNuevoDelExamen">
+                            <input type="button" class="form-control mt-2 btn-primary" value="Modificar" onclick="modificarPrecioDelExamen($('#precioNuevoDelExamen').val())">
+                        </form>
+                    </div>
+                </div>
+                <hr>
+            </div>
             <!-- Introducción -->
             <div class="info">
-                <h4>Reporte de ventas</h4>
                 <br>
+                <h4>Reporte de ventas</h4>
                 <div class="row">                   
                     <div class="col-6 p-4" id="rowReporteVentas">
                         <div class="row">
@@ -133,6 +151,7 @@
                 <script>
                     var socket = io();
                     let busqueda = true;;
+                    // Buscar y generar reporte
                     $('#botonBuscar').on('click', (e) => {
                         if (busqueda) {
                             $('#botonBuscar').attr("disabled", true)
@@ -151,6 +170,7 @@
                             location.reload();
                         }
                     })
+                    // Formatear y mostrar reporte
                     socket.on('nuevo-reporte', (data) => {
                         console.log(data.filtrados);
                         registros = data.filtrados;
@@ -212,13 +232,44 @@
                         $('#intervaloInforme').text(`Intervalo de tiempo: desde ${$('#desde').val()}, hasta ${$('#hasta').val()}`);
                         $('#totalVendido').text(gananciaTotal);
                 });
-                function ExportToExcel(type, fn, dl) {
+                    
+                    // Exportar reporte a excel
+                    function ExportToExcel(type, fn, dl) {
                     var elt = document.getElementById('detalleTabla');
                     var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
                     return dl ?
                         XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
                         XLSX.writeFile(wb, fn || ('Reporte Usuarios.' + (type || 'xlsx')));
                 }
-                </script>
+                
+                    // Modificar precio del curso
+                    function modificarPrecioCurso(precio) {
+                        if (precio != '') {
+                            socket.emit('modificarPrecioDelCurso', precio);
+                            $('#precioCursoTitulo').html('Procesando...')
+                        } else {
+                            alert('Se necesita un nuevo precio para hacer la modificación.')
+                        }
+                    }
+
+                    // Modificar precio del curso
+                    function modificarPrecioDelExamen(precio) {
+                        if (precio != '') {
+                            socket.emit('modificarPrecioDelExamen', precio);
+                            // Alerta actualizando precio del examen
+                            $('#precioCursoExamen').html('Procesando...')
+                        } else {
+                            alert('Se necesita un nuevo precio para hacer la modificación.')
+                        }
+                    }
+
+
+                    socket.on('precioExamenModificado', (precio) => {
+                        $('#precioCursoTitulo').html('Precio actual del curso: $' + precio);
+                    });
+                    socket.on('precioCursoModificado', (precio) => {
+                        $('#precioCursoExamen').html('Precio actual del curso: $' + precio);
+                    });
+                    </script>
 </body>
 </html>

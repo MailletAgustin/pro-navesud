@@ -5,8 +5,9 @@ const mercadopago = require("mercadopago");
 const sensible = require("../sensible.json");
 const request = require("request");
 const usuarios = require('../functions/usuarios');
+const globalVars = require('../global.json');
 // Variables
-const precioCursoConductorNautico = 7500;
+let precioCursoConductorNautico = globalVars.precioCurso;
 
 // Configuraciones
 mercadopago.configure({
@@ -40,7 +41,7 @@ function iniciarPagoConductorNautico(req, res, db) {
           email: correo,
           password: password,
         });
-
+        console.log(precioCursoConductorNautico);
         // Generar datos de pago:
         external_data = JSON.stringify({
           nombre: nombre,
@@ -61,7 +62,7 @@ function iniciarPagoConductorNautico(req, res, db) {
             {
               id: "0",
               title: "Curso Conductor Náutico - #WEB002",
-              unit_price: precioCursoConductorNautico,
+              unit_price: parseInt(precioCursoConductorNautico),
               quantity: 1,
             },
           ],

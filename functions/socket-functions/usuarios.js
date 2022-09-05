@@ -159,6 +159,29 @@ function verUsuariosConFiltro(socket, data, db) {
     }
 }
 
+function buscarIntencionesDePago(socket, db) {
+    console.log('Buscando intenciones...');
+    let preUsers = [];
+    let users = [];
+
+    db.Usuario.find({}, (err, docs) => {
+        docs.forEach(doc => {
+            users.push(doc.email);
+        });
+        console.log(users);
+        db.PreUser.find({}, (err, pres) => {
+            pres.forEach(pre => {
+                // Filtrar y pushear solo los PREUSUARIOS que no se registraron
+                if (users.includes(pre.email)) {return false}
+                preUsers.push(pre)
+            });
+            socket.emit('listadoDePreUsers', (preUsers));
+        });
+    });
+    
+    
+}
+
 // Private functions
 function ordenarUsuarios(userList) {
     usuariosOrdenados = userList.sort((a, b) => moment(b.fechaRegistro).unix() - moment(a.fechaRegistro).unix());
@@ -172,10 +195,12 @@ function findMoreData(socket, data, db) {
     });
 }
 
+
 module.exports = {
     setDatos,
     inscribirUsuarioAMesa,
     nuevoUsuarioDesdePanelAdministrador,
     verUsuariosConFiltro,
-    findMoreData
+    findMoreData,
+    buscarIntencionesDePago
 }

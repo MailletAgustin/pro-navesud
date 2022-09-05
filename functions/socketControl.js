@@ -1,6 +1,7 @@
 const Console = require('Console');
 const usuarios = require('./socket-functions/usuarios');
 const correos = require('./correos');
+const global = require('./socket-functions/global');
 const mesas = require('./socket-functions/mesas');
 const moment = require('moment');
 
@@ -33,6 +34,9 @@ function create(socket, db) {
             console.log('Se intento generar un reporte sin fechas');
         }
     });
+    socket.on('modificarPrecioDelCurso', (data) => {global.modificarPrecioDelCurso(socket, data)});
+    socket.on('modificarPrecioDelExamen', (data) => {global.modificarPrecioDelExamen(socket, data)});
+    socket.on('buscarIntencionesDePago', () => {usuarios.buscarIntencionesDePago(socket, db)});
 }
 
 

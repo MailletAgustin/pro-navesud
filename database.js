@@ -39,7 +39,7 @@ var PreUserSchema = mongoose.Schema({
     lastName: String,
     email: String,
     password: String,
-    fechaIntentoPago: { type: String, default: new Date() },
+    fechaIntentoPago: { type: Date, default: Date.now },
 });
 
 var MesasSchema = mongoose.Schema({
