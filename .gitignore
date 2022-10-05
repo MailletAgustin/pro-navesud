@@ -1,4 +1,5 @@
 #Ignorar el sensible.json
 sensible.json
 global.json
+*.mp4
 node_modules
