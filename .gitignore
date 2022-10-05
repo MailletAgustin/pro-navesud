@@ -1,3 +1,4 @@
 #Ignorar el sensible.json
 sensible.json
+global.json
 node_modules
