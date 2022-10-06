@@ -2,4 +2,5 @@
 sensible.json
 global.json
 *.mp4
+*.pdf
 node_modules
