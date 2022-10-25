@@ -45,8 +45,7 @@ function inscribirUsuarioAMesa(socket, data, db) {
 function nuevoUsuarioDesdePanelAdministrador(socket, data, db) {
     data = JSON.stringify(data);
     console.log(data);
-    usuarios.crear(data, db)
-    socket.emit('registro-exitoso');
+    usuarios.crear(socket, data, db);
 }
 
 function verUsuariosConFiltro(socket, data, db) {

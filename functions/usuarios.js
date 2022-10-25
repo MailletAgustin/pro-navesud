@@ -3,23 +3,32 @@ const moment = require('moment');
 const correos = require('./correos')
 const Console = require('Console');
 
-function crear(data, db) {
+function crear(socket, data, db) {
     external_data = JSON.parse(data);
-    console.log(external_data)
-    // Crear el USUARIO
-    nuevoUsuario = db.Usuario.create({
-        name: external_data.nombre,
-        lastName: external_data.apellido,
-        email: external_data.correo,
-        password: external_data.password,
-        sessionToken: '',
-        cursoPago: ['conductor-nautico'],
-        tipo: external_data.tipo,
-        pagoTotal: external_data.pagoTotal,
-        fechaRegistro: new moment()
+    // Buscar si existe un usuario con el mismo email
+    db.Usuario.findOne({email: external_data.correo}, (err, doc) => {
+        // Si no existe...
+        if (!doc) {
+            // Crear el USUARIO
+            console.log('El usuario no existe, creando...');
+            nuevoUsuario = db.Usuario.create({
+                name: external_data.nombre,
+                lastName: external_data.apellido,
+                email: external_data.correo,
+                password: external_data.password,
+                sessionToken: '',
+                cursoPago: ['conductor-nautico'],
+                tipo: external_data.tipo,
+                pagoTotal: external_data.pagoTotal,
+                fechaRegistro: new moment()
+            });
+            correos.registroExitoso(external_data.correo, external_data.nombre, external_data.correo, external_data.password);
+            socket.emit('registro-exitoso');
+        } else {
+            console.log('El usuario' + external_data.correo + 'ya existe, error.');
+            socket.emit('registro-fallido');
+        }
     });
-
-    correos.registroExitoso(external_data.correo, external_data.nombre, external_data.correo, external_data.password)
 }
 
 

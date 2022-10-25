@@ -115,6 +115,9 @@
                             <tbody id="bodyUserTable">
                               
                             </tbody>
+                            <tbody id="bodyUserTableExpired">
+                              
+                            </tbody>
                           </table>
                           <button onclick="ExportToExcel('xlsx')" class="form-control">Exportar a excel</button>
                         </div>
@@ -238,10 +241,14 @@
                     text-align: center;
                 }
                 .gratis {
-                    background-color: green;
+                    background-color: rgba(110, 255, 110, 0.322);
                 }
                 .editar:hover {
                     cursor:zoom-in;
+                }
+
+                #bodyUserTableExpired {
+                    background-color: rgba(255, 113, 113, 0.514);
                 }
             </style>
                 <script>
@@ -293,10 +300,16 @@
                         location.reload();
                     });
 
+                    socket.on('registro-fallido', ()=> {
+                        alert('[ERROR] El usuario ya está registrado!')
+                        location.reload();
+                    });
+
 
                     $('#buscarUsuarios').on('click', () => {
                         document.getElementById('buscarUsuarios').disabled = true;
                         $('#bodyUserTable').empty();
+                        $('#bodyUserTableExpired').empty();
                         $('#tituloUsuarios').empty();
                         filtros = {
                             avance: $('#filtroAvance').val()
@@ -398,7 +411,11 @@
                                 <td hidden>${pagoTotal} </td>
                               </tr>
                             `
-                            $('#bodyUserTable').append(html)
+                            if (textoDiasRestantes == 'Expiró') {
+                                $('#bodyUserTableExpired').append(html);
+                            } else {
+                                $('#bodyUserTable').append(html)
+                            }
                         });
                         
                     });

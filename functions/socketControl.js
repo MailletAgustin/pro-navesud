@@ -27,6 +27,7 @@ function create(socket, db) {
                 desde = moment(data.desde)
                 if (userDateRegistration.isBetween(desde, hasta)) {
                     filtrados.push(user)
+                    console.log(filtrados.email);
                 }
             });
             socket.emit('nuevo-reporte', {filtrados});
