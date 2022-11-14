@@ -107,39 +107,40 @@ function iniciarPagoConductorNautico(req, res, db) {
 
 function notificacionPagoConductorNautico(req, res, databaseConnection) {
   res.sendStatus(200);
+  console.log(req.query);
 
-  console.log(req.query.topic);
-  if (req.query.topic == "payment") {
-    idPago = req.query;
-    var headers = {
-      accept: "application/json",
-      "content-type": "application/json",
-      Authorization: sensible.mercadopagoAuth,
-    };
-    var options = {
-      url: "https://api.mercadopago.com/v1/payments/" + idPago,
-      headers: headers,
-    };
+  // console.log(req.query.topic);
+  // if (req.query.topic == "payment") {
+  //   idPago = req.query;
+  //   var headers = {
+  //     accept: "application/json",
+  //     "content-type": "application/json",
+  //     Authorization: sensible.mercadopagoAuth,
+  //   };
+  //   var options = {
+  //     url: "https://api.mercadopago.com/v1/payments/" + idPago,
+  //     headers: headers,
+  //   };
 
-    function callback(error, response, body) {
-      if (!error) {
-        console.log('Se recibio una notificación de mercadopago');
-        console.log(body);
-        console.log('Estado del pedido:');
-        console.log(body.status);
-        if (body.status == "approved") {
-          console.log('La notificación de mercadopago está aprobada');
-          console.log(body.external_reference);
-        }
+  //   function callback(error, response, body) {
+  //     if (!error) {
+  //       console.log('Se recibio una notificación de mercadopago');
+  //       console.log(body);
+  //       console.log('Estado del pedido:');
+  //       console.log(body.status);
+  //       if (body.status == "approved") {
+  //         console.log('La notificación de mercadopago está aprobada');
+  //         console.log(body.external_reference);
+  //       }
 
-      } else {
-        console.log('[Error en ROUTES/PAGOS.JS/NotificacionPagoConductorNautico]]')
-        console.log(error);
-      }
-    }
+  //     } else {
+  //       console.log('[Error en ROUTES/PAGOS.JS/NotificacionPagoConductorNautico]]')
+  //       console.log(error);
+  //     }
+  //   }
 
-    request(options, callback);
-  }
+  //   request(options, callback);
+  // }
 }
 
 module.exports = {
