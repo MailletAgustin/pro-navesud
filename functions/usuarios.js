@@ -22,9 +22,15 @@ function crear(socket, data, db) {
                 pagoTotal: info.pagoTotal,
                 fechaRegistro: new moment()
             });
-            correos.registroExitoso(info.correo, info.nombre, info.correo, info.password)
+            correos.registroExitoso(info.correo, info.nombre, info.correo, info.password);
+            if (socket) {
+                socket.emit('registro-exitoso');
+            }
         } else {
             console.log('ERROR, el usuario ya existe.');
+            if (socket) {
+                socket.emit('registro-fallido');
+            }
         }
     });
 }

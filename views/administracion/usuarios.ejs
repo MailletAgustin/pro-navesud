@@ -291,7 +291,7 @@
                             tipo: $('#tipoUsuarioNuevo').val(),
                             pagoTotal
                         }
-                        console.log(data);
+                        data = JSON.stringify(data);
                         socket.emit('nuevoUsuarioDesdePanelAdministrador', (data));
                     });
 
