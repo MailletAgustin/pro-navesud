@@ -1,5 +1,5 @@
 console.clear();
-let APPMODE = 'DEV';
+let APPMODE = 'PROD';
 
 let https, io;
 const Console = require("Console");
