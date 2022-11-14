@@ -124,18 +124,13 @@ function notificacionPagoConductorNautico(req, res, db) {
   request(options, (err, res, body) => {
     info = JSON.parse(body);
     
-    console.log(info.external_reference);
-
     // Verificar que el estado del pago sea aprobado
     if (info.status == 'approved') {
-      // Verificar que el usuario no existe en la base de datos
-      db.Usuario.findOne({email: info.external_reference.correo}, (err, doc) => {
-        if (!doc) {
-          console.log('El usuario no existe, preparado para ser creado.');
-        } else {
-          console.log('El usuario ya existe, cancelar la creación del usuario.');
-        }
-      });
+      // Crear el usuario
+      console.log('Creando el usuario...');
+      usuarios.crear("", JSON.stringify(info.external_reference), db);
+    } else {
+      console.log('Pago rechazado')
     }
   })
 
