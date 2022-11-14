@@ -105,9 +105,9 @@ function iniciarPagoConductorNautico(req, res, db) {
   }
 }
 
-function notificacionPagoConductorNautico(req, res, databaseConnection) {
+function notificacionPagoConductorNautico(req, res, db) {
+  // Se recibe la notificación por parte de mercadopago, y se indica "Recibida".
   res.sendStatus(200);
-
   let options = {
     url: "https://api.mercadopago.com/v1/payments/" + req.query.id,
     headers: {
@@ -117,15 +117,26 @@ function notificacionPagoConductorNautico(req, res, databaseConnection) {
     }
   }
 
+  // Si la notificación no es del tipo "Paymen", salir.
   if (req.query.topic != 'payment') { return }
 
+  // Realizar la búsqueda del pago efectuado
   request(options, (err, res, body) => {
-    console.log('Entramos al pago:');
     info = JSON.parse(body);
     
-    console.log(typeof info);
     console.log(info.external_reference);
-    console.log(info.status);    
+
+    // Verificar que el estado del pago sea aprobado
+    if (info.status == 'approved') {
+      // Verificar que el usuario no existe en la base de datos
+      db.Usuario.findOne({email: info.external_reference.correo}, (err, doc) => {
+        if (!doc) {
+          console.log('El usuario no existe, preparado para ser creado.');
+        } else {
+          console.log('El usuario ya existe, cancelar la creación del usuario.');
+        }
+      });
+    }
   })
 
   // console.log(req.query.topic);
