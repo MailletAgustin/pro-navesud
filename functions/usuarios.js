@@ -7,7 +7,7 @@ function crear(socket, data, db) {
     external_data = JSON.parse(data);
     info = JSON.parse(external_data);
 
-    db.findOne({ email: info.correo }, (err, doc) => {
+    db.Usuario.findOne({ email: info.correo }, (err, doc) => {
         if (!doc) {
             // Si el usuario no existe, crear.
             // Crear el USUARIO
