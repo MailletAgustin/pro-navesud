@@ -5,26 +5,25 @@ const Console = require('Console');
 
 function crear(socket, data, db) {
     external_data = JSON.parse(data);
-
     info = JSON.parse(external_data);
-    console.log(typeof info);
-    console.log(info)
-    console.log(typeof data)
-    console.log(data);
+
+
+    // Si el usuario no existe, crear.
+    
     // Crear el USUARIO
     nuevoUsuario = db.Usuario.create({
-        name: external_data.nombre,
-        lastName: external_data.apellido,
-        email: external_data.correo,
-        password: external_data.password,
+        name: info.nombre,
+        lastName: info.apellido,
+        email: info.correo,
+        password: info.password,
         sessionToken: '',
         cursoPago: ['conductor-nautico'],
-        tipo: external_data.tipo,
-        pagoTotal: external_data.pagoTotal,
+        tipo: info.tipo,
+        pagoTotal: info.pagoTotal,
         fechaRegistro: new moment()
     });
 
-    correos.registroExitoso(external_data.correo, external_data.nombre, external_data.correo, external_data.password)
+    correos.registroExitoso(info.correo, info.nombre, info.correo, info.password)
 }
 
 
