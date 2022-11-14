@@ -5,8 +5,12 @@ const Console = require('Console');
 
 function crear(socket, data, db) {
     external_data = JSON.parse(data);
-    console.log(external_data)
-    console.log(typeof external_data);
+
+    info = JSON.parse(external_data);
+    console.log(typeof info);
+    console.log(info)
+    console.log(typeof data)
+    console.log(data);
     // Crear el USUARIO
     nuevoUsuario = db.Usuario.create({
         name: external_data.nombre,
