@@ -116,11 +116,12 @@ function notificacionPagoConductorNautico(req, res, databaseConnection) {
       Authorization: sensible.mercadopagoAuth,
     }
   }
-  
+
   if (req.query.topic != 'payment') { return }
 
   request(options, (err, res, body) => {
     console.log('Entramos al pago:');
+    console.log(body);
   })
 
   // console.log(req.query.topic);
