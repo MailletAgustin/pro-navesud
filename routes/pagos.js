@@ -108,6 +108,8 @@ function iniciarPagoConductorNautico(req, res, db) {
 function notificacionPagoConductorNautico(req, res, databaseConnection) {
   res.sendStatus(200);
 
+  console.log(req);
+
   console.log(req.query.topic);
   if (req.query.topic == "payment") {
     idPago = req.query.id;
@@ -124,6 +126,7 @@ function notificacionPagoConductorNautico(req, res, databaseConnection) {
     function callback(error, response, body) {
       if (!error) {
         console.log('Se recibio una notificación de mercadopago');
+        console.log(body.status);
         if (body.status == "approved") {
           console.log('La notificación de mercadopago está aprobada');
           console.log(body.external_reference);
