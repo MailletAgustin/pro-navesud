@@ -94,50 +94,44 @@ function iniciarPagoConductorNautico(req, res, db) {
       res.render("error/personalizado", {
         msg: "Intentaste pagar, pero los correos que has introducido no coinciden. ¿Quieres intentarlo nuevamente?",
         return_url: '/info/conductor-nautico'
-    });
+      });
     }
   } else {
     Console.error("[Intento de pago FALLIDO] - Curso conductor náutico - Faltaron datos");
     res.render("error/personalizado", {
-        msg: "Intentaste pagar, pero olvidaste ingresar algunos datos. ¿Quieres hacerlo nuevamente?",
-        return_url: '/info/conductor-nautico'
-      });
+      msg: "Intentaste pagar, pero olvidaste ingresar algunos datos. ¿Quieres hacerlo nuevamente?",
+      return_url: '/info/conductor-nautico'
+    });
   }
 }
 
 function notificacionPagoConductorNautico(req, res, databaseConnection) {
-    res.sendStatus(200);
-    if (req.query.topic == "payment") {
-        idPago = req.query.id;
-        var headers = {
-            accept: "application/json",
-            "content-type": "application/json",
-            Authorization: sensible.mercadopagoAuth,
-        };
-        var options = {
-            url: "https://api.mercadopago.com/v1/payments/" + idPago,
-            headers: headers,
-        };
+  res.sendStatus(200);
 
-        function callback(error, response, body) {
-            bodyObj = JSON.parse(body);
-            if (!error) {
-                console.log(bodyObj);
+  console.log(req.query.topic);
+  if (req.query.topic == "payment") {
+    idPago = req.query.id;
+    var headers = {
+      accept: "application/json",
+      "content-type": "application/json",
+      Authorization: sensible.mercadopagoAuth,
+    };
+    var options = {
+      url: "https://api.mercadopago.com/v1/payments/" + idPago,
+      headers: headers,
+    };
 
-                if (
-                    bodyObj.status == "approved" &&
-                    bodyObj.description == "Curso Conductor Náutico - #WEB002"
-                ) {
-                    external_data = bodyObj.external_reference;
-                    usuarios.crear(external_data, databaseConnection) // Aquí se solicita la creación de un USUARIO nuevo con los datos que llegan en EXTERNAL_DATA
-                } else {
-                    Console.error("[FALLÓ] No se pudo crear el usuario");
-                }
-            }
-        }
-
-        request(options, callback);
+    function callback(error, response, body) {
+      if (!error) {
+        console.log(body);
+      } else {
+        console.log('Error encontrado')
+        console.log(error);
+      }
     }
+
+    request(options, callback);
+  }
 }
 
 module.exports = {
