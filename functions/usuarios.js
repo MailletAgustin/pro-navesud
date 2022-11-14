@@ -7,23 +7,26 @@ function crear(socket, data, db) {
     external_data = JSON.parse(data);
     info = JSON.parse(external_data);
 
-
-    // Si el usuario no existe, crear.
-    
-    // Crear el USUARIO
-    nuevoUsuario = db.Usuario.create({
-        name: info.nombre,
-        lastName: info.apellido,
-        email: info.correo,
-        password: info.password,
-        sessionToken: '',
-        cursoPago: ['conductor-nautico'],
-        tipo: info.tipo,
-        pagoTotal: info.pagoTotal,
-        fechaRegistro: new moment()
+    db.findOne({ email: info.correo }, (err, doc) => {
+        if (!doc) {
+            // Si el usuario no existe, crear.
+            // Crear el USUARIO
+            nuevoUsuario = db.Usuario.create({
+                name: info.nombre,
+                lastName: info.apellido,
+                email: info.correo,
+                password: info.password,
+                sessionToken: '',
+                cursoPago: ['conductor-nautico'],
+                tipo: info.tipo,
+                pagoTotal: info.pagoTotal,
+                fechaRegistro: new moment()
+            });
+            correos.registroExitoso(info.correo, info.nombre, info.correo, info.password)
+        } else {
+            console.log('ERROR, el usuario ya existe.');
+        }
     });
-
-    correos.registroExitoso(info.correo, info.nombre, info.correo, info.password)
 }
 
 
