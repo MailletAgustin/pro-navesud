@@ -121,8 +121,11 @@ function notificacionPagoConductorNautico(req, res, databaseConnection) {
 
   request(options, (err, res, body) => {
     console.log('Entramos al pago:');
-    console.log(body.external_reference);
-    console.log(body.status);    
+    info = JSON.parse(body);
+    
+    console.log(typeof info);
+    console.log(info.external_reference);
+    console.log(info.status);    
   })
 
   // console.log(req.query.topic);
