@@ -123,6 +123,7 @@ function notificacionPagoConductorNautico(req, res, databaseConnection) {
 
     function callback(error, response, body) {
       if (!error) {
+        console.log('Se recibio una notificación de mercadopago');
         console.log(body);
       } else {
         console.log('Error encontrado')
