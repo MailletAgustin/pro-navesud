@@ -124,9 +124,13 @@ function notificacionPagoConductorNautico(req, res, databaseConnection) {
     function callback(error, response, body) {
       if (!error) {
         console.log('Se recibio una notificación de mercadopago');
-        console.log(body);
+        if (body.status == "approved") {
+          console.log('La notificación de mercadopago está aprobada');
+          console.log(body.external_reference);
+        }
+
       } else {
-        console.log('Error encontrado')
+        console.log('[Error en ROUTES/PAGOS.JS/NotificacionPagoConductorNautico]]')
         console.log(error);
       }
     }
