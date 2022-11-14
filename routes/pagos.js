@@ -107,7 +107,21 @@ function iniciarPagoConductorNautico(req, res, db) {
 
 function notificacionPagoConductorNautico(req, res, databaseConnection) {
   res.sendStatus(200);
-  console.log(req.query);
+
+  let options = {
+    url: "https://api.mercadopago.com/v1/payments/" + req.query.id,
+    headers: {
+      accept: "application/json",
+      "content-type": "application/json",
+      Authorization: sensible.mercadopagoAuth,
+    }
+  }
+  
+  if (req.query.topic != 'payment') { return }
+
+  request(options, (err, res, body) => {
+    console.log('Entramos al pago:');
+  })
 
   // console.log(req.query.topic);
   // if (req.query.topic == "payment") {
